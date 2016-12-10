@@ -1,0 +1,236 @@
+<div class="wrapperbox">
+<div class="box">
+	
+<form>
+	<h3>Crumplecorn's ARK Breeding Calculator</h3>
+	<p class="subheading">V242.8<br>
+	Experimental - Use as guide only</p>
+
+	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Creature']}" ng-click="showhidetable('Creature')">Creature Details</div>
+	<div class="tableslide" ng-show="tablevisibility['Creature']">
+	<table>
+		<tr>
+			<td style="width: 50%" class="label">Creature:</td>
+			<td><select ng-show="displayconfig.showoldselects" ng-options="name as name for (name, details) in creatures" ng-model="creature.name" ng-change="selectcreature()"></select>
+				<input ng-hide="displayconfig.showoldselects" class="autocomplete" autocomplete data-source="creatures" ng-change="searchcreature()" data-default="creature.name" ng-model="creature.searchname"></td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Hatch Multiplier: </td>
+			<td><input ng-model="settings.hatchspeed" ng-change="selectsettings()"></td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Mature Multiplier: </td>
+			<td><input ng-model="settings.maturationspeed" ng-change="selectsettings()"></td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Consume Multiplier: </td>
+			<td><input ng-model="settings.consumptionspeed" ng-change="selectsettings()"></td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">{{creature.birthlabel}} Time</td>
+			<td>{{creature.birthtime | secondsToDateTime}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Baby Time</td>
+			<td>{{creature.babytime | secondsToDateTime}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Maturation Time</td>
+			<td>{{creature.maturationtime | secondsToDateTime}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Total Food</td>
+			<td>{{creature.totalfood/foods[foodunit].food | number:0}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Final Weight:</td>
+			<td><input ng-model="creature.finalweight" ng-change="selectweight()"></td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Current Weight:</td>
+			<td><input ng-model="creature.currentweight" ng-change="selectweight()"></td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Food Type:</td>
+			<td><select ng-options="food for food in creatures[creature.name].foods" ng-model="foodunit" ng-change="babybuffercalc()"></select></td>
+		</tr>
+	</table>
+	</div>
+
+	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Maturation']}" ng-click="showhidetable('Maturation')">Maturation Status</div>
+	<div class="tableslide" ng-show="tablevisibility['Maturation']">
+	<table>
+		<tr>
+			<td style="width: 50%" class="label">Maturation Progress:</td>
+			<td>{{creature.maturationprogress*100 | number:1}}%</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Baby Phase Remaining:</td>
+			<td>{{creature.babytimeremaining | secondsToDateTime}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Maturation Time So Far:</td>
+			<td>{{creature.maturationtimecomplete | secondsToDateTime}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Maturation Remaining:</td>
+			<td>{{creature.maturationtimeremaining | secondsToDateTime}}</td>
+		</tr>
+	</table>
+	</div>
+
+	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Baby']}" ng-click="showhidetable('Baby')">Baby Phase</div>
+	<div class="tableslide" ng-show="tablevisibility['Baby']">
+	<table>
+		<tr>
+			<td style="width: 50%" class="label">Total Food:</td>
+			<td>{{creature.babyfood/foods[foodunit].food | number:0}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Current Buffer:</td>
+			<td>{{creature.currentbabybuffer | secondsToDateTime}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Max Buffer:</td>
+			<td>{{creature.maxbabybuffer | secondsToDateTime}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Desired Buffer:</td>
+			<td><input ng-model="creature.desiredbabybuffer" ng-change="babybuffercalc()"></td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Time Until Buffer:</td>
+			<td>{{creature.timeuntildesiredbabybuffer | secondsToDateTime}}</td>
+		</tr>
+	</table>
+	</div>
+
+	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Food']}" ng-click="showhidetable('Food')">Food Details</div>
+	<div class="tableslide" ng-show="tablevisibility['Food']">
+	<table>
+		<tr>
+			<td style="width: 50%" class="label">Trough Calc Link:</td>
+			<td><input type="checkbox" ng-model="troughdata.linkfoodtabletotrough" ng-change="totalfoodcalc();troughcalc()"></td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Loss Factor:</td>
+			<td><input ng-model="troughdata.lossfactor" ng-change="totalfoodcalc();troughcalc()"></td>
+		</tr>
+		<tr ng-repeat="(day,food) in creature.foodforday">
+			<td style="width: 50%" class="label">Day {{day}} Food</td>
+			<td>{{food/foods[foodunit].food | number:0}}</td>
+		</tr>
+	</table>
+	</div>
+
+	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Trough']}" ng-click="showhidetable('Trough')">Trough Calculator</div>
+	<div class="tableslide" ng-show="tablevisibility['Trough']">
+	<table>
+		<tr>
+			<td style="width: 50%" class="label">Food Type</td>
+			<td><select ng-options="name as name for (name,details) in foodlists" ng-model="troughdata.type" ng-change="troughsetstacktype()"></select></td>
+		</tr>
+		<tr ng-repeat="food in troughstacks">
+			<td style="width: 50%" class="label">{{food.food}}</td>
+			<td><input ng-model="food.stacks" ng-change="troughcalc()"> Stacks</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Time</td>
+			<td>{{troughdata.time | secondsToDateTime}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Total Food</td>
+			<td>{{troughdata.totalpoints}} Points / {{troughdata.totalfood}} Food</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Eaten Food</td>
+			<td>{{troughdata.eatenpoints}} Points / {{troughdata.eatenfood}} Food</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Spoiled Food</td>
+			<td>{{troughdata.spoiledpoints}} Points / {{troughdata.spoiledfood}} Food</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Wasted Food</td>
+			<td>{{troughdata.wastedpoints}} Points</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Loss</td>
+			<td>{{(troughdata.spoiledpoints+troughdata.wastedpoints)/troughdata.totalpoints*100}}%</td>
+		</tr>
+	</table>
+	</div>
+
+	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['TroughCreatures']}" ng-click="showhidetable('TroughCreatures')">Trough Calculator - Creatures</div>
+	<div class="tableslide" ng-show="tablevisibility['TroughCreatures']">
+	<table>
+		<thead>
+			<td>Creature</td>
+			<td>Current</td>
+			<td>Final</td>
+			<td>Remove</td>
+		</thead>
+		<tr ng-repeat="(index, troughcreature) in troughcreatures">
+			<td><select ng-class="{'redselect': creatures[troughcreature.name].foods!=foodlists[troughdata.type]}" ng-options="name as name for (name, details) in creatures" ng-model="troughcreature.name" ng-change="troughcalc()"></select></td>
+			<td><input ng-model="troughcreature.currentweight" ng-change="troughcalc()"></td>
+			<td><input ng-model="troughcreature.finalweight" ng-change="troughcalc()"></td>
+			<td><input type="button" ng-click="troughremovecreature(index)" value="Remove"></td>
+		</tr>
+		<tr>
+			<td><input type="button" ng-click="troughaddcreature()" value="Add Creature"></td>
+		</tr>
+	</table>
+</div>
+
+<p class="footer">
+<input id="helpcb" class="hidden" type="checkbox" ng-model="helphidden" ng-true-value="1" ng-false-value="0"><label for="helpcb">Show Help</label>
+<input id="animationscb" class="hidden" type="checkbox" ng-model="displayconfig.showanimations" ng-true-value="0" ng-false-value="1" ng-change="showhideanimations()"><label for="animationscb">Disable Animations</label>
+<input id="oldselectscb" class="hidden" type="checkbox" ng-model="displayconfig.showoldselects" ng-true-value="1" ng-false-value="0" ng-change="changedisplayconfig()"><label for="oldselectscb">Simple Selectors</label><br>
+<a href="http://crumplecorn.com/content/breeding-calculator">Feedback / Background / Changelog</a><br>
+<a href="http://twitch.tv/crumplecorn">Stream</a> <a href="https://www.twitchalerts.com/donate/crumplecorn">Donate</a>
+</p>
+
+</form>
+</div>
+
+
+<div class="helpbox" ng-show="helphidden">
+<div class="box" ng-show="tablevisibility['Creature']">
+	<p>In the <b>Creature Details</b> table you can select the creature you want breeding information on. The table will show the <b>Incubation Time</b> or <b>Gestation Time</b> as appropriate, the duration of the baby phase and the entire process referred to as <b>Baby Time</b> and <b> Maturation Time</b> respectively, and an estimate of the <b>Total Food</b> required, measured in units selected below.</p>
+	<p>The <b>Final Weight</b> and <b>Current Weight</b> can be entered to allowed calculation of food buffers and maturation progress. The Final Weight defaults to the base weight of the creature.</p>
+	<p>The <b>Food Type</b> field lets you select the type of food which will be used to measure the food consumed by the creature(s). Anywhere a quantity is referred to as "food" (rather than "points"), it is the quantity of the selected type of food. Note that <b>none of these values include spoilage</b>.</p>
+</div><br>
+<div class="box" ng-show="tablevisibility['Maturation']">
+	<p>In the <b>Maturation Status</b> table you can see details of the selected creature's maturation. <b>Maturation Progress</b> measures how complete the maturation is as a percentage. <b>Baby Phase Remaining</b> shows the time remaining until the creature can trough feed. <b>Maturation Time So Far</b> and <b>Maturation Remaining</b> show how old the creature is and how long until it is an adult respectively.</p>
+</div><br>
+<div class="box" ng-show="tablevisibility['Baby']">
+	<p>The <b>Baby Phase</b> table shows information on the creature's baby phase.</p>
+	<p>The <b>Total Food</b> is the total amount of food the creature will require from birth to the end of the baby phase.</p>
+	<p>The <b>Current Buffer</b> shows the amount of time it will take the baby to eat all the food in its inventory if it is filled with the Food Type selected in the Creature Details table</p>
+	<p>The <b>Maximum Buffer</b> is the maximum buffer value the baby will achieve before switching to trough feeding. It will achieve this value moments before ending the baby phase, so it is intended only as a guide for entering values in the following field.</p>
+	<p>In the <b>Desired Buffer</b> field you can enter the amount of time you would like to leave the baby unattended, in minutes. <b>Time Until Buffer</b> will then show you how long until the baby will be able to hold enough food to be left alone that long.</p>
+</div><br>
+<div class="box" ng-show="tablevisibility['Food']">
+	<p>In the <b>Food Details</b> table you will see the amount of food the baby will require per day until maturation, starting from the current point in maturation, again measured in the Food Type selected in Creature Details.</p>
+	<p>By default these values are calculated for the creature in Creature Details. By selecting <b>Trough Calc Link</b>, you can instead have the figures calculated for the creatures specified in the Trough Calculator.</p>
+	<p>The values calculated in this table will not include spoilage even if linked to the trough calculator, as spoilage would depend on the contents of the trough throughout the maturation process. Instead you can enter the <b>Loss Factor</b> as a percentage, based on the Loss value in the Trough Calculator. The amount of food for each day is multiplied by the Loss Factor, as a way of very roughly factoring in spoilage.</p>
+</div><br>
+<div class="box" ng-show="tablevisibility['Trough']">
+	<p>The <b>Trough Calculator</b> simulates the process of food being eaten from a trough in order to predict losses to spoilage for given configurations.</p>
+	<p>A <b>Food Type</b> must be specified as, for example, carnivores and herbivores do not eat the same foods, and so effectively operate independently. If you're raising both at the same time, calculate one set, then the other.</p>
+	<p>Once the Food Type is set, a list of foods will appear fields containing the quantity of stacks of each. This lets you specify how many stacks of each type of food your troughs will contain. These are assumed to be maxed out stacks, which they should be as starting with partial stacks is inefficient.</p>
+	<p>The <b>Time</b> field shows the amount of time until the food runs out, either through being eaten, or spoilage.</p>
+	<p>The <b>Total Food</b> field shows the total food cost, in food points and amounts of food. In this table food quantities are simply the numbers of food items, for example 1 Raw Meat plus 1 Cooked Meat is 2 food, even though they are worth different food points.</p>
+	<p>The <b>Eaten Food</b> and <b>Spoiled Food</b> show the amount of food which was eaten by a creature or spoiled before being eaten respectively.</p>
+	<p>The <b>Wasted Food</b> field shows the amount of food points lost to other means, and is currently only used for Cooked Meat, which is worth half the food points of the Raw Meat it came from. By cooking Raw Meat to make Cooked Meat, you effectively lose half of the food. <b>Wasted Food</b> quantifies this for Loss calculations.</p>
+	<p>The <b>Loss</b> value is the percentage of the food which was not eaten, and includes spoilage and wastage. This value is mostly strongly related to the duration the food in the trough lasts, rather than the amount of creatures of amount of food independently. By entering the trough configurations you will likely use and observing the loss value, you can judge a Loss Factor to enter in the Food Details table.</p>
+</div><br>
+<div class="box" ng-show="tablevisibility['TroughCreatures']">
+	<p>The <b>Trough Calculator - Creatures</b> table lets you enter creature details for use in trough calculations.</p>
+	<p>Start by pressing <b>Add Creature</b> to add a creature - the default values for the new creature will be taken from the Creature Details table.</p>
+	<p>Once you have added one or more creatures you may then, for each one, specify the <b>Creature</b>, <b>Current</b> weight and <b>Final</b> weight, and optionally <b>Remove</b> the creature from the list.</p>
+	<p>For the calculations to be valid, the creature must eat the Food Type selected in the Trough Calculator table. If there is a conflict, the Creature field will be highlighted red.</p>
+	<p>These creatures are used in the Food Details table if Trough Calc Link is selected in that table.</p>
+</div>
+</div>
+</div>
