@@ -47,93 +47,121 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Ankylosaurus: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Herbivore,
+			basefoodrate: -0.003156,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 1.9,
 			eggspeed: 0.005556,
 			eggspeedmult: 1.9,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 250
 		},
 
 		Argentavis: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001852,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
 			agespeed: 0.000003,
 			agespeedmult: 1.7,
 			eggspeed: 0.005556,
 			eggspeedmult: 1.7,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 350.0
 		},
 
 		Brontosaurus: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.007716,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 1.0,
 			eggspeed: 0.005556,
 			eggspeedmult: 1.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 900.0
 		},
 
 		Carbonemys: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.003156,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 4.0,
 			eggspeed: 0.005556,
 			eggspeedmult: 4.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 250.0
 		},
 
 		Carnotaurus: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001852,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 2.0,
 			eggspeed: 0.005556,
 			eggspeedmult: 3.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 300.0
 		},
 
 		Castoroides: {
 			birthtype: "Gestation",
 			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.002314,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 1.5,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 300
 		},
 
 		Compsognathus: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.000868,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 1.0,
 			eggspeed: 0.005556,
 			eggspeedmult: 6.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 25
 		},
+
+		Pteranodon: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 2.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.0,
+			weight: 150.0
+		},
+
+		Rex: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.002314,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 500
+		}
+
+		/*
 
 		Dilophosaurus: {
 			birthtype: "Incubation",
@@ -395,19 +423,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 200.0
 		},
 
-		Pteranodon: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Carnivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 2.5,
-			eggspeed: 0.005556,
-			eggspeedmult: 3.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 150.0
-		},
-
 		Procoptodon: {
 			birthtype: "Gestation",
 			foods: $scope.foodlists.Herbivore,
@@ -445,19 +460,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			maxfoodrate: 2.7,
 			minfoodrate: 0.1,
 			weight: 140.0
-		},
-
-		Rex: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Carnivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 1.0,
-			eggspeed: 0.005556,
-			eggspeedmult: 1.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 500
 		},
 
 		Sabertooth: {
@@ -549,7 +551,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			maxfoodrate: 2.7,
 			minfoodrate: 0.1,
 			weight: 750.0
-		}
+		}*/
 
 	}
 
@@ -559,7 +561,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			version: "160227",
 			consumptionspeed: 1,
 			maturationspeed: 1,
-			hatchspeed: 1
+			hatchspeed: 1,
+			baseminfoodrate: 0.000155
 		}
 	}
 
@@ -588,7 +591,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.creature=$cookies.getObject('creature');
 	if ($scope.creature==undefined || !($scope.creature.name in $scope.creatures)) {
 		$scope.creature={
-			name: "Rex"
+			name: "Argentavis"
 		};
 	}
 
@@ -689,8 +692,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		creature.finalweight=creaturedata.weight;
 		creature.currentweight=0;
-		creature.maxfoodrate=creaturedata.maxfoodrate*$scope.settings.consumptionspeed;
-		creature.minfoodrate=creaturedata.minfoodrate*$scope.settings.consumptionspeed;
+		creature.maxfoodrate=creaturedata.basefoodrate*creaturedata.babyfoodrate*creaturedata.extrababyfoodrate*$scope.settings.consumptionspeed;
+		creature.minfoodrate=$scope.settings.baseminfoodrate*creaturedata.babyfoodrate*creaturedata.extrababyfoodrate*$scope.settings.consumptionspeed;
 		creature.foodratedecay=(creature.maxfoodrate-creature.minfoodrate)/creature.maturationtime;
 		creature.desiredbabybuffer=1;
 
@@ -796,8 +799,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			name=troughcreatures[i].name;
 			troughcreatures[i].maturationtime=1/$scope.creatures[name].agespeed/$scope.creatures[name].agespeedmult/$scope.settings.maturationspeed;
 			troughcreatures[i].maturationtimecomplete=troughcreatures[i].maturationtime*troughcreatures[i].currentweight/troughcreatures[i].finalweight;
-			troughcreatures[i].maxfoodrate=$scope.creatures[name].maxfoodrate*$scope.settings.consumptionspeed;
-			troughcreatures[i].minfoodrate=$scope.creatures[name].minfoodrate*$scope.settings.consumptionspeed;
+			troughcreatures[i].maxfoodrate=$scope.creatures[name].basefoodrate*$scope.creatures[name].babyfoodrate*$scope.creatures[name].extrababyfoodrate*$scope.settings.consumptionspeed;
+			troughcreatures[i].minfoodrate=$scope.creatures[name].basefoodrate*$scope.creatures[name].babyfoodrate*$scope.creatures[name].extrababyfoodrate*$scope.settings.consumptionspeed;
 			troughcreatures[i].foodratedecay=(troughcreatures[i].maxfoodrate-troughcreatures[i].minfoodrate)/troughcreatures[i].maturationtime;
 			troughcreatures[i].foodrate=troughcreatures[i].maxfoodrate-troughcreatures[i].foodratedecay/troughcreatures[i].finalweight*troughcreatures[i].currentweight*troughcreatures[i].maturationtime;
 		}
