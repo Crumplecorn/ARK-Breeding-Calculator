@@ -47,7 +47,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Ankylosaurus: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Herbivore,
-			basefoodrate: -0.003156,
+			basefoodrate: 0.003156,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
@@ -135,6 +135,292 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 25
 		},
 
+		Dilophosaurus: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.000868,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 4.4,
+			eggspeed: 0.005556,
+			eggspeedmult: 4.4,
+			weight: 45
+		},
+
+		Dimetrodon: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001736,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2,
+			eggspeed: 0.005556,
+			eggspeedmult: 2,
+			weight: 250
+		},
+
+		Dimorphodon: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001302,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.7,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.7,
+			weight: 50
+		},
+
+		Diplodocus: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.007716,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 800.0
+		},
+
+		"Direbear": {
+			birthtype: "Gestation",
+			foods: $scope.foodlists.Omnivore,
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 2,
+			weight: 650.0
+		},
+
+		"Direwolf": {
+			birthtype: "Gestation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.9,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.9,
+			weight: 170.0
+		},
+
+		Dodo: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.000868,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 6.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 6.0,
+			weight: 50.0
+		},
+
+		Doedicurus: {
+			birthtype: "Gestation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.6,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.6,
+			weight: 250.0
+		},
+
+		Gallimimus: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.001929,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.5,
+			weight: 230
+		},
+
+		Giganotosaurus: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.002314,
+			babyfoodrate: 45.0,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.33,
+			eggspeed: 0.005556,
+			eggspeedmult: 0.1,
+			weight: 700
+		},
+
+		Gigantopithecus: {
+			birthtype: "Gestation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.004156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.2,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.2,
+			weight: 220.0
+		},
+
+		Kairuku: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001389,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.3,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.3,
+			weight: 70
+		},
+
+		Mammoth: {
+			birthtype: "Gestation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.004133,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.125,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 500
+		},
+
+		Megaloceros: {
+			birthtype: "Gestation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.3,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.3,
+			weight: 220.0
+		},
+
+		Mesopithecus: {
+			birthtype: "Gestation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.000868,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.0,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 3.0,
+			weight: 70.0
+		},
+
+		Oviraptor: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001302,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 4.4,
+			eggspeed: 0.005556,
+			eggspeedmult: 4.4,
+			weight: 100.0
+		},
+
+		Ovis: {
+			birthtype: "Gestation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.9,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.9,
+			weight: 90
+		},
+
+		Pachycephalosaurus: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.5,
+			weight: 150.0
+		},
+
+		Paraceratherium: {
+			birthtype: "Gestation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.0035,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 500.0
+		},
+
+		Parasaurolophus: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.001929,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.5,
+			weight: 255.0
+		},
+
+		Phiomia: {
+			birthtype: "Gestation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.8,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 0.8,
+			weight: 200.0
+		},
+
+		Procoptodon: {
+			birthtype: "Gestation",
+			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.001929,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.0,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 2.0,
+			weight: 450.0
+		},
+
 		Pteranodon: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Carnivore,
@@ -148,6 +434,32 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 150.0
 		},
 
+		Quetzalcoatlus: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.0035,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 0.3,
+			weight: 820
+		},
+
+		Raptor: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 2.5,
+			weight: 140.0
+		},
+
 		Rex: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Carnivore,
@@ -159,406 +471,118 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.0,
 			weight: 500
-		}
-
-		/*
-
-		Dilophosaurus: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Carnivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 4.4,
-			eggspeed: 0.005556,
-			eggspeedmult: 4.4,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 45
-		},
-
-		Dimetrodon: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Carnivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 2,
-			eggspeed: 0.005556,
-			eggspeedmult: 2,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 250
-		},
-
-		Dimorphodon: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Carnivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 3.7,
-			eggspeed: 0.005556,
-			eggspeedmult: 3.7,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 50
-		},
-
-		Diplodocus: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 1.0,
-			eggspeed: 0.005556,
-			eggspeedmult: 1.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 800.0
-		},
-
-		"Direbear": {
-			birthtype: "Gestation",
-			foods: $scope.foodlists.Omnivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 2,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 2,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 650.0
-		},
-
-		"Direwolf": {
-			birthtype: "Gestation",
-			foods: $scope.foodlists.Carnivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 1.9,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 1.9,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 170.0
-		},
-
-		Dodo: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 6.0,
-			eggspeed: 0.005556,
-			eggspeedmult: 6.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 50.0
-		},
-
-		Doedicurus: {
-			birthtype: "Gestation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 1.6,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 1.6,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 250.0
-		},
-
-		Gallimimus: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 3.5,
-			eggspeed: 0.005556,
-			eggspeedmult: 3.5,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 230
-		},
-
-		Giganotosaurus: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Carnivore,
-			babyfoodrate: 55,
-			agespeed: 0.000003,
-			agespeedmult: 0.33,
-			eggspeed: 0.005556,
-			eggspeedmult: 0.1,
-			maxfoodrate: 5.7,
-			minfoodrate: 0.1,
-			weight: 700
-		},
-
-		Gigantopithecus: {
-			birthtype: "Gestation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 1.2,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 1.2,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 220.0
-		},
-
-		Kairuku: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Carnivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 3.3,
-			eggspeed: 0.005556,
-			eggspeedmult: 3.3,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 70
-		},
-
-		Mammoth: {
-			birthtype: "Gestation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 1.125,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 1.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 500
-		},
-
-		Megaloceros: {
-			birthtype: "Gestation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 1.3,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 1.3,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 220.0
-		},
-
-		Mesopithecus: {
-			birthtype: "Gestation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 3.0,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 3.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 70.0
-		},
-
-		Oviraptor: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Carnivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 4.4,
-			eggspeed: 0.005556,
-			eggspeedmult: 4.4,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 100.0
-		},
-
-		Pachycephalosaurus: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 3.5,
-			eggspeed: 0.005556,
-			eggspeedmult: 3.5,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 150.0
-		},
-
-		Paraceratherium: {
-			birthtype: "Gestation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 1.0,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 1.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 500.0
-		},
-
-		Parasaurolophus: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 3.5,
-			eggspeed: 0.005556,
-			eggspeedmult: 3.5,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 255.0
-		},
-
-		Phiomia: {
-			birthtype: "Gestation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 0.8,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 0.8,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 200.0
-		},
-
-		Procoptodon: {
-			birthtype: "Gestation",
-			foods: $scope.foodlists.Herbivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 2.0,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 2.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 450.0
-		},
-
-		Quetzalcoatlus: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Carnivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 0.5,
-			eggspeed: 0.005556,
-			eggspeedmult: 0.3,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 820
-		},
-
-		Raptor: {
-			birthtype: "Incubation",
-			foods: $scope.foodlists.Carnivore,
-			babyfoodrate: 25.5,
-			agespeed: 0.000003,
-			agespeedmult: 2.5,
-			eggspeed: 0.005556,
-			eggspeedmult: 2.5,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
-			weight: 140.0
 		},
 
 		Sabertooth: {
 			birthtype: "Gestation",
 			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001543,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 1.9,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.9,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 200.0
 		},
 
 		Sarcosuchus: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001578,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 2.0,
 			eggspeed: 0.005556,
 			eggspeedmult: 2.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 300.0
 		},
 
 		Spinosaurus: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.002066,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 1.3,
 			eggspeed: 0.005556,
 			eggspeedmult: 1.3,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 350.0
 		},
 
 		Stegosaurus: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.005341,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 1.8,
 			eggspeed: 0.005556,
 			eggspeedmult: 1.8,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 440.0
 		},
 
 		"Terror Bird": {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001578,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 2,
 			eggspeed: 0.005556,
 			eggspeedmult: 2.5,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 120.0
+		},
+
+		Therizinosaurus: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.002314,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.8,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.0,
+			weight: 365.0
 		},
 
 		Triceratops: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.003156,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 2.0,
 			eggspeed: 0.005556,
 			eggspeedmult: 2.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 365.0
 		},
 
 		"Woolly Rhino": {
 			birthtype: "Gestation",
 			foods: $scope.foodlists.Herbivore,
+			basefoodrate: 0.003156,
 			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 2.0,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 2.0,
-			maxfoodrate: 2.7,
-			minfoodrate: 0.1,
 			weight: 750.0
-		}*/
+		}
 
 	}
 
 	$scope.settings=$cookies.getObject('settings');
-	if ($scope.settings==undefined || $scope.settings.version!="160227") {
+	if ($scope.settings==undefined || $scope.settings.version!="170914") {
 		$scope.settings={
-			version: "160227",
+			version: "170914",
 			consumptionspeed: 1,
 			maturationspeed: 1,
 			hatchspeed: 1,
