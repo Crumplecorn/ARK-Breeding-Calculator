@@ -824,7 +824,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			troughcreatures[i].maturationtime=1/$scope.creatures[name].agespeed/$scope.creatures[name].agespeedmult/$scope.settings.maturationspeed;
 			troughcreatures[i].maturationtimecomplete=troughcreatures[i].maturationtime*troughcreatures[i].currentweight/troughcreatures[i].finalweight;
 			troughcreatures[i].maxfoodrate=$scope.creatures[name].basefoodrate*$scope.creatures[name].babyfoodrate*$scope.creatures[name].extrababyfoodrate*$scope.settings.consumptionspeed;
-			troughcreatures[i].minfoodrate=$scope.creatures[name].basefoodrate*$scope.creatures[name].babyfoodrate*$scope.creatures[name].extrababyfoodrate*$scope.settings.consumptionspeed;
+			troughcreatures[i].minfoodrate=$scope.settings.baseminfoodrate*$scope.creatures[name].babyfoodrate*$scope.creatures[name].extrababyfoodrate*$scope.settings.consumptionspeed;
 			troughcreatures[i].foodratedecay=(troughcreatures[i].maxfoodrate-troughcreatures[i].minfoodrate)/troughcreatures[i].maturationtime;
 			troughcreatures[i].foodrate=troughcreatures[i].maxfoodrate-troughcreatures[i].foodratedecay/troughcreatures[i].finalweight*troughcreatures[i].currentweight*troughcreatures[i].maturationtime;
 		}
