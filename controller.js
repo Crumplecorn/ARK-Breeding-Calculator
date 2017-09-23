@@ -732,6 +732,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		creature=$scope.creature;
 		creaturedata=$scope.creatures[creature.name];
 		creature.maturationprogress=creature.currentweight/creature.finalweight;
+
+		$scope.maturationcalc();
+	}
+
+	$scope.selectmaturation=function() {
+		creature=$scope.creature;
+		creaturedata=$scope.creatures[creature.name];
+		creature.currentweight=creature.finalweight*creature.maturationprogress;
+
+		$scope.maturationcalc();
+	}
+
+	$scope.maturationcalc=function() {
 		creature.maturationtimecomplete=creature.maturationtime*creature.maturationprogress;
 		creature.maturationtimeremaining=creature.maturationtime-creature.maturationtimecomplete;
 		creature.babytimeremaining=Math.max(0, creature.babytime-(creature.maturationtime*creature.maturationprogress));

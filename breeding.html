@@ -3,8 +3,9 @@
 	
 <form>
 	<h3>Crumplecorn's ARK Breeding Calculator</h3>
-	<p class="subheading">V242.8<br>
-	Experimental - Use as guide only</p>
+	<p class="subheading">Updated to current food rates<br>
+	Additional creatures to come<br>
+	Experimental - use as guide only</p>
 
 	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Creature']}" ng-click="showhidetable('Creature')">Creature Details</div>
 	<div class="tableslide" ng-show="tablevisibility['Creature']">
@@ -47,8 +48,8 @@
 			<td><input ng-model="creature.finalweight" ng-change="selectweight()"></td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Current Weight:</td>
-			<td><input ng-model="creature.currentweight" ng-change="selectweight()"></td>
+			<td style="width: 50%" class="label">Maturation Progress:</td>
+			<td><input ng-model="creature.maturationprogress" ng-change="selectmaturation()" percentage>%</td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Food Type:</td>
@@ -60,10 +61,6 @@
 	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Maturation']}" ng-click="showhidetable('Maturation')">Maturation Status</div>
 	<div class="tableslide" ng-show="tablevisibility['Maturation']">
 	<table>
-		<tr>
-			<td style="width: 50%" class="label">Maturation Progress:</td>
-			<td>{{creature.maturationprogress*100 | number:1}}%</td>
-		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Baby Phase Remaining:</td>
 			<td>{{creature.babytimeremaining | secondsToDateTime}}</td>
