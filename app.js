@@ -5,7 +5,7 @@
 			$locationProvider.html5Mode(true);
 
 			$routeProvider.when('/', {
-				templateUrl: 'breeding.html?d=20160619', controller: 'breedingController'
+				templateUrl: 'breeding.html?d=20170916', controller: 'breedingController'
 			}).
 			otherwise({
 				redirectTo: '/'
@@ -99,6 +99,21 @@
 				}
 			}
 		}]);
+
+		breedingApp.directive('percentage', function() {
+			return {
+				require: 'ngModel',
+				link: function(scope, element, attrs, ngModel) {
+					ngModel.$formatters.push(function(value) {
+						return value*100;
+					});
+
+					ngModel.$parsers.push(function(value) {
+						return value/100;
+					});
+				}
+			}
+		});
 
 		breedingApp.animation('.tableslide', [function() {
 			return {

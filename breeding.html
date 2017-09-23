@@ -163,13 +163,13 @@
 	<table>
 		<thead>
 			<td>Creature</td>
-			<td>Current</td>
-			<td>Final</td>
+			<td>Maturation</td>
+			<td>Weight</td>
 			<td>Remove</td>
 		</thead>
 		<tr ng-repeat="(index, troughcreature) in troughcreatures">
 			<td><select ng-class="{'redselect': creatures[troughcreature.name].foods!=foodlists[troughdata.type]}" ng-options="name as name for (name, details) in creatures" ng-model="troughcreature.name" ng-change="troughcalc()"></select></td>
-			<td><input ng-model="troughcreature.currentweight" ng-change="troughcalc()"></td>
+			<td><input ng-model="troughcreature.maturation" ng-change="troughcalc()" percentage></td>
 			<td><input ng-model="troughcreature.finalweight" ng-change="troughcalc()"></td>
 			<td><input type="button" ng-click="troughremovecreature(index)" value="Remove"></td>
 		</tr>

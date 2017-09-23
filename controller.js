@@ -805,7 +805,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.troughaddcreature=function() {
 		$scope.troughcreatures.push({
 			name: $scope.creature.name,
-			currentweight: $scope.creature.currentweight,
+			maturation: $scope.creature.maturationprogress,
 			finalweight: $scope.creature.finalweight
 		});
 		$scope.troughcalc();
@@ -835,11 +835,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		for (i=0;i<troughcreatures.length;i++) {
 			name=troughcreatures[i].name;
 			troughcreatures[i].maturationtime=1/$scope.creatures[name].agespeed/$scope.creatures[name].agespeedmult/$scope.settings.maturationspeed;
-			troughcreatures[i].maturationtimecomplete=troughcreatures[i].maturationtime*troughcreatures[i].currentweight/troughcreatures[i].finalweight;
+			troughcreatures[i].maturationtimecomplete=troughcreatures[i].maturationtime*troughcreatures[i].maturation;
 			troughcreatures[i].maxfoodrate=$scope.creatures[name].basefoodrate*$scope.creatures[name].babyfoodrate*$scope.creatures[name].extrababyfoodrate*$scope.settings.consumptionspeed;
 			troughcreatures[i].minfoodrate=$scope.settings.baseminfoodrate*$scope.creatures[name].babyfoodrate*$scope.creatures[name].extrababyfoodrate*$scope.settings.consumptionspeed;
 			troughcreatures[i].foodratedecay=(troughcreatures[i].maxfoodrate-troughcreatures[i].minfoodrate)/troughcreatures[i].maturationtime;
-			troughcreatures[i].foodrate=troughcreatures[i].maxfoodrate-troughcreatures[i].foodratedecay/troughcreatures[i].finalweight*troughcreatures[i].currentweight*troughcreatures[i].maturationtime;
+			troughcreatures[i].foodrate=troughcreatures[i].maxfoodrate-troughcreatures[i].foodratedecay*troughcreatures[i].maturation*troughcreatures[i].maturationtime;
 		}
 
 		currentstack=0;
