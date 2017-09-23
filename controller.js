@@ -540,7 +540,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		Therizinosaurus: {
 			birthtype: "Incubation",
-			foods: $scope.foodlists.Carnivore,
+			foods: $scope.foodlists.Herbivore,
 			basefoodrate: 0.002314,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
