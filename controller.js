@@ -158,7 +158,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 1.9,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
-			weight: 400.0
+			weight: 400.0,
 			foodmultipliers: {
 				"Raw Meat": 0.2
 			}
@@ -857,7 +857,12 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		for (i=0; i<troughstacks.length; i++) {
 			foodname=troughstacks[i].food;
 			for (j=0; j<troughstacks[i].stacks; j++) {
-				stacks.push([$scope.foods[foodname].stack, $scope.foods[foodname].spoil*4, $scope.foods[foodname].spoil*4, $scope.foods[foodname].food, $scope.foods[foodname].waste]);
+				stacks.push({
+					"stacksize": $scope.foods[foodname].stack, //Size of this stack
+					"stackspoil": $scope.foods[foodname].spoil*4, //Actual spoil timer that decrements for this stack (variable)
+					"foodspoil": $scope.foods[foodname].spoil*4, //Spoil time for this food in general (constant)
+					"food": $scope.foods[foodname].food, //Food provided
+					"waste": $scope.foods[foodname].waste}); //Waste (eg cooked meat wastes 25 because cooking turns 50 food into 25)
 			}
 		};
 
@@ -888,30 +893,30 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 				hunger+=troughcreatures[i].foodrate*$scope.troughdata.stasisfactor;
 			}
 
-			while (currentstack<stacks.length && hunger>=stacks[currentstack][3]) {
-				stacks[currentstack][0]--;
+			while (currentstack<stacks.length && hunger>=stacks[currentstack]['food']) {
+				stacks[currentstack]['stacksize']--;
 				eatenfood++;
-				eatenpoints+=stacks[currentstack][3];
-				wastedpoints+=stacks[currentstack][4];
-				hunger-=stacks[currentstack][3];
-				while(currentstack<stacks.length && stacks[currentstack][0]<=0) { //Move on to next stack if current is empty
+				eatenpoints+=stacks[currentstack]['food'];
+				wastedpoints+=stacks[currentstack]['waste'];
+				hunger-=stacks[currentstack]['food'];
+				while(currentstack<stacks.length && stacks[currentstack]['stacksize']<=0) { //Move on to next stack if current is empty
 					currentstack++;
 				}
 			}
 
 			//Spoil timers / spoiling
 			for (i=currentstack;i<stacks.length;i++) {
-				stacks[i][1]--; //Reduce spoil timer by one
-				if (stacks[i][1]<=0 && stacks[i][0]>0) { //Spoil timer passed, spoil a food
-					stacks[i][0]--;
-					stacks[i][1]=stacks[i][2];
+				stacks[i]['stackspoil']--; //Reduce spoil timer by one
+				if (stacks[i]['stackspoil']<=0 && stacks[i]['stacksize']>0) { //Spoil timer passed, spoil a food
+					stacks[i]['stacksize']--;
+					stacks[i]['stackspoil']=stacks[i]['foodspoil'];
 					spoiledfood++;
-					spoiledpoints+=stacks[i][3];
-					wastedpoints+=stacks[i][4];
+					spoiledpoints+=stacks[i]['food'];
+					wastedpoints+=stacks[i]['waste'];
 				}
 			}
 
-			while(currentstack<stacks.length && stacks[currentstack][0]<=0) { //Move on to next stack if current is empty
+			while(currentstack<stacks.length && stacks[currentstack]['stacksize']<=0) { //Move on to next stack if current is empty
 				currentstack++;
 			}
 
