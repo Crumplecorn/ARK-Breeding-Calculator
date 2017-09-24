@@ -41,7 +41,7 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Total Food</td>
-			<td>{{creature.totalfood/foods[foodunit].food | number:0}}</td>
+			<td>{{creature.totalfooditems | number:0}}</td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Final Weight:</td>
@@ -53,7 +53,7 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Food Type:</td>
-			<td><select ng-options="food for food in creatures[creature.name].foods" ng-model="foodunit" ng-change="babybuffercalc()"></select></td>
+			<td><select ng-options="food for food in creatures[creature.name].foods" ng-model="foodunit" ng-change="totalfoodcalc()"></select></td>
 		</tr>
 	</table>
 	</div>
@@ -81,7 +81,7 @@
 	<table>
 		<tr>
 			<td style="width: 50%" class="label">Total Food:</td>
-			<td>{{creature.babyfood/foods[foodunit].food | number:0}}</td>
+			<td>{{creature.babyfooditems | number:0}}</td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Current Buffer:</td>

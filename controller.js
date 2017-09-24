@@ -807,6 +807,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		creaturedata=$scope.creatures[creature.name];
 		creature.totalfood=$scope.getfoodforperiod(0, creature.maturationtime, $scope.creature);
 		creature.babyfood=$scope.getfoodforperiod(0, creature.babytime, $scope.creature);
+		creature.totalfooditems=creature.totalfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
+		creature.babyfooditems=creature.babyfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
 		if (!$scope.troughdata.linkfoodtabletotrough) {
 			creature.foodforday={};
 			day=1;
@@ -817,15 +819,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 				food=$scope.getfoodforperiod((day-1)*24*60*60, day*24*60*60, $scope.creature);
 			}
 		}
+
+		$scope.babybuffercalc();
 	}
 
 	$scope.babybuffercalc=function() {
 		creature=$scope.creature;
 		creaturedata=$scope.creatures[creature.name];
-		food=$scope.foods[$scope.foodunit];
-		creature.currentbabybuffer=creature.currentweight/$scope.foods[$scope.foodunit].weight*$scope.foods[$scope.foodunit].food/(creature.maxfoodrate-creature.foodratedecay*creature.maturationtimecomplete);
-		creature.maxbabybuffer=creature.finalweight/10/$scope.foods[$scope.foodunit].weight*$scope.foods[$scope.foodunit].food/(creature.maxfoodrate-creature.foodratedecay*creature.babytime);
-		creature.timeuntildesiredbabybuffer=Math.max(0,(creature.desiredbabybuffer*60*creature.babytime*food.weight*creature.maxfoodrate)/(creature.desiredbabybuffer*60*creature.babytime*food.weight*creature.foodratedecay+creature.finalweight/10*food.food)-creature.maturationtimecomplete);
+		foodname=$scope.foodunit;
+		food=$scope.foods[foodname];
+		foodmult=creaturedata.foodmultipliers[foodname];
+		creature.currentbabybuffer=creature.currentweight/food.weight*food.food*foodmult/(creature.maxfoodrate-creature.foodratedecay*creature.maturationtimecomplete);
+		creature.maxbabybuffer=creature.finalweight/10/food.weight*food.food*foodmult/(creature.maxfoodrate-creature.foodratedecay*creature.babytime);
+		creature.timeuntildesiredbabybuffer=Math.max(0,(creature.desiredbabybuffer*60*creature.babytime*food.weight*creature.maxfoodrate)/(creature.desiredbabybuffer*60*creature.babytime*food.weight*creature.foodratedecay+creature.finalweight/10*food.food*foodmult)-creature.maturationtimecomplete);
 
 		var now=new Date();
 		$cookies.putObject('creature', $scope.creature, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});
