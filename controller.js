@@ -42,6 +42,10 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Omnivore: ['Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry']
 	}
 
+	$scope.foodlist=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble']
+
+	$scope.foodorder=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble']
+
 	$scope.creatures={
 
 		Ankylosaurus: {
@@ -161,6 +165,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 400.0,
 			foodmultipliers: {
 				"Raw Meat": 0.2
+			},
+			wastemultipliers: {
+				"Cooked Meat": 0
 			}
 		},
 
@@ -654,8 +661,12 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	}
 
 	$scope.troughstacks=$cookies.getObject("troughstacks");
-	if ($scope.troughstacks==undefined) {
-		$scope.troughstacks=[];
+	if (1==1 || $scope.troughstacks==undefined) {
+		foodlist=$scope.foodlist;
+		$scope.troughstacks={};
+		for (i=0;i<foodlist.length;i++) {
+			$scope.troughstacks[foodlist[i]]=0;
+		}
 	}
 
 	$scope.troughdata=$cookies.getObject("troughdata");
@@ -820,17 +831,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		return 0.5*totaltime*(startfoodrate-endfoodrate)+endfoodrate*totaltime;
 	}
 
-	$scope.troughsetstacktype=function() {
-		foodlist=$scope.foodlists[$scope.troughdata.type];
-		$scope.troughstacks=[];
-		for (i=0;i<foodlist.length;i++) {
-			$scope.troughstacks.push({
-				food: foodlist[i],
-				stacks: 0
-			});
-		}
-	}
-
 	$scope.troughaddcreature=function() {
 		$scope.troughcreatures.push({
 			name: $scope.creature.name,
@@ -848,15 +848,16 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.troughcalc=function() {
 		troughcreatures=$scope.troughcreatures;
 		troughstacks=$scope.troughstacks;
+		foodorder=$scope.foodorder;
 
 		if (troughcreatures.length==0) {
 			return;
 		}
 
 		stacks=[];
-		for (i=0; i<troughstacks.length; i++) {
-			foodname=troughstacks[i].food;
-			for (j=0; j<troughstacks[i].stacks; j++) {
+		for (i=0; i<foodorder.length; i++) {
+			foodname=foodorder[i];
+			for (j=0; j<troughstacks[foodname]; j++) {
 				stacks.push({
 					"stacksize": $scope.foods[foodname].stack, //Size of this stack
 					"stackspoil": $scope.foods[foodname].spoil*4, //Actual spoil timer that decrements for this stack (variable)
