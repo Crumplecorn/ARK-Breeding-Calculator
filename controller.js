@@ -57,6 +57,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 250
 		},
 
+		Angler: {
+			birthtype: "Incubation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.001852,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 350
+		},
+
 		Argentavis: {
 			birthtype: "Incubation",
 			foods: $scope.foodlists.Carnivore,
@@ -133,6 +146,22 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 6.0,
 			weight: 25
+		},
+
+		Daeodon: {
+			birthtype: "Gestation",
+			foods: $scope.foodlists.Carnivore,
+			basefoodrate: 0.01,
+			babyfoodrate: 5.0,
+			extrababyfoodrate: 8.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.9,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 400.0
+			foodmultipliers: {
+				"Raw Meat": 0.2
+			}
 		},
 
 		Dilophosaurus: {
