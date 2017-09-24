@@ -1,5 +1,11 @@
 var breedingController=angular.module('breedingControllers', []).controller('breedingController', ['$scope', '$interval', '$cookies', '$animate', function($scope, $interval, $cookies, $animate) {
 
+	var defaultmult = {
+  		get: function(target, name) {
+   			return target.hasOwnProperty(name) ? target[name] : 1;
+  		}
+	};
+
 	$scope.foods={
 
 		'Raw Meat': {
@@ -615,6 +621,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	}
 
+	for (creature in $scope.creatures) {
+		$scope.creatures[creature]['foodmultipliers']=new Proxy($scope.creatures[creature]['foodmultipliers']===undefined ? {} : $scope.creatures[creature]['foodmultipliers'], defaultmult);
+		$scope.creatures[creature]['wastemultipliers']=new Proxy($scope.creatures[creature]['wastemultipliers']===undefined ? {} : $scope.creatures[creature]['wastemultipliers'], defaultmult);
+	}
+
 	$scope.settings=$cookies.getObject('settings');
 	if ($scope.settings==undefined || $scope.settings.version!="170914") {
 		$scope.settings={
@@ -881,6 +892,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			troughcreatures[i].foodrate=troughcreatures[i].maxfoodrate-troughcreatures[i].foodratedecay*troughcreatures[i].maturation*troughcreatures[i].maturationtime;
 			troughcreatures[i].hunger=0;
 			troughcreatures[i].foods=$scope.creatures[name].foods;
+			troughcreatures[i].foodmultipliers=$scope.creatures[name].foodmultipliers;
+			troughcreatures[i].wastemultipliers=$scope.creatures[name].wastemultipliers;
 		}
 
 		spoiledpoints=0;
@@ -900,12 +913,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 				for (currentstack=0;currentstack<stacks.length;currentstack++) {
 					if (stacks[currentstack]['stacksize']>0 && troughcreatures[i].foods.indexOf(stacks[currentstack]['type'])>-1) {
-						if (stacks[currentstack]['food']<troughcreatures[i].hunger) {
+						foodmult=troughcreatures[i].foodmultipliers[stacks[currentstack]['type']];
+						wastemult=troughcreatures[i].wastemultipliers[stacks[currentstack]['type']];
+						if (stacks[currentstack]['food']*foodmult<troughcreatures[i].hunger) {
 							stacks[currentstack]['stacksize']--;
 							eatenfood++;
-							eatenpoints+=stacks[currentstack]['food'];
-							wastedpoints+=stacks[currentstack]['waste'];
-							troughcreatures[i].hunger-=stacks[currentstack]['food'];
+							eatenpoints+=stacks[currentstack]['food']*foodmult;
+							wastedpoints+=stacks[currentstack]['waste']*wastemult;
+							troughcreatures[i].hunger-=stacks[currentstack]['food']*foodmult;
 							if (stacks[currentstack]['stacksize']==0) {
 								totalstacks['all']--;
 								totalstacks[stacks[currentstack]['type']]--;
