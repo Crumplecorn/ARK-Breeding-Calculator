@@ -683,7 +683,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			wastedpoints: 0,
 			linkfoodtabletotrough: 0,
 			lossfactor: 0,
-			stasisfactor: 1,
 			cutoff: 0
 		}
 	}
@@ -855,10 +854,15 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		}
 
 		stacks=[];
+		totalstacks={};
+		totalstacks['all']=0;
 		for (i=0; i<foodorder.length; i++) {
 			foodname=foodorder[i];
+			totalstacks['all']+=troughstacks[foodname]*1;
+			totalstacks[foodname]=troughstacks[foodname];
 			for (j=0; j<troughstacks[foodname]; j++) {
 				stacks.push({
+					"type": foodname, //Name of this food
 					"stacksize": $scope.foods[foodname].stack, //Size of this stack
 					"stackspoil": $scope.foods[foodname].spoil*4, //Actual spoil timer that decrements for this stack (variable)
 					"foodspoil": $scope.foods[foodname].spoil*4, //Spoil time for this food in general (constant)
@@ -875,9 +879,10 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			troughcreatures[i].minfoodrate=$scope.settings.baseminfoodrate*$scope.creatures[name].babyfoodrate*$scope.creatures[name].extrababyfoodrate*$scope.settings.consumptionspeed;
 			troughcreatures[i].foodratedecay=(troughcreatures[i].maxfoodrate-troughcreatures[i].minfoodrate)/troughcreatures[i].maturationtime;
 			troughcreatures[i].foodrate=troughcreatures[i].maxfoodrate-troughcreatures[i].foodratedecay*troughcreatures[i].maturation*troughcreatures[i].maturationtime;
+			troughcreatures[i].hunger=0;
+			troughcreatures[i].foods=$scope.creatures[name].foods;
 		}
 
-		currentstack=0;
 		spoiledpoints=0;
 		spoiledfood=0;
 		eatenpoints=0;
@@ -886,27 +891,34 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		hunger=0;
 
 		time=0;
-		while (currentstack<stacks.length && ($scope.troughdata.cutoff==0 || time<$scope.troughdata.cutoff)) {
+		while (totalstacks['all']>0) {
 			time++;
 
 			for (i=0;i<troughcreatures.length;i++) { //Drop hunger rate over time and increment current hunger
 				troughcreatures[i].foodrate-=troughcreatures[i].foodratedecay;
-				hunger+=troughcreatures[i].foodrate*$scope.troughdata.stasisfactor;
-			}
+				troughcreatures[i].hunger+=troughcreatures[i].foodrate;
 
-			while (currentstack<stacks.length && hunger>=stacks[currentstack]['food']) {
-				stacks[currentstack]['stacksize']--;
-				eatenfood++;
-				eatenpoints+=stacks[currentstack]['food'];
-				wastedpoints+=stacks[currentstack]['waste'];
-				hunger-=stacks[currentstack]['food'];
-				while(currentstack<stacks.length && stacks[currentstack]['stacksize']<=0) { //Move on to next stack if current is empty
-					currentstack++;
+				for (currentstack=0;currentstack<stacks.length;currentstack++) {
+					if (stacks[currentstack]['stacksize']>0 && troughcreatures[i].foods.indexOf(stacks[currentstack]['type'])>-1) {
+						if (stacks[currentstack]['food']<troughcreatures[i].hunger) {
+							stacks[currentstack]['stacksize']--;
+							eatenfood++;
+							eatenpoints+=stacks[currentstack]['food'];
+							wastedpoints+=stacks[currentstack]['waste'];
+							troughcreatures[i].hunger-=stacks[currentstack]['food'];
+							if (stacks[currentstack]['stacksize']==0) {
+								totalstacks['all']--;
+								totalstacks[stacks[currentstack]['type']]--;
+							}
+						}
+						break;
+					}
 				}
+
 			}
 
-			//Spoil timers / spoiling
-			for (i=currentstack;i<stacks.length;i++) {
+				//Spoil timers / spoiling
+			for (i=0;i<stacks.length;i++) {
 				stacks[i]['stackspoil']--; //Reduce spoil timer by one
 				if (stacks[i]['stackspoil']<=0 && stacks[i]['stacksize']>0) { //Spoil timer passed, spoil a food
 					stacks[i]['stacksize']--;
@@ -914,11 +926,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 					spoiledfood++;
 					spoiledpoints+=stacks[i]['food'];
 					wastedpoints+=stacks[i]['waste'];
+					if (stacks[i]['stacksize']==0) {
+						totalstacks['all']--;
+						totalstacks[stacks[i]['type']]--;
+					}
 				}
-			}
-
-			while(currentstack<stacks.length && stacks[currentstack]['stacksize']<=0) { //Move on to next stack if current is empty
-				currentstack++;
 			}
 
 		}
@@ -935,7 +947,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			wastedpoints: wastedpoints,
 			linkfoodtabletotrough: $scope.troughdata.linkfoodtabletotrough,
 			lossfactor: $scope.troughdata.lossfactor,
-			stasisfactor: $scope.troughdata.stasisfactor,
 			cutoff: $scope.troughdata.cutoff
 		}
 
