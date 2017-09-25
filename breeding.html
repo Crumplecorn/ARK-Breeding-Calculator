@@ -53,7 +53,7 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Food Type:</td>
-			<td><select ng-options="food for food in creatures[creature.name].foods" ng-model="foodunit" ng-change="totalfoodcalc()"></select></td>
+			<td><select ng-options="food for food in foodlists[creatures[creature.name].type]" ng-model="foodunit" ng-change="totalfoodcalc()"></select></td>
 		</tr>
 	</table>
 	</div>
@@ -127,9 +127,9 @@
 			<td style="width: 50%" class="label">{{food}}</td>
 			<td><input ng-model="troughstacks[food]" ng-change="troughcalc()"> Stacks</td>
 		</tr>
-		<tr>
-			<td style="width: 50%" class="label">Time</td>
-			<td>{{troughdata.time | secondsToDateTime}}</td>
+		<tr ng-repeat="(type, time) in troughdata.times">
+			<td style="width: 50%" class="label">{{type}}:</td>
+			<td>{{time | secondsToDateTime}}</td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Total Food</td>
@@ -164,7 +164,7 @@
 			<td>Remove</td>
 		</thead>
 		<tr ng-repeat="(index, troughcreature) in troughcreatures">
-			<td><select ng-class="{'redselect': creatures[troughcreature.name].foods!=foodlists[troughdata.type]}" ng-options="name as name for (name, details) in creatures" ng-model="troughcreature.name" ng-change="troughcalc()"></select></td>
+			<td><select ng-options="name as name for (name, details) in creatures" ng-model="troughcreature.name" ng-change="troughcalc()"></select></td>
 			<td><input ng-model="troughcreature.maturation" ng-change="troughcalc()" percentage></td>
 			<td><input ng-model="troughcreature.finalweight" ng-change="troughcalc()"></td>
 			<td><input type="button" ng-click="troughremovecreature(index)" value="Remove"></td>
