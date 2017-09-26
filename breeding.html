@@ -163,14 +163,14 @@
 			<td>Weight</td>
 			<td>Remove</td>
 		</thead>
+		<tr>
+			<td><input type="button" ng-click="troughaddcreature()" value="Add Creature"></td>
+		</tr>
 		<tr ng-repeat="(index, troughcreature) in troughcreatures">
 			<td><select ng-options="name as name for (name, details) in creatures" ng-model="troughcreature.name" ng-change="troughcalc()"></select></td>
 			<td><input ng-model="troughcreature.maturation" ng-change="troughcalc()" percentage></td>
 			<td><input ng-model="troughcreature.finalweight" ng-change="troughcalc()"></td>
 			<td><input type="button" ng-click="troughremovecreature(index)" value="Remove"></td>
-		</tr>
-		<tr>
-			<td><input type="button" ng-click="troughaddcreature()" value="Add Creature"></td>
 		</tr>
 	</table>
 </div>
