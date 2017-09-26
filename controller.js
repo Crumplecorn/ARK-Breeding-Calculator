@@ -823,6 +823,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		}
 
 		$scope.babybuffercalc();
+		if ($scope.troughdata.linkfoodtabletotrough) {
+			$scope.troughcalc();
+		}
 	}
 
 	$scope.babybuffercalc=function() {
