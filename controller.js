@@ -48,9 +48,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Omnivore: ['Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble']
+	$scope.foodlist=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry']
 
-	$scope.foodorder=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble']
+	$scope.foodorder=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry']
 
 	$scope.creatures={
 
@@ -629,9 +629,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.clearcookies=false; //Some of these data structures don't really allow version numbering
 
 	$scope.settings=$cookies.getObject('settings');
-	if ($scope.settings==undefined || $scope.settings.version!="170926b") {
+	if ($scope.settings==undefined || $scope.settings.version!="170926c") {
 		$scope.settings={
-			version: "170926b",
+			version: "170926c",
 			consumptionspeed: 1,
 			maturationspeed: 1,
 			hatchspeed: 1,
