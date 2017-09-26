@@ -626,15 +626,18 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		$scope.creatures[creature]['wastemultipliers']=new Proxy($scope.creatures[creature]['wastemultipliers']===undefined ? {} : $scope.creatures[creature]['wastemultipliers'], defaultmult);
 	}
 
+	$scope.clearcookies=false; //Some of these data structures don't really allow version numbering
+
 	$scope.settings=$cookies.getObject('settings');
-	if ($scope.settings==undefined || $scope.settings.version!="170914") {
+	if ($scope.settings==undefined || $scope.settings.version!="170926") {
 		$scope.settings={
-			version: "170914",
+			version: "170926",
 			consumptionspeed: 1,
 			maturationspeed: 1,
 			hatchspeed: 1,
 			baseminfoodrate: 0.000155
 		}
+		$scope.clearcookies=true;
 	}
 
 	$scope.displayconfig=$cookies.getObject('displayconfig');
@@ -667,12 +670,12 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	}
 
 	$scope.troughcreatures=$cookies.getObject("troughcreatures");
-	if ($scope.troughcreatures==undefined) {
+	if ($scope.troughcreatures==undefined || $scope.clearcookies==true) {
 		$scope.troughcreatures=[];
 	}
 
 	$scope.troughstacks=$cookies.getObject("troughstacks");
-	if (1==1 || $scope.troughstacks==undefined) {
+	if ($scope.troughstacks==undefined || $scope.clearcookies==true) {
 		foodlist=$scope.foodlist;
 		$scope.troughstacks={};
 		for (i=0;i<foodlist.length;i++) {
@@ -681,7 +684,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	}
 
 	$scope.troughdata=$cookies.getObject("troughdata");
-	if ($scope.troughdata==undefined) {
+	if ($scope.troughdata==undefined || $scope.clearcookies==true) {
 		$scope.troughdata={
 			type: undefined,
 			time: 0,
