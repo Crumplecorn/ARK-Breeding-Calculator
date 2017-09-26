@@ -629,15 +629,17 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.clearcookies=false; //Some of these data structures don't really allow version numbering
 
 	$scope.settings=$cookies.getObject('settings');
-	if ($scope.settings==undefined || $scope.settings.version!="170926") {
+	if ($scope.settings==undefined || $scope.settings.version!="170926b") {
 		$scope.settings={
-			version: "170926",
+			version: "170926b",
 			consumptionspeed: 1,
 			maturationspeed: 1,
 			hatchspeed: 1,
 			baseminfoodrate: 0.000155
 		}
 		$scope.clearcookies=true;
+		var now=new Date();
+		$cookies.putObject('settings', $scope.settings, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});
 	}
 
 	$scope.displayconfig=$cookies.getObject('displayconfig');
