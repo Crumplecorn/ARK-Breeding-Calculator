@@ -703,6 +703,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		}
 	}
 
+	$scope.troughdata.linkfoodtabletotrough=0; //Force trough calc link to off for now
+
 	$scope.showhidetable=function(table) {
 		$scope.tablevisibility[table]=!$scope.tablevisibility[table];
 		var now=new Date();
