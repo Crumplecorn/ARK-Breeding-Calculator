@@ -16,6 +16,14 @@
 				<input ng-hide="displayconfig.showoldselects" class="autocomplete" autocomplete data-source="creatures" ng-change="searchcreature()" data-default="creature.name" ng-model="creature.searchname"></td>
 		</tr>
 		<tr>
+			<td style="width: 50%" class="label">Final Weight:</td>
+			<td><input ng-model="creature.finalweight" ng-change="selectweight()"></td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Food Type:</td>
+			<td><select ng-options="food for food in foodlists[creatures[creature.name].type]" ng-model="foodunit" ng-change="totalfoodcalc()"></select></td>
+		</tr>
+		<tr>
 			<td style="width: 50%" class="label">Hatch Multiplier: </td>
 			<td><input ng-model="settings.hatchspeed" ng-change="selectsettings()"></td>
 		</tr>
@@ -27,51 +35,32 @@
 			<td style="width: 50%" class="label">Consume Multiplier: </td>
 			<td><input ng-model="settings.consumptionspeed" ng-change="selectsettings()"></td>
 		</tr>
-		<tr>
-			<td style="width: 50%" class="label">{{creature.birthlabel}} Time</td>
-			<td>{{creature.birthtime | secondsToDateTime}}</td>
-		</tr>
-		<tr>
-			<td style="width: 50%" class="label">Baby Time</td>
-			<td>{{creature.babytime | secondsToDateTime}}</td>
-		</tr>
-		<tr>
-			<td style="width: 50%" class="label">Maturation Time</td>
-			<td>{{creature.maturationtime | secondsToDateTime}}</td>
-		</tr>
-		<tr>
-			<td style="width: 50%" class="label">Total Food</td>
-			<td>{{creature.totalfooditems | number:0}}</td>
-		</tr>
-		<tr>
-			<td style="width: 50%" class="label">Final Weight:</td>
-			<td><input ng-model="creature.finalweight" ng-change="selectweight()"></td>
-		</tr>
-		<tr>
-			<td style="width: 50%" class="label">Maturation Progress:</td>
-			<td><input ng-model="creature.maturationprogress" ng-change="selectmaturation()" percentage>%</td>
-		</tr>
-		<tr>
-			<td style="width: 50%" class="label">Food Type:</td>
-			<td><select ng-options="food for food in foodlists[creatures[creature.name].type]" ng-model="foodunit" ng-change="totalfoodcalc()"></select></td>
-		</tr>
 	</table>
 	</div>
 
-	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Maturation']}" ng-click="showhidetable('Maturation')">Maturation Status</div>
+	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Maturation']}" ng-click="showhidetable('Maturation')">Maturation</div>
 	<div class="tableslide" ng-show="tablevisibility['Maturation']">
 	<table>
+
 		<tr>
-			<td style="width: 50%" class="label">Baby Phase Remaining:</td>
+			<td style="width: 50%" class="label">{{creature.birthlabel}}:</td>
+			<td>{{creature.birthtime | secondsToDateTime}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Maturation:</td>
+			<td><input ng-model="creature.maturationprogress" ng-change="selectmaturation()" percentage>%</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Baby Time:</td>
 			<td>{{creature.babytimeremaining | secondsToDateTime}}</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Maturation Time So Far:</td>
-			<td>{{creature.maturationtimecomplete | secondsToDateTime}}</td>
+			<td style="width: 50%" class="label">Maturation Time:</td>
+			<td>{{creature.maturationtimeremaining | secondsToDateTime}}</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Maturation Remaining:</td>
-			<td>{{creature.maturationtimeremaining | secondsToDateTime}}</td>
+			<td style="width: 50%" class="label">Total Food:</td>
+			<td>{{creature.totalfooditems | number:0}}</td>
 		</tr>
 	</table>
 	</div>
@@ -102,13 +91,9 @@
 	</table>
 	</div>
 
-	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Food']}" ng-click="showhidetable('Food')">Food Details</div>
+	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Food']}" ng-click="showhidetable('Food')">Food Per Day</div>
 	<div class="tableslide" ng-show="tablevisibility['Food']">
 	<table>
-		<tr>
-			<td style="width: 50%" class="label">Trough Calc Link:</td>
-			<td><input type="checkbox" ng-model="troughdata.linkfoodtabletotrough" ng-change="totalfoodcalc();troughcalc()"></td>
-		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Loss Factor:</td>
 			<td><input ng-model="troughdata.lossfactor" ng-change="totalfoodcalc();troughcalc()"></td>
@@ -120,7 +105,7 @@
 	</table>
 	</div>
 
-	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Trough']}" ng-click="showhidetable('Trough')">Trough Calculator</div>
+	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Trough']}" ng-click="showhidetable('Trough')">Trough Calculator - Food</div>
 	<div class="tableslide" ng-show="tablevisibility['Trough']">
 	<table>
 		<tr ng-repeat="(food, stacks) in troughstacks">
@@ -130,22 +115,6 @@
 		<tr ng-repeat="(type, time) in troughdata.times">
 			<td style="width: 50%" class="label">{{type}}:</td>
 			<td>{{time | secondsToDateTime}}</td>
-		</tr>
-		<tr>
-			<td style="width: 50%" class="label">Total Food</td>
-			<td>{{troughdata.totalpoints}} Points / {{troughdata.totalfood}} Food</td>
-		</tr>
-		<tr>
-			<td style="width: 50%" class="label">Eaten Food</td>
-			<td>{{troughdata.eatenpoints}} Points / {{troughdata.eatenfood}} Food</td>
-		</tr>
-		<tr>
-			<td style="width: 50%" class="label">Spoiled Food</td>
-			<td>{{troughdata.spoiledpoints}} Points / {{troughdata.spoiledfood}} Food</td>
-		</tr>
-		<tr>
-			<td style="width: 50%" class="label">Wasted Food</td>
-			<td>{{troughdata.wastedpoints}} Points</td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Loss</td>
@@ -160,7 +129,7 @@
 		<thead>
 			<td>Creature</td>
 			<td>Maturation</td>
-			<td>Weight</td>
+			<td>Quantity</td>
 			<td>Remove</td>
 		</thead>
 		<tr>
@@ -169,8 +138,12 @@
 		<tr ng-repeat="(index, troughcreature) in troughcreatures">
 			<td><select ng-options="name as name for (name, details) in creatures" ng-model="troughcreature.name" ng-change="troughcalc()"></select></td>
 			<td><input ng-model="troughcreature.maturation" ng-change="troughcalc()" percentage></td>
-			<td><input ng-model="troughcreature.finalweight" ng-change="troughcalc()"></td>
+			<td><input ng-model="troughcreature.quantity" ng-change="troughcalc()"></td>
 			<td><input type="button" ng-click="troughremovecreature(index)" value="Remove"></td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label">Trough Calc Link:</td>
+			<td><input type="checkbox" ng-model="troughdata.linkfoodtabletotrough" ng-change="totalfoodcalc();troughcalc()"></td>
 		</tr>
 	</table>
 </div>
