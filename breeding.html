@@ -17,7 +17,7 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Final Weight:</td>
-			<td><input ng-model="creature.finalweight" ng-change="selectweight()"></td>
+			<td><input ng-model="creature.finalweight" ng-change="selectweight()" type="number"></td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Food Type:</td>
@@ -25,15 +25,15 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Hatch Multiplier: </td>
-			<td><input ng-model="settings.hatchspeed" ng-change="selectsettings()"></td>
+			<td><input ng-model="settings.hatchspeed" ng-change="selectsettings()" type="number"></td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Mature Multiplier: </td>
-			<td><input ng-model="settings.maturationspeed" ng-change="selectsettings()"></td>
+			<td><input ng-model="settings.maturationspeed" ng-change="selectsettings()" type="number"></td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Consume Multiplier: </td>
-			<td><input ng-model="settings.consumptionspeed" ng-change="selectsettings()"></td>
+			<td><input ng-model="settings.consumptionspeed" ng-change="selectsettings()" type="number"></td>
 		</tr>
 	</table>
 	</div>
@@ -48,7 +48,7 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Maturation:</td>
-			<td><input ng-model="creature.maturationprogress" ng-change="selectmaturation()" percentage>%</td>
+			<td><input ng-model="creature.maturationprogress" ng-change="selectmaturation()" percentage type="number">%</td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Baby Time:</td>
@@ -82,7 +82,7 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Desired Buffer:</td>
-			<td><input ng-model="creature.desiredbabybuffer" ng-change="babybuffercalc()"></td>
+			<td><input ng-model="creature.desiredbabybuffer" ng-change="babybuffercalc()" type="number"></td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Time Until Buffer:</td>
@@ -96,7 +96,7 @@
 	<table>
 		<tr>
 			<td style="width: 50%" class="label">Loss Factor:</td>
-			<td><input ng-model="troughdata.lossfactor" ng-change="totalfoodcalc();troughcalc()"></td>
+			<td><input ng-model="troughdata.lossfactor" ng-change="totalfoodcalc();troughcalc()" type="number"></td>
 		</tr>
 		<tr ng-repeat="(day,food) in creature.fooditemsforday">
 			<td style="width: 50%" class="label">Day {{day}} Food</td>
@@ -110,7 +110,7 @@
 	<table>
 		<tr ng-repeat="(food, stacks) in troughstacks">
 			<td style="width: 50%" class="label">{{food}}</td>
-			<td><input ng-model="troughstacks[food]" ng-change="troughcalc()"> Stacks</td>
+			<td><input ng-model="troughstacks[food]" ng-change="troughcalc()" type="number"> Stacks</td>
 		</tr>
 		<tr ng-repeat="(type, time) in troughdata.times">
 			<td style="width: 50%" class="label">{{type}}:</td>
@@ -137,8 +137,8 @@
 		</tr>
 		<tr ng-repeat="(index, troughcreature) in creaturelist">
 			<td><select ng-options="name as name for (name, details) in creatures" ng-model="troughcreature.name" ng-change="troughcalc()"></select></td>
-			<td><input ng-model="troughcreature.maturation" ng-change="troughcalc()" percentage></td>
-			<td><input ng-model="troughcreature.quantity" ng-change="troughcalc()"></td>
+			<td><input ng-model="troughcreature.maturation" ng-change="troughcalc()" percentage type="number"></td>
+			<td><input ng-model="troughcreature.quantity" ng-change="troughcalc()" type="number"></td>
 			<td><input type="button" ng-click="troughremovecreature(index)" value="Remove"></td>
 		</tr>
 		<tr>
