@@ -359,6 +359,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 220.0
 		},
 
+		Megalodon: {
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.001852,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 250.0
+		},
+
 		Mesopithecus: {
 			birthtype: "Gestation",
 			type: "Herbivore",
@@ -370,6 +383,20 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 3.0,
 			weight: 70.0
+		},
+
+
+		Mosasaurus: {
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.005,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.33,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 1300.0
 		},
 
 		Oviraptor: {
@@ -448,6 +475,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 0.8,
 			weight: 200.0
+		},
+
+		Plesiosaurus: {
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.003858,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.5,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 800.0
 		},
 
 		Procoptodon: {
@@ -629,9 +669,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.clearcookies=false; //Some of these data structures don't really allow version numbering
 
 	$scope.settings=$cookies.getObject('settings');
-	if ($scope.settings==undefined || $scope.settings.version!="170926c") {
+	if ($scope.settings==undefined || $scope.settings.version!="170927") {
 		$scope.settings={
-			version: "170926c",
+			version: "170927",
 			consumptionspeed: 1,
 			maturationspeed: 1,
 			hatchspeed: 1,
