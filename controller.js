@@ -646,6 +646,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 365.0
 		},
 
+		Thylacoleo: {
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.9,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.9,
+			weight: 400.0,
+		},
+
 		Triceratops: {
 			birthtype: "Incubation",
 			type: "Herbivore",
@@ -839,11 +852,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	}
 
 	$scope.selectweight=function() {
-		creature=$scope.creature;
-		creaturedata=$scope.creatures[creature.name];
-		creature.maturationprogress=creature.currentweight/creature.finalweight;
+		//creature=$scope.creature;
+		//creaturedata=$scope.creatures[creature.name];
+		//creature.maturationprogress=creature.currentweight/creature.finalweight;
 
-		$scope.maturationcalc();
+		$scope.selectmaturation();
 	}
 
 	$scope.selectmaturation=function() {
