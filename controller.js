@@ -398,6 +398,18 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 70.0
 		},
 
+		Microraptor: {
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.000868,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.7,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.5,
+			weight: 45.0
+		},
 
 		Mosasaurus: {
 			birthtype: "Gestation",
