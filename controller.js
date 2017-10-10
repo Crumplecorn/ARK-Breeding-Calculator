@@ -980,7 +980,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		for (i=0; i<foodorder.length; i++) {
 			foodname=foodorder[i];
 			totalstacks['all']+=troughstacks[foodname]*1;
-			totalstacks[foodname]=troughstacks[foodname];
+			totalstacks[foodname]=Math.ceil(troughstacks[foodname]);
+			fullstacks=Math.floor(troughstacks[foodname]);
+			partialstack=(troughstacks[foodname]-fullstacks);
 			for (j=0; j<troughstacks[foodname]; j++) {
 				stacks.push({
 					"type": foodname, //Name of this food
@@ -989,6 +991,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 					"foodspoil": $scope.foods[foodname].spoil*4, //Spoil time for this food in general (constant)
 					"food": $scope.foods[foodname].food, //Food provided
 					"waste": $scope.foods[foodname].waste}); //Waste (eg cooked meat wastes 25 because cooking turns 50 food into 25)
+			}
+			if (partialstack>0) {
+				stacks[j-1]['stacksize']=Math.floor(stacks[j-1]['stacksize']*partialstack);
 			}
 		};
 
