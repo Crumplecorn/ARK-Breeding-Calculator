@@ -38,6 +38,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			spoil: 10*60,
 			weight: 0.1,
 			waste: 0
+		},
+
+		'Rare Flower': {
+			food: 60,
+			stack: 100,
+			spoil: 3*24*60*60,
+			weight: 0.15,
+			waste: 0
 		}
 
 	}
@@ -45,7 +53,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.foodlists={
 		Carnivore: ['Raw Meat', 'Cooked Meat'],
 		Herbivore: ['Mejoberry', 'Berry'],
-		Omnivore: ['Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry']
+		Omnivore: ['Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry'],
+		Microraptor: ['Rare Flower', 'Raw Meat', 'Cooked Meat']
 	}
 
 	$scope.foodlist=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry']
@@ -400,7 +409,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		Microraptor: {
 			birthtype: "Incubation",
-			type: "Carnivore",
+			type: "Microraptor",
 			basefoodrate: 0.000868,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
