@@ -961,8 +961,10 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	}
 
 	$scope.troughcalc=function() {
-		creaturelist=$scope.creaturelist;
-		troughstacks=$scope.troughstacks;
+		$scope.troughdata=$scope.troughsim($scope.creaturelist, $scope.troughstacks);
+	}
+
+	$scope.troughsim=function(creaturelist, troughstacks) {
 		foodorder=$scope.foodorder;
 		troughcreatures=[];
 
@@ -970,6 +972,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			return;
 		}
 
+		//Make stacks for calculation
 		stacks=[]; //Actual stacks
 		totalstacks={}; //Total stacks of each type
 		totalstacks['all']=0; //Number of stacks total, all types
@@ -989,6 +992,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			}
 		};
 
+		//Make creatures for calcualtion
 		for (i=0;i<creaturelist.length;i++) {
 			for (j=0;j<creaturelist[i].quantity;j++) {
 				name=creaturelist[i].name;
@@ -1017,6 +1021,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		wastedpoints=0;
 		hunger=0;
 
+		//Trough sim
 		time=0;
 		while (totalstacks['all']>0) {
 			time++;
@@ -1046,7 +1051,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 				}
 			}
 
-				//Spoil timers / spoiling
+			//Spoil timers / spoiling
 			for (i=0;i<stacks.length;i++) {
 				stacks[i]['stackspoil']--; //Reduce spoil timer by one
 				if (stacks[i]['stackspoil']<=0 && stacks[i]['stacksize']>0) { //Spoil timer passed, spoil a food
@@ -1064,7 +1069,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		}
 
-		$scope.troughdata={
+		output={
 			type: $scope.troughdata.type,
 			time: time,
 			times: times,
@@ -1080,6 +1085,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			cutoff: $scope.troughdata.cutoff
 		}
 
+		/*
 		if ($scope.troughdata.linkfoodtabletotrough) {
 
 			foodforday={};
@@ -1105,11 +1111,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			$cookies.putObject('creature', $scope.creature, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});
 
 		}
+		*/
 
 		var now=new Date();
 		$cookies.putObject('creaturelist', $scope.creaturelist, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});
 		$cookies.putObject('troughdata', $scope.troughdata, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});
 		$cookies.putObject('troughstacks', $scope.troughstacks, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});
+
+		return output;
 	}
 
 	$scope.selectcreature();
