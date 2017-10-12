@@ -96,7 +96,7 @@
 	<table>
 		<tr>
 			<td style="width: 50%" class="label">Loss Factor:</td>
-			<td><input ng-model="troughdata.lossfactor" ng-change="totalfoodcalc();troughcalc()" type="number"></td>
+			<td><input ng-model="settings.lossfactor" ng-change="totalfoodcalc()" type="number"></td>
 		</tr>
 		<tr ng-repeat="(day,food) in creature.fooditemsforday">
 			<td style="width: 50%" class="label">Day {{day}} Food</td>
