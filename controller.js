@@ -46,6 +46,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			spoil: 3*24*60*60,
 			weight: 0.15,
 			waste: 0
+		},
+
+		'Chitin': {
+			food: 50,
+			stack: 100,
+			spoil: 9001*9001,
+			weight: 0.01,
+			waste: 0
 		}
 
 	}
@@ -54,12 +62,13 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Carnivore: ['Raw Meat', 'Cooked Meat'],
 		Herbivore: ['Mejoberry', 'Berry'],
 		Omnivore: ['Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry'],
-		Microraptor: ['Raw Meat', 'Cooked Meat', 'Rare Flower']
+		Microraptor: ['Raw Meat', 'Cooked Meat', 'Rare Flower'],
+		Archaeopteryx: ['Chitin']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Rare Flower']
+	$scope.foodlist=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Rare Flower', 'Chitin']
 
-	$scope.foodorder=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Rare Flower']
+	$scope.foodorder=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Rare Flower', 'Chitin']
 
 	$scope.creatures={
 
@@ -100,6 +109,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.0,
 			weight: 350
+		},
+
+		Archaeopteryx: {
+			birthtype: "Incubation",
+			type: "Archaeopteryx",
+			basefoodrate: 0.001302,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 6.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.9,
+			weight: 30.0
 		},
 
 		Argentavis: {
@@ -716,9 +738,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.clearcookies=false; //Some of these data structures don't really allow version numbering
 
 	$scope.settings=$cookies.getObject('settings');
-	if ($scope.settings==undefined || $scope.settings.version!="171011") {
+	if ($scope.settings==undefined || $scope.settings.version!="171012") {
 		$scope.settings={
-			version: "171011",
+			version: "171012",
 			consumptionspeed: 1,
 			maturationspeed: 1,
 			hatchspeed: 1,
@@ -814,7 +836,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		if (creature.searchname in creatures) {
 			creature.name=creature.searchname;
-			$scope.selectcreature();
+			$scope.switchcreature();
 		}
 	}
 
@@ -835,7 +857,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		$scope.troughcalc();
 	}
 
-	$scope.selectcreature=function() {
+	/*$scope.selectcreature=function() {
 		creature=$scope.creature;
 		creaturedata=$scope.creatures[creature.name];
 
@@ -866,7 +888,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		$scope.selectweight();
 		$scope.totalfoodcalc();
 		$scope.babybuffercalc();
-	}
+	}*/
 
 	$scope.switchcreature=function() {
 		creature=$scope.creature;
@@ -1175,6 +1197,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		return output;
 	}
 
-	$scope.selectcreature();
+	$scope.switchcreature();
 
 }]);
