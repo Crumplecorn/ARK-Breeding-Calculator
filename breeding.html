@@ -12,7 +12,7 @@
 	<table>
 		<tr>
 			<td style="width: 50%" class="label">Creature:</td>
-			<td><select ng-show="displayconfig.showoldselects" ng-options="name as name for (name, details) in creatures" ng-model="creature.name" ng-change="selectcreature()"></select>
+			<td><select ng-show="displayconfig.showoldselects" ng-options="name as name for (name, details) in creatures" ng-model="creature.name" ng-change="switchcreature()"></select>
 				<input ng-hide="displayconfig.showoldselects" class="autocomplete" autocomplete data-source="creatures" ng-change="searchcreature()" data-default="creature.name" ng-model="creature.searchname"></td>
 		</tr>
 		<tr>
@@ -21,7 +21,7 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Food Type:</td>
-			<td><select ng-options="food for food in foodlists[creatures[creature.name].type]" ng-model="foodunit" ng-change="totalfoodcalc()"></select></td>
+			<td><select ng-options="food for food in foodlists[creatures[creature.name].type]" ng-model="foodunit" ng-change="totalfoodcalc();babybuffercalc()"></select></td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Hatch Multiplier: </td>

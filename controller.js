@@ -831,7 +831,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		}
 		var now=new Date();
 		$cookies.putObject('settings', settings, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});
-		$scope.selectcreature();
+		$scope.statscalc();
 		$scope.troughcalc();
 	}
 
@@ -866,6 +866,41 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		$scope.selectweight();
 		$scope.totalfoodcalc();
 		$scope.babybuffercalc();
+	}
+
+	$scope.switchcreature=function() {
+		creature=$scope.creature;
+		creaturedata=$scope.creatures[creature.name];
+		creature.searchname=creature.name; //Ensure the searchname is kept up to date
+		creature.finalweight=creaturedata.weight;
+		creature.currentweight=0;
+		creature.desiredbabybuffer=1;
+		$scope.foodunit=$scope.foodlists[creaturedata.type][0];
+
+		$scope.statscalc();
+	}
+
+	$scope.statscalc=function() {
+		creature.maturationtime=1/creaturedata.agespeed/creaturedata.agespeedmult/$scope.settings.maturationspeed;
+		creature.babytime=creature.maturationtime/10;
+
+		if (creaturedata.birthtype=="Incubation") {
+			creature.birthtime=100/creaturedata.eggspeed/creaturedata.eggspeedmult/$scope.settings.hatchspeed;
+			creature.birthlabel="Incubation";
+		}
+
+		if (creaturedata.birthtype=="Gestation") {
+			creature.birthtime=1/creaturedata.gestationspeed/creaturedata.gestationspeedmult/$scope.settings.hatchspeed;
+			creature.birthlabel="Gestation";		
+		}
+
+		creature.maxfoodrate=creaturedata.basefoodrate*creaturedata.babyfoodrate*creaturedata.extrababyfoodrate*$scope.settings.consumptionspeed;
+		creature.minfoodrate=$scope.settings.baseminfoodrate*creaturedata.babyfoodrate*creaturedata.extrababyfoodrate*$scope.settings.consumptionspeed;
+		creature.foodratedecay=(creature.maxfoodrate-creature.minfoodrate)/creature.maturationtime;
+		creature.foodratedecay=(creature.maxfoodrate-creature.minfoodrate)/creature.maturationtime;
+
+		$scope.totalfoodcalc();
+		$scope.selectweight();
 	}
 
 	$scope.selectweight=function() {
@@ -910,7 +945,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			food=$scope.getfoodforperiod((day-1)*24*60*60, day*24*60*60, $scope.creature);
 		}
 
-		$scope.babybuffercalc();
+		//$scope.babybuffercalc();
 	}
 
 	$scope.babybuffercalc=function() {
