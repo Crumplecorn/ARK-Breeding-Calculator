@@ -798,7 +798,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.troughdata=$cookies.getObject("troughdata");
 	if ($scope.troughdata==undefined || $scope.clearcookies==true) {
 		$scope.troughdata={
-			type: undefined,
 			time: 0,
 			totalfood: 0,
 			totalpoints: 0,
@@ -1015,6 +1014,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		}
 		creature.maxbabybuffer=$scope.troughsim(creaturelist, stacklist)['time'];
 		creature.lasthandfeed=creature.maturationtime*0.1-creature.maxbabybuffer;
+		creature.lasthandfeedmaturation=estimate;
 
 		//Desired Buffer Calc
 		var estimate=(food.weight*creature.maxfoodrate*creature.desiredbabybuffer*60)/(creature.finalweight*food.food*foodmult+food.weight*creature.foodratedecay*creature.maturationtime*creature.desiredbabybuffer*60)
@@ -1030,6 +1030,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			creaturelist[0]['maturation']=estimate;
 		}
 		creature.timeuntildesiredbabybuffer=Math.max(0, creature.maturationtime*(estimate-creature.maturationprogress));
+		creature.timeuntildesiredbabybuffermaturation=estimate;
 
 		var now=new Date();
 		$cookies.putObject('creature', $scope.creature, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});

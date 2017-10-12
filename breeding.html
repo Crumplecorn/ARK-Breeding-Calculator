@@ -51,6 +51,10 @@
 			<td><input ng-model="creature.maturationprogress" ng-change="selectmaturation()" percentage type="number">%</td>
 		</tr>
 		<tr>
+			<td style="width: 50%" class="label">Elapsed Time:</td>
+			<td>{{creature.maturationtimecomplete | secondsToDateTime}}</td>
+		</tr>
+		<tr>
 			<td style="width: 50%" class="label">Baby Time:</td>
 			<td>{{creature.babytimeremaining | secondsToDateTime}}</td>
 		</tr>
@@ -78,7 +82,7 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Last Hand Feed:</td>
-			<td>{{creature.lasthandfeed | secondsToDateTime}}</td>
+			<td>{{creature.lasthandfeed | secondsToDateTime}} ({{creature.lasthandfeedmaturation | percentage}}%)</td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Desired Buffer:</td>
@@ -86,7 +90,7 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Time Until Buffer:</td>
-			<td>{{creature.timeuntildesiredbabybuffer | secondsToDateTime}}</td>
+			<td>{{creature.timeuntildesiredbabybuffer | secondsToDateTime}} ({{creature.timeuntildesiredbabybuffermaturation | percentage}}%)</td>
 		</tr>
 	</table>
 	</div>

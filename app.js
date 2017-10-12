@@ -31,6 +31,12 @@
     		};
     	});
 
+    	breedingApp.filter('percentage', function() {
+    		return function(percentage) {
+    			return (Math.ceil(percentage*1000)/10).toFixed(1);
+    		};
+    	});
+
    		breedingApp.directive("select", function() {
 		    return {
 		    	restrict: "E",
