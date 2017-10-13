@@ -390,6 +390,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 500
 		},
 
+		Megalania: {
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.001736,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 2.5,
+			weight: 400.0
+		},
+
 		Megaloceros: {
 			birthtype: "Gestation",
 			type: "Herbivore",
