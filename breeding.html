@@ -116,6 +116,10 @@
 	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Trough']}" ng-click="showhidetable('Trough')">Trough Calculator - Food</div>
 	<div class="tableslide" ng-show="tablevisibility['Trough']">
 	<table>
+		<tr>
+			<td style="width: 50%" class="label">Trough Type:</td>
+			<td><select ng-options="type as type for (type, multi) in troughtypes" ng-model="settings.troughtype" ng-change="troughcalc()"></select></td>
+		</tr>
 		<tr ng-repeat="(food, stacks) in troughstacks">
 			<td style="width: 50%" class="label">{{food}}</td>
 			<td><input ng-model="troughstacks[food]" ng-change="troughcalc()" type="number"> Stacks</td>
