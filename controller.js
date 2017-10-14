@@ -1047,7 +1047,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			creaturelist[0]['maturation']=estimate;
 		}
 		creature.maxbabybuffer=$scope.troughsim(creaturelist, stacklist)['time'];
-		creature.lasthandfeed=creature.maturationtime*0.1-creature.maxbabybuffer;
+		creature.lasthandfeed=Math.max(0, creature.maturationtime*0.1-creature.maxbabybuffer-creature.maturationtime*creature.maturationprogress);
 		creature.lasthandfeedmaturation=estimate;
 
 		//Desired Buffer Calc
