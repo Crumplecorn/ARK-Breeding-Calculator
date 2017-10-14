@@ -747,6 +747,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 2.0,
 			weight: 750.0
+		},
+
+		Yutyrannus: {
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.002314,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 500.0
 		}
 
 	}
