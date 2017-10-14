@@ -1053,6 +1053,21 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		creature.timeuntildesiredbabybuffer=Math.max(0, creature.maturationtime*(estimate-creature.maturationprogress));
 		creature.timeuntildesiredbabybuffermaturation=estimate;
 
+		//Food to finish calc
+		var estimate=((creature.maxfoodrate-creature.foodratedecay*creature.maturationprogress*creature.maturationtime)-(creature.maxfoodrate-creature.foodratedecay*0.1*creature.maturationtime))*(creature.maturationtime*(0.1-creature.maturationprogress))/2;
+		estimate+=(creature.maxfoodrate-creature.foodratedecay*0.1*creature.maturationtime)*creature.maturationtime*(0.1-creature.maturationprogress);
+		estimate=estimate/food.food;
+		stacklist[foodname]=estimate/food.stack;
+		creaturelist[0]['maturation']=creature.maturationprogress;
+		creature.foodtofinishbaby="N/A";
+		while(creature.maturationprogress>creature.lasthandfeedmaturation && $scope.troughsim(creaturelist, stacklist)['time']<creature.maturationtime*(0.1-creature.maturationprogress)) {
+			estimate=estimate*(creature.maturationtime*(0.1-creature.maturationprogress))/($scope.troughsim(creaturelist, stacklist)['time']);
+			stacklist[foodname]=estimate/food.stack;
+		}
+		if (creature.maturationprogress>creature.lasthandfeedmaturation) {
+			creature.foodtofinishbaby=estimate;
+		}
+
 		var now=new Date();
 		$cookies.putObject('creature', $scope.creature, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});
 	}

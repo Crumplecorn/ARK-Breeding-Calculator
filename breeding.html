@@ -85,6 +85,10 @@
 			<td>{{creature.lasthandfeed | secondsToDateTime}} ({{creature.lasthandfeedmaturation | percentage}}%)</td>
 		</tr>
 		<tr>
+			<td style="width: 50%" class="label">Food to Finish:</td>
+			<td>{{creature.foodtofinishbaby}}</td>
+		</tr>
+		<tr>
 			<td style="width: 50%" class="label">Desired Buffer:</td>
 			<td><input ng-model="creature.desiredbabybuffer" ng-change="babybuffercalc()" type="number"></td>
 		</tr>
