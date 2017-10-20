@@ -820,7 +820,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.creature=$cookies.getObject('creature');
 	if ($scope.creature==undefined || !($scope.creature.name in $scope.creatures)) {
 		$scope.creature={
-			name: "Argentavis"
+			name: "Argentavis",
+			maturationprogress: 0
 		};
 	}
 
