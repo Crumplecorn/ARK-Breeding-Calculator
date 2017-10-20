@@ -3,37 +3,35 @@
 	
 <form>
 	<h3>Crumplecorn's ARK Breeding Calculator</h3>
-	<p class="subheading">Updated to current food rates<br>
-	Additional creatures to come<br>
-	Experimental - use as guide only</p>
+	<p class="subheading">Hover over labels for tooltips</p>
 
 	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Creature']}" ng-click="showhidetable('Creature')">Creature Details</div>
 	<div class="tableslide" ng-show="tablevisibility['Creature']">
 	<table>
 		<tr>
-			<td style="width: 50%" class="label">Creature:</td>
+			<td style="width: 50%" class="label tooltip">Creature:<span class="tooltiptext">Creature type</span></td>
 			<td><select ng-show="displayconfig.showoldselects" ng-options="name as name for (name, details) in creatures" ng-model="creature.name" ng-change="switchcreature()"></select>
 				<input ng-hide="displayconfig.showoldselects" class="autocomplete" autocomplete data-source="creatures" ng-change="searchcreature()" data-default="creature.name" ng-model="creature.searchname"></td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Weight:</td>
+			<td style="width: 50%" class="label tooltip">Weight:<span class="tooltiptext">Weight stat of creature</span></td>
 			<td><input ng-model="creature.finalweight" ng-change="selectweight()" type="number"></td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Food Type:</td>
+			<td style="width: 50%" class="label tooltip">Food Type:<span class="tooltiptext">Type of food used in all food stats below</span></td>
 			<td><select ng-options="food for food in foodlists[creatures[creature.name].type]" ng-model="foodunit" ng-change="totalfoodcalc();babybuffercalc()"></select></td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Hatch Multiplier: </td>
-			<td><input ng-model="settings.hatchspeed" ng-change="selectsettings()" type="number"></td>
+			<td><input ng-model="settings.hatchspeed" ng-change="selectsettings()" type="number" min="0"></td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Mature Multiplier: </td>
-			<td><input ng-model="settings.maturationspeed" ng-change="selectsettings()" type="number"></td>
+			<td><input ng-model="settings.maturationspeed" ng-change="selectsettings()" type="number" min="0"></td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Consume Multiplier: </td>
-			<td><input ng-model="settings.consumptionspeed" ng-change="selectsettings()" type="number"></td>
+			<td><input ng-model="settings.consumptionspeed" ng-change="selectsettings()" type="number" min="0"></td>
 		</tr>
 	</table>
 	</div>
@@ -43,28 +41,32 @@
 	<table>
 
 		<tr>
-			<td style="width: 50%" class="label">{{creature.birthlabel}}:</td>
+			<td style="width: 50%" class="label tooltip">{{creature.birthlabel}}:<span class="tooltiptext">Time taken for {{creature.birthlabel}}</span></td>
 			<td>{{creature.birthtime | secondsToDateTime}}</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Maturation:</td>
-			<td><input ng-model="creature.maturationprogress" ng-change="selectmaturation()" percentage type="number">%</td>
+			<td style="width: 50%" class="label tooltip">Maturation:<span class="tooltiptext">Maturation progress of creature you want stats for</span></td>
+			<td><input ng-model="creature.maturationprogress" ng-change="selectmaturation()" percentage type="number" step="0.1" min="0" max="100">%</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Elapsed Time:</td>
+			<td style="width: 50%" class="label tooltip">Elapsed Time:<span class="tooltiptext">Time elapsed since birth</span></td>
 			<td>{{creature.maturationtimecomplete | secondsToDateTime}}</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Time to Juvenile:</td>
+			<td style="width: 50%" class="label tooltip">Time to Juvenile:<span class="tooltiptext">Time until creature hits juvenile</span></td>
 			<td>{{creature.babytimeremaining | secondsToDateTime}}</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Time to Adult:</td>
+			<td style="width: 50%" class="label tooltip">Time to Adult:<span class="tooltiptext">Time until creature hits adult</span></td>
 			<td>{{creature.maturationtimeremaining | secondsToDateTime}}</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Total Food:</td>
-			<td>{{creature.totalfooditems | number:0}}</td>
+			<td style="width: 50%" class="label tooltip">Food to Juvenile (E):<span class="tooltiptext">Food the creature will actually eat (i.e. no spoilage) between now and reaching juvenile</span></td>
+			<td>{{creature.tojuvfooditems | number:0}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label tooltip">Food to Adult (E):<span class="tooltiptext">Food the creature will actually eat (i.e. no spoilage) between now and reaching adult</span></td>
+			<td>{{creature.toadultfooditems | number:0}}</td>
 		</tr>
 	</table>
 	</div>
@@ -73,27 +75,27 @@
 	<div class="tableslide" ng-show="tablevisibility['Baby']">
 	<table>
 		<tr>
-			<td style="width: 50%" class="label">Total Food:</td>
-			<td>{{creature.babyfooditems | number:0}}</td>
-		</tr>
-		<tr>
-			<td style="width: 50%" class="label">Current Buffer:</td>
+			<td style="width: 50%" class="label tooltip">Current Buffer:<span class="tooltiptext">How long the baby will last with a full inventory of {{foodunit}}</span></td>
 			<td>{{creature.currentbabybuffer | secondsToDateTime}}</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Hand Feed Until:</td>
+			<td style="width: 50%" class="label tooltip">Food to Fill:<span class="tooltiptext">The amount of {{foodunit}} the baby's inventory can currently hold</span></td>
+			<td>{{creature.foodtofill | number:0}}</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label tooltip">Hand Feed For:<span class="tooltiptext">How long from now until the baby can survive to juvenile on a full inventory, and the maturation at which this occurs</span></td>
 			<td>{{creature.lasthandfeed | secondsToDateTime}} ({{creature.lasthandfeedmaturation | percentage}}%)</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Food to Finish:</td>
+			<td style="width: 50%" class="label tooltip">Food to Finish:<span class="tooltiptext">Amount of food required in the baby's inventory to reach juvenile</span></td>
 			<td>{{creature.foodtofinishbaby}}</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Desired Buffer:</td>
-			<td><input ng-model="creature.desiredbabybuffer" ng-change="babybuffercalc()" type="number"></td>
+			<td style="width: 50%" class="label tooltip">Desired Buffer:<span class="tooltiptext">How long you would like between feedings</span></td>
+			<td><input ng-model="creature.desiredbabybuffer" ng-change="desiredbuffercalc()" type="number" min="1"> Minutes</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Time Until Buffer:</td>
+			<td style="width: 50%" class="label tooltip">Time Until Buffer:<span class="tooltiptext">How long until the baby's inventory is big enough to provide your desired buffer, and the maturation at which this occurs</span></td>
 			<td>{{creature.timeuntildesiredbabybuffer | secondsToDateTime}} ({{creature.timeuntildesiredbabybuffermaturation | percentage}}%)</td>
 		</tr>
 	</table>
@@ -103,11 +105,11 @@
 	<div class="tableslide" ng-show="tablevisibility['Food']">
 	<table>
 		<tr>
-			<td style="width: 50%" class="label">Loss Factor:</td>
+			<td style="width: 50%" class="label tooltip">Loss Factor:<span class="tooltiptext">Percentage of food you assume will be lost to spoilage</span></td>
 			<td><input ng-model="settings.lossfactor" ng-change="totalfoodcalc()" type="number"></td>
 		</tr>
 		<tr ng-repeat="(day,food) in creature.fooditemsforday">
-			<td style="width: 50%" class="label">Day {{day}} Food</td>
+			<td style="width: 50%" class="label tooltip">Day {{day}} Food<span class="tooltiptext">{{foodunit}} required on day {{day}} of maturation</span></td>
 			<td>{{food | number:0}}</td>
 		</tr>
 	</table>
@@ -117,19 +119,19 @@
 	<div class="tableslide" ng-show="tablevisibility['Trough']">
 	<table>
 		<tr>
-			<td style="width: 50%" class="label">Trough Type:</td>
+			<td style="width: 50%" class="label tooltip">Trough Type:<span class="tooltiptext">Sets the spoil rate of the food based on container you will use, Tek=10x, Normal=4x, Clicker=1x</span></td>
 			<td><select ng-options="type as type for (type, multi) in troughtypes" ng-model="settings.troughtype" ng-change="troughcalc()"></select></td>
 		</tr>
 		<tr ng-repeat="(food, stacks) in troughstacks">
-			<td style="width: 50%" class="label">{{food}}</td>
+			<td style="width: 50%" class="label tooltip">{{food}}<span class="tooltiptext">Stacks of {{food}} in troughs</span></td>
 			<td><input ng-model="troughstacks[food]" ng-change="troughcalc()" type="number"> Stacks</td>
 		</tr>
 		<tr ng-repeat="(type, time) in troughdata.times">
-			<td style="width: 50%" class="label">{{type}}:</td>
+			<td style="width: 50%" class="label tooltip">{{type}}:<span class="tooltiptext">How long {{type}}s will have food in the current configuration</span></td>
 			<td>{{time | secondsToDateTime}}</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label">Loss</td>
+			<td style="width: 50%" class="label tooltip">Loss<span class="tooltiptext">Amount of food points to spoilage, cooking meat is automatic 50% loss</span></td>
 			<td>{{(troughdata.spoiledpoints+troughdata.wastedpoints)/troughdata.totalpoints*100}}%</td>
 		</tr>
 	</table>

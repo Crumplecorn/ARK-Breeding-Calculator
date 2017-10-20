@@ -80,7 +80,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	$scope.troughtypes={
 		Normal: 4,
-		Tek: 100
+		Tek: 100,
+		Clicker: 1
 	}
 
 	$scope.creatures={
@@ -769,6 +770,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	}
 
+	$scope.iterations=0;
+
 	for (creature in $scope.creatures) {
 		$scope.creatures[creature]['foodmultipliers']=new Proxy($scope.creatures[creature]['foodmultipliers']===undefined ? {} : $scope.creatures[creature]['foodmultipliers'], defaultmult);
 		$scope.creatures[creature]['wastemultipliers']=new Proxy($scope.creatures[creature]['wastemultipliers']===undefined ? {} : $scope.creatures[creature]['wastemultipliers'], defaultmult);
@@ -777,9 +780,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.clearcookies=false; //Some of these data structures don't really allow version numbering
 
 	$scope.settings=$cookies.getObject('settings');
-	if ($scope.settings==undefined || $scope.settings.version!="171013d") {
+	if ($scope.settings==undefined || $scope.settings.version!="171020") {
 		$scope.settings={
-			version: "171013d",
+			version: "171020",
 			consumptionspeed: 1,
 			maturationspeed: 1,
 			hatchspeed: 1,
@@ -847,6 +850,13 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			spoiledpoints: 0,
 			wastedpoints: 0
 		}
+	}
+
+	function validatenumber(number, min, max) {
+		if (isNaN(number)) {
+			return min;
+		}
+		return Math.min(max, Math.max(min, number));
 	}
 
 	$scope.showhidetable=function(table) {
@@ -935,7 +945,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		creature.searchname=creature.name; //Ensure the searchname is kept up to date
 		creature.finalweight=creaturedata.weight;
 		creature.currentweight=0;
-		creature.desiredbabybuffer=1;
+		creature.desiredbabybuffer=30;
 		$scope.foodunit=$scope.foodlists[creaturedata.type][0];
 
 		$scope.statscalc();
@@ -969,12 +979,22 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		//creaturedata=$scope.creatures[creature.name];
 		//creature.maturationprogress=creature.currentweight/creature.finalweight;
 
+		creature.finalweight=validatenumber(creature.finalweight, 1, 10000);
+
+		$scope.finalbuffercalc();
 		$scope.selectmaturation();
+		$scope.desiredbuffercalc();
 	}
 
 	$scope.selectmaturation=function() {
 		creature=$scope.creature;
 		creaturedata=$scope.creatures[creature.name];
+
+		if (isNaN(creature.maturationprogress)) {
+			creature.maturationprogress=0;
+		}
+		creature.maturationprogress=validatenumber(creature.maturationprogress, 0, 1);
+
 		creature.currentweight=creature.finalweight*creature.maturationprogress;
 
 		$scope.maturationcalc();
@@ -985,6 +1005,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		creature.maturationtimeremaining=creature.maturationtime-creature.maturationtimecomplete;
 		creature.babytimeremaining=Math.max(0, creature.babytime-(creature.maturationtime*creature.maturationprogress));
 
+		$scope.totalfoodcalc();
 		$scope.babybuffercalc();
 	}
 
@@ -993,8 +1014,12 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		creaturedata=$scope.creatures[creature.name];
 		creature.totalfood=$scope.getfoodforperiod(0, creature.maturationtime, $scope.creature);
 		creature.babyfood=$scope.getfoodforperiod(0, creature.babytime, $scope.creature);
+		creature.tojuvfood=$scope.getfoodforperiod(creature.maturationtimecomplete, creature.babytime, $scope.creature);
+		creature.toadultfood=$scope.getfoodforperiod(creature.maturationtimecomplete, creature.maturationtime, $scope.creature);
 		creature.totalfooditems=creature.totalfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
 		creature.babyfooditems=creature.babyfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
+		creature.tojuvfooditems=creature.tojuvfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
+		creature.toadultfooditems=creature.toadultfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
 		creature.foodforday={};
 		creature.fooditemsforday={};
 		day=1;
@@ -1016,9 +1041,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		food=$scope.foods[foodname];
 		foodmult=creaturedata.foodmultipliers[foodname];
 
-		creature.currentbabybuffer=creature.currentweight/food.weight*food.food*foodmult/(creature.maxfoodrate-creature.foodratedecay*creature.maturationtimecomplete);
-		creature.maxbabybuffer=creature.finalweight/10/food.weight*food.food*foodmult/(creature.maxfoodrate-creature.foodratedecay*creature.babytime);
-		creature.timeuntildesiredbabybuffer=Math.max(0,(creature.desiredbabybuffer*60*creature.babytime*food.weight*creature.maxfoodrate)/(creature.desiredbabybuffer*60*creature.babytime*food.weight*creature.foodratedecay+creature.finalweight/10*food.food*foodmult)-creature.maturationtimecomplete);
+		creature.desiredbabybuffer=validatenumber(creature.desiredbabybuffer, 0, 10000000);
+
+		//creature.currentbabybuffer=creature.currentweight/food.weight*food.food*foodmult/(creature.maxfoodrate-creature.foodratedecay*creature.maturationtimecomplete);
+		//creature.maxbabybuffer=creature.finalweight/10/food.weight*food.food*foodmult/(creature.maxfoodrate-creature.foodratedecay*creature.babytime);
+		//creature.timeuntildesiredbabybuffer=Math.max(0,(creature.desiredbabybuffer*60*creature.babytime*food.weight*creature.maxfoodrate)/(creature.desiredbabybuffer*60*creature.babytime*food.weight*creature.foodratedecay+creature.finalweight/10*food.food*foodmult)-creature.maturationtimecomplete);
 
 		//Trough calc creature setup
 		creaturelist=[{
@@ -1034,61 +1061,122 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		}
 
 		//Current buffer calc
+		$scope.iterations=0;
 		stacklist[foodname]=creature.currentweight/food.weight/food.stack;
+		creature.foodtofill=creature.currentweight/food.weight;
 		data=$scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal']);
 		creature.currentbabybuffer=data['time'];
+		//alert("Current buffer "+$scope.iterations);
 
 		//Final Buffer Calc
-		var estimate=(food.weight*creature.maxfoodrate*creature.maturationtime)/(10*creature.finalweight*food.food*foodmult+10*food.weight*creature.maxfoodrate*creature.maturationtime);
-		stacklist[foodname]=0;
-		//creature.maxbabybuffer=creature.maturationtime*0.1-creature.maturationtime*estimate;
-		while ($scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time']<creature.maturationtime*(0.1-estimate)) {
-			estimate+=0.001;
-			stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
-			creaturelist[0]['maturation']=estimate;
-		}
-		while ($scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time']>creature.maturationtime*(0.1-estimate)) {
-			estimate-=0.0001;
-			stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
-			creaturelist[0]['maturation']=estimate;
-		}
-		creature.maxbabybuffer=$scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time'];
 		creature.lasthandfeed=Math.max(0, creature.maturationtime*0.1-creature.maxbabybuffer-creature.maturationtime*creature.maturationprogress);
-		creature.lasthandfeedmaturation=estimate;
-
+		
 		//Desired Buffer Calc
-		var estimate=(food.weight*creature.maxfoodrate*creature.desiredbabybuffer*60)/(creature.finalweight*food.food*foodmult+food.weight*creature.foodratedecay*creature.maturationtime*creature.desiredbabybuffer*60)
-		stacklist[foodname]=0;
-		while ($scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time']<creature.desiredbabybuffer*60) {
-			estimate+=0.001;
-			stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
-			creaturelist[0]['maturation']=estimate;
-		}
-		while ($scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time']>creature.desiredbabybuffer*60) {
-			estimate-=0.0001;
-			stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
-			creaturelist[0]['maturation']=estimate;
-		}
-		creature.timeuntildesiredbabybuffer=Math.max(0, creature.maturationtime*(estimate-creature.maturationprogress));
-		creature.timeuntildesiredbabybuffermaturation=estimate;
+		creature.timeuntildesiredbabybuffer=Math.max(0, creature.maturationtime*(creature.timeuntildesiredbabybuffermaturation-creature.maturationprogress));
+		//alert("Desired buffer "+$scope.iterations);
 
 		//Food to finish calc
+		$scope.iterations=0;
 		var estimate=((creature.maxfoodrate-creature.foodratedecay*creature.maturationprogress*creature.maturationtime)-(creature.maxfoodrate-creature.foodratedecay*0.1*creature.maturationtime))*(creature.maturationtime*(0.1-creature.maturationprogress))/2;
 		estimate+=(creature.maxfoodrate-creature.foodratedecay*0.1*creature.maturationtime)*creature.maturationtime*(0.1-creature.maturationprogress);
 		estimate=estimate/food.food;
 		stacklist[foodname]=estimate/food.stack;
 		creaturelist[0]['maturation']=creature.maturationprogress;
 		creature.foodtofinishbaby="N/A";
-		while(creature.maturationprogress>creature.lasthandfeedmaturation && $scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time']<creature.maturationtime*(0.1-creature.maturationprogress)) {
-			estimate=estimate*(creature.maturationtime*(0.1-creature.maturationprogress))/($scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time']);
+		var troughdata=$scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal']);
+		while(creature.maturationprogress>creature.lasthandfeedmaturation && troughdata['time']<creature.maturationtime*(0.1-creature.maturationprogress)) {
+				estimate=estimate*Math.max(1.01, (creature.maturationtime*(0.1-creature.maturationprogress))/(troughdata['time']));
 			stacklist[foodname]=estimate/food.stack;
+			troughdata=$scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal']);
 		}
-		if (creature.maturationprogress>creature.lasthandfeedmaturation) {
-			creature.foodtofinishbaby=estimate;
+		if (creature.maturationprogress>creature.lasthandfeedmaturation && creature.maturationprogress<0.1) {
+			creature.foodtofinishbaby=Math.ceil(estimate);
 		}
+		//alert("Food to finish "+$scope.iterations);
 
 		var now=new Date();
 		$cookies.putObject('creature', $scope.creature, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});
+	}
+
+	$scope.finalbuffercalc=function() {
+		//Trough calc creature setup
+		creaturelist=[{
+			'name': creature.name,
+			'maturation': creature.maturationprogress,
+			'quantity': 1
+		}];
+
+		//Trough calc food setup
+		stacklist={};
+		for (i=0; i<$scope.foodorder.length; i++) {
+			stacklist[$scope.foodorder[i]]=0;
+		}
+
+		creature=$scope.creature;
+		creaturedata=$scope.creatures[creature.name];
+		var foodname=$scope.foodunit;
+		food=$scope.foods[foodname];
+		foodmult=creaturedata.foodmultipliers[foodname];
+
+		//Final Buffer Calc
+		$scope.iterations=0;
+		var estimate=(food.weight*creature.maxfoodrate*creature.maturationtime)/(10*creature.finalweight*food.food*foodmult+10*food.weight*creature.maxfoodrate*creature.maturationtime);
+		stacklist[foodname]=0;
+		//creature.maxbabybuffer=creature.maturationtime*0.1-creature.maturationtime*estimate;
+		while ($scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time']<creature.maturationtime*(0.1-estimate)) {
+			estimate+=0.01;
+			stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
+			creaturelist[0]['maturation']=estimate;
+		}
+		while ($scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time']>creature.maturationtime*(0.1-estimate)) {
+			estimate-=0.001;
+			stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
+			creaturelist[0]['maturation']=estimate;
+		}
+		creature.maxbabybuffer=$scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time'];
+		creature.lasthandfeed=Math.max(0, creature.maturationtime*0.1-creature.maxbabybuffer-creature.maturationtime*creature.maturationprogress);
+		creature.lasthandfeedmaturation=estimate;
+		//alert("Last Hand Feed "+$scope.iterations);
+	}
+
+	$scope.desiredbuffercalc=function() {
+		//Trough calc creature setup
+		creaturelist=[{
+			'name': creature.name,
+			'maturation': creature.maturationprogress,
+			'quantity': 1
+		}];
+
+		//Trough calc food setup
+		stacklist={};
+		for (i=0; i<$scope.foodorder.length; i++) {
+			stacklist[$scope.foodorder[i]]=0;
+		}
+
+		creature=$scope.creature;
+		creaturedata=$scope.creatures[creature.name];
+		var foodname=$scope.foodunit;
+		food=$scope.foods[foodname];
+		foodmult=creaturedata.foodmultipliers[foodname];
+
+		creature.desiredbabybuffer=validatenumber(creature.desiredbabybuffer, 0, creature.maxbabybuffer/60); //Needs better estimation to deal with longer times
+		//Desired Buffer Calc
+		$scope.iterations=0;
+		var estimate=(food.weight*creature.maxfoodrate*creature.desiredbabybuffer*60)/(creature.finalweight*food.food*foodmult+food.weight*creature.foodratedecay*creature.maturationtime*creature.desiredbabybuffer*60)
+		stacklist[foodname]=0;
+		while ($scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time']<creature.desiredbabybuffer*60) {
+			estimate+=0.01;
+			stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
+			creaturelist[0]['maturation']=estimate;
+		}
+		while ($scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time']>creature.desiredbabybuffer*60) {
+			estimate-=0.001;
+			stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
+			creaturelist[0]['maturation']=estimate;
+		}
+		creature.timeuntildesiredbabybuffer=Math.max(0, creature.maturationtime*(estimate-creature.maturationprogress));
+		creature.timeuntildesiredbabybuffermaturation=estimate;
+		//alert("Desired buffer "+$scope.iterations);
 	}
 
 	$scope.getfoodforperiod=function(start, end, creature) {
@@ -1120,6 +1208,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	}
 
 	$scope.troughsim=function(creaturelist, troughstacks, troughmultiplier) {
+		$scope.iterations++;
 		foodorder=$scope.foodorder;
 		troughcreatures=[];
 
@@ -1147,7 +1236,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 					"food": $scope.foods[foodname].food, //Food provided
 					"waste": $scope.foods[foodname].waste}); //Waste (eg cooked meat wastes 25 because cooking turns 50 food into 25)
 			}
-			if (partialstack>0) {
+			if (stacks.length>0 && partialstack>0) {
 				stacks[j-1]['stacksize']=Math.floor(stacks[j-1]['stacksize']*partialstack);
 				if (stacks[j-1]['stacksize']==0) {
 					totalstacks[foodname]--;
@@ -1192,11 +1281,15 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 			for (i=0;i<troughcreatures.length;i++) {
 				if (troughcreatures[i].foodrate<troughcreatures[i].minfoodrate) {
-					continue;
+					continue; //Creature is adult
 				}
 				
 				troughcreatures[i].foodrate-=troughcreatures[i].foodratedecay;
 				troughcreatures[i].hunger+=troughcreatures[i].foodrate;
+
+				if (troughcreatures[i].hunger<20) {
+					continue; //Creature cannot possibly eat below this
+				}
 
 				for (currentstack=0;currentstack<stacks.length;currentstack++) {
 					if (stacks[currentstack]['stacksize']>0 && troughcreatures[i].foods.indexOf(stacks[currentstack]['type'])>-1) {

@@ -140,3 +140,44 @@
 		.redselect {
 			background-color: red;
 		}
+		.tooltip {
+		    position: relative;
+		    /*display: inline-block;*/
+		}
+
+		.tooltip .tooltiptext {
+		    visibility: hidden;
+		    width: 200px;
+		    background-color: black;
+		    color: #fff;
+		    text-align: center;
+		    padding: 5px 0;
+		    border-radius: 6px;
+		 
+		    position: absolute;
+		    z-index: 1;
+
+		    font-size: 0.9em;
+		    font-weight: normal;
+		}
+
+		.tooltip:hover .tooltiptext {
+		    visibility: visible;
+		    top: 0px;
+		    left: 100%;
+		}
+
+	.tooltip .tooltiptext {
+	    opacity: 0;
+	    transition: opacity 1s;
+	    background: rgba(40, 100, 100, 1);
+	}
+
+	.tooltip:hover .tooltiptext {
+	    opacity: 1;
+	}
+
+	.tooltip .tooltiptext:hover {
+		opacity: 0;
+		visibility: hidden;
+	}
