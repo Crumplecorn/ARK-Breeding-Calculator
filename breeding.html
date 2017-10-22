@@ -19,7 +19,7 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label tooltip">Food Type:<span class="tooltiptext">Type of food used in all food stats below</span></td>
-			<td><select ng-options="food for food in foodlists[creatures[creature.name].type]" ng-model="foodunit" ng-change="totalfoodcalc();babybuffercalc()"></select></td>
+			<td><select ng-options="food for food in foodlists[creatures[creature.name].type]" ng-model="foodunit" ng-change="selectweight()"></select></td>
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label">Hatch Multiplier: </td>
@@ -61,11 +61,11 @@
 			<td>{{creature.maturationtimeremaining | secondsToDateTime}}</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label tooltip">Food to Juvenile (E):<span class="tooltiptext">Food the creature will actually eat (i.e. no spoilage) between now and reaching juvenile</span></td>
+			<td style="width: 50%" class="label tooltip">Food to Juvenile (E):<span class="tooltiptext">{{foodunit}} the creature will actually eat (i.e. no spoilage) between now and reaching juvenile</span></td>
 			<td>{{creature.tojuvfooditems | number:0}}</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label tooltip">Food to Adult (E):<span class="tooltiptext">Food the creature will actually eat (i.e. no spoilage) between now and reaching adult</span></td>
+			<td style="width: 50%" class="label tooltip">Food to Adult (E):<span class="tooltiptext">{{foodunit}} the creature will actually eat (i.e. no spoilage) between now and reaching adult</span></td>
 			<td>{{creature.toadultfooditems | number:0}}</td>
 		</tr>
 	</table>
