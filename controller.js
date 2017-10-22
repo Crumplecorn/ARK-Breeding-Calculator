@@ -690,6 +690,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 440.0
 		},
 
+		Tapejara: {
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.7,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.0,
+			weight: 280.0
+		},
+
 		"Terror Bird": {
 			birthtype: "Incubation",
 			type: "Carnivore",
