@@ -24,6 +24,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			waste: 25
 		},
 
+		'Spoiled Meat': {
+			food: 50,
+			stack: 100,
+			spoil: 60*60,
+			weight: 0.1,
+			waste: 0
+		},
+
 		'Mejoberry': {
 			food: 30,
 			stack: 100,
@@ -71,12 +79,13 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Herbivore: ['Mejoberry', 'Berry', 'Kibble'],
 		Omnivore: ['Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry', 'Kibble'],
 		Microraptor: ['Raw Meat', 'Cooked Meat', 'Rare Flower'],
-		Archaeopteryx: ['Chitin']
+		Archaeopteryx: ['Chitin'],
+		Carrion: ['Spoiled Meat']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin']
+	$scope.foodlist=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat']
 
-	$scope.foodorder=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin']
+	$scope.foodorder=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat']
 
 	$scope.troughtypes={
 		Normal: 4,
@@ -768,6 +777,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 750.0
 		},
 
+		Vulture: {
+			birthtype: "Incubation",
+			type: "Carrion",
+			basefoodrate: 0.001302,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.7,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.7,
+			weight: 50
+		},
+
 		Yutyrannus: {
 			birthtype: "Incubation",
 			type: "Carnivore",
@@ -793,9 +815,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.clearcookies=false; //Some of these data structures don't really allow version numbering
 
 	$scope.settings=$cookies.getObject('settings');
-	if ($scope.settings==undefined || $scope.settings.version!="171020") {
+	if ($scope.settings==undefined || $scope.settings.version!="171025") {
 		$scope.settings={
-			version: "171020",
+			version: "171025",
 			consumptionspeed: 1,
 			maturationspeed: 1,
 			hatchspeed: 1,
