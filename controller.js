@@ -400,6 +400,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 70
 		},
 
+		Kentrosaurus: {
+			birthtype: "Incubation",
+			type: "Herbivore",
+			basefoodrate: 0.005341,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.8,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.8,
+			weight: 500.0
+		},
+
 		Mammoth: {
 			birthtype: "Gestation",
 			type: "Herbivore",
@@ -696,7 +709,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 1.8,
 			eggspeed: 0.005556,
 			eggspeedmult: 1.8,
-			weight: 440.0
+			weight: 500.0
 		},
 
 		Tapejara: {
