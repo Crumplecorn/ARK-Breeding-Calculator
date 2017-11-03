@@ -1119,7 +1119,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		//alert("Current buffer "+$scope.iterations);
 
 		//Final Buffer Calc
-		creature.lasthandfeed=Math.max(0, creature.maturationtime*0.1-creature.maxbabybuffer-creature.maturationtime*creature.maturationprogress);
+		creature.lasthandfeed=Math.max(0, creature.maturationtime*(creature.lasthandfeedmaturation-creature.maturationprogress));
 		
 		//Desired Buffer Calc
 		creature.timeuntildesiredbabybuffer=Math.max(0, creature.maturationtime*(creature.timeuntildesiredbabybuffermaturation-creature.maturationprogress));
@@ -1135,7 +1135,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		creature.foodtofinishbaby="N/A";
 		var troughdata=$scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal']);
 		while(creature.maturationprogress>creature.lasthandfeedmaturation && troughdata['time']<creature.maturationtime*(0.1-creature.maturationprogress)) {
-				estimate=estimate*Math.max(1.01, (creature.maturationtime*(0.1-creature.maturationprogress))/(troughdata['time']));
+			estimate=estimate*Math.max(1.01, (creature.maturationtime*(0.1-creature.maturationprogress))/(troughdata['time']));
 			stacklist[foodname]=estimate/food.stack;
 			troughdata=$scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal']);
 		}
@@ -1183,8 +1183,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
 			creaturelist[0]['maturation']=estimate;
 		}
+		estimate+=0.001;
+		stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
+		creaturelist[0]['maturation']=estimate;
 		creature.maxbabybuffer=$scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time'];
-		creature.lasthandfeed=Math.max(0, creature.maturationtime*0.1-creature.maxbabybuffer-creature.maturationtime*creature.maturationprogress);
+		creature.lasthandfeed=Math.max(0, creature.maturationtime*(estimate-creature.maturationprogress));
 		creature.lasthandfeedmaturation=estimate;
 		//alert("Last Hand Feed "+$scope.iterations);
 	}
@@ -1224,6 +1227,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
 			creaturelist[0]['maturation']=estimate;
 		}
+		estimate+=0.001;
+		stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
+		creaturelist[0]['maturation']=estimate;
 		creature.timeuntildesiredbabybuffer=Math.max(0, creature.maturationtime*(estimate-creature.maturationprogress));
 		creature.timeuntildesiredbabybuffermaturation=estimate;
 		//alert("Desired buffer "+$scope.iterations);
