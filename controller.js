@@ -83,9 +83,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Carrion: ['Spoiled Meat']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat']
+	$scope.foodlist=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //Display order
 
-	$scope.foodorder=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat']
+	$scope.foodorder=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //In-game order
 
 	$scope.troughtypes={
 		Normal: 4,
@@ -1251,12 +1251,35 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			maturation: $scope.creature.maturationprogress,
 			quantity: 1
 		});
+		$scope.troughupdatefoodtypes();
 		$scope.troughcalc();
 	}
 
 	$scope.troughremovecreature=function(index) {
 		$scope.creaturelist.splice(index, 1);
+		$scope.troughupdatefoodtypes();
 		$scope.troughcalc();
+	}
+
+	$scope.troughupdatefoodtypes=function() {
+		var activefoodtypes=new Set([]);
+		for (var i=0;i<$scope.creaturelist.length;i++) {
+			var creaturefoodlist=$scope.foodlists[$scope.creatures[$scope.creaturelist[i].name].type];
+			for (var j in creaturefoodlist) {
+				activefoodtypes.add(creaturefoodlist[j]);
+			}
+		}
+		var newstacklist={};
+		for (var i in $scope.foodorder) {
+			if (activefoodtypes.has($scope.foodorder[i])) {
+				if ($scope.troughstacks[$scope.foodorder[i]]!=undefined) {
+					newstacklist[$scope.foodorder[i]]=$scope.troughstacks[$scope.foodorder[i]];
+				} else {
+					newstacklist[$scope.foodorder[i]]=0;
+				}
+			}
+		}
+		$scope.troughstacks=newstacklist;
 	}
 
 	$scope.troughcalc=function() {
@@ -1279,6 +1302,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		times={};
 		for (i=0; i<foodorder.length; i++) {
 			foodname=foodorder[i];
+			if (troughstacks[foodname]===undefined) {
+				continue;
+			}
 			totalstacks['all']+=Math.ceil(troughstacks[foodname]);
 			totalstacks[foodname]=Math.ceil(troughstacks[foodname]);
 			fullstacks=Math.floor(troughstacks[foodname]);
@@ -1407,5 +1433,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	}
 
 	$scope.switchcreature();
+	$scope.troughupdatefoodtypes();
 
 }]);
