@@ -83,7 +83,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Carrion: ['Spoiled Meat']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //Display order
+	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //Display order
 
 	$scope.foodorder=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //In-game order
 
@@ -828,9 +828,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.clearcookies=false; //Some of these data structures don't really allow version numbering
 
 	$scope.settings=$cookies.getObject('settings');
-	if ($scope.settings==undefined || $scope.settings.version!="171025") {
+	if ($scope.settings==undefined || $scope.settings.version!="171108") {
 		$scope.settings={
-			version: "171025",
+			version: "171108",
 			consumptionspeed: 1,
 			maturationspeed: 1,
 			hatchspeed: 1,
@@ -1270,12 +1270,12 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			}
 		}
 		var newstacklist={};
-		for (var i in $scope.foodorder) {
-			if (activefoodtypes.has($scope.foodorder[i])) {
-				if ($scope.troughstacks[$scope.foodorder[i]]!=undefined) {
-					newstacklist[$scope.foodorder[i]]=$scope.troughstacks[$scope.foodorder[i]];
+		for (var i in $scope.foodlist) {
+			if (activefoodtypes.has($scope.foodlist[i])) {
+				if ($scope.troughstacks[$scope.foodlist[i]]!=undefined) {
+					newstacklist[$scope.foodlist[i]]=$scope.troughstacks[$scope.foodlist[i]];
 				} else {
-					newstacklist[$scope.foodorder[i]]=0;
+					newstacklist[$scope.foodlist[i]]=0;
 				}
 			}
 		}
