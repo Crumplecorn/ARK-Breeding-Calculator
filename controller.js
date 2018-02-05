@@ -426,6 +426,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 150.0
 		},
 		
+		Equus: {
+			birthtype: "Gestation",
+			type: "Herbivore",
+			basefoodrate: 0.001929,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.6,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 0.6,
+			weight: 350.0
+		},
+		
 		Featherlight: {
 			birthtype: "Incubation",
 			type: "Carnivore",
@@ -489,6 +502,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 2.0,
 			weight: 70.0
+		},
+		
+		Iguanodon: {
+			birthtype: "Incubation",
+			type: "Herbivore",
+			basefoodrate: 0.001929,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.5,
+			weight: 375.0
 		},
 
 		Kairuku: {
@@ -581,7 +607,20 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeedmult: 3.0,
 			weight: 300.0
 		},
-
+		
+		Megatherium: {
+			birthtype: "Gestation",
+			type: "Omnivore",
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 725.0
+		},
+		
 		Mesopithecus: {
 			birthtype: "Gestation",
 			type: "Herbivore",
@@ -607,6 +646,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeedmult: 3.5,
 			weight: 45.0
 		},
+		
+		Morellatops: {
+			birthtype: "Incubation",
+			type: "Herbivore",
+			basefoodrate: 0.005341,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 2.0,
+			weight: 440.0
+		},
 
 		Mosasaurus: {
 			birthtype: "Gestation",
@@ -619,6 +671,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
 			weight: 1300.0
+		},
+		
+		Moschops: {
+			birthtype: "Incubation",
+			type: "Omnivore",
+			basefoodrate: 0.001736,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.9,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.9,
+			weight: 200.0
 		},
 
 		Oviraptor: {
@@ -659,6 +724,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeedmult: 3.5,
 			weight: 150.0
 		},
+		
+		Pachyrhinosaurus: {
+			birthtype: "Incubation",
+			type: "Herbivore",
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 2.0,
+			weight: 365.0
+		},
 
 		Paraceratherium: {
 			birthtype: "Gestation",
@@ -684,6 +762,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 3.5,
 			weight: 255.0
+		},
+		
+		Pegomastax: {
+			birthtype: "Incubation",
+			type: "Herbivore",
+			basefoodrate: 0.000868,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 4.4,
+			weight: 55.0
 		},
 
 		Phiomia: {
@@ -802,6 +893,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeedmult: 1.0,
 			weight: 500
 		},
+		
+		"Roll Rat": {
+			birthtype: "Gestation",
+			type: "Herbivore",
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.6,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.6,
+			weight: 400.0
+		},
 
 		Sabertooth: {
 			birthtype: "Gestation",
@@ -827,6 +931,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 2.0,
 			weight: 300.0
+		},
+		
+		Shinehorn: {
+			birthtype: "Gestation",
+			type: "Herbivore",
+			basefoodrate: 0.000868,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.9,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.9,
+			weight: 100.0
 		},
 
 		Spinosaurus: {
