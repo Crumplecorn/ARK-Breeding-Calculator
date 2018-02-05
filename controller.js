@@ -95,19 +95,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	$scope.creatures={
 
-		Ankylosaurus: {
-			birthtype: "Incubation",
-			type: "Herbivore",
-			basefoodrate: 0.003156,
-			babyfoodrate: 25.5,
-			extrababyfoodrate: 20.0,
-			agespeed: 0.000003,
-			agespeedmult: 1.9,
-			eggspeed: 0.005556,
-			eggspeedmult: 1.9,
-			weight: 250
-		},
-
 		Allosaurus: {
 			birthtype: "Incubation",
 			type: "Carnivore",
@@ -120,8 +107,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeedmult: 3.0,
 			weight: 380.0
 		},
-
-		Angler: {
+		
+		Anglerfish: {
 			birthtype: "Incubation",
 			type: "Carnivore",
 			basefoodrate: 0.001852,
@@ -133,7 +120,20 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeedmult: 1.0,
 			weight: 350
 		},
-
+		
+		Ankylosaurus: {
+			birthtype: "Incubation",
+			type: "Herbivore",
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.9,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.9,
+			weight: 250
+		},
+		
 		Archaeopteryx: {
 			birthtype: "Incubation",
 			type: "Archaeopteryx",
@@ -157,7 +157,20 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 1.7,
 			eggspeed: 0.005556,
 			eggspeedmult: 1.7,
-			weight: 350.0
+			weight: 400.0
+		},
+		
+		Basilosaurus: {
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.002929,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.5,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 700.0
 		},
 
 		Brontosaurus: {
