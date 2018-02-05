@@ -172,6 +172,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeedmult: 1.0,
 			weight: 700.0
 		},
+		
+		Beelzebufo: {
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.001929,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.5,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 160.0
+		},
 
 		Brontosaurus: {
 			birthtype: "Incubation",
@@ -184,6 +197,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.0,
 			weight: 900.0
+		},
+		
+		Bulbdog: {
+			birthtype: "Gestation",
+			type: "Herbivore",
+			basefoodrate: 0.000868,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.9,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.9,
+			weight: 120
 		},
 
 		Carbonemys: {
@@ -223,6 +249,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
 			weight: 300
+		},
+		
+		Chalicotherium: {
+			birthtype: "Gestation",
+			type: "Herbivore",
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.125,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 400
 		},
 
 		Compsognathus: {
@@ -789,20 +828,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeedmult: 2.0,
 			weight: 365.0
 		},
-
-		"Woolly Rhino": {
-			birthtype: "Gestation",
-			type: "Herbivore",
-			basefoodrate: 0.003156,
-			babyfoodrate: 25.5,
-			extrababyfoodrate: 20.0,
-			agespeed: 0.000003,
-			agespeedmult: 2.0,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 2.0,
-			weight: 750.0
-		},
-
+		
 		Vulture: {
 			birthtype: "Incubation",
 			type: "Carrion",
@@ -816,6 +842,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 50
 		},
 
+		"Woolly Rhino": {
+			birthtype: "Gestation",
+			type: "Herbivore",
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.0,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 2.0,
+			weight: 750.0
+		},
+		
 		Yutyrannus: {
 			birthtype: "Incubation",
 			type: "Carnivore",
