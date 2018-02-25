@@ -8,6 +8,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	$scope.foods={
 
+		'Raw Fish Meat': {
+			food: 25,
+			stack: 20,
+			spoil: 20*60,
+			weight: 0.1,
+			waste: 0
+		},
+
 		'Raw Meat': {
 			food: 50,
 			stack: 20,
@@ -75,17 +83,17 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	}
 
 	$scope.foodlists={
-		Carnivore: ['Raw Meat', 'Cooked Meat', 'Kibble'],
+		Carnivore: ['Raw Fish Meat', 'Raw Meat', 'Cooked Meat', 'Kibble'],
 		Herbivore: ['Mejoberry', 'Berry', 'Kibble'],
-		Omnivore: ['Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry', 'Kibble'],
+		Omnivore: ['Raw Fish Meat', 'Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry', 'Kibble'],
 		Microraptor: ['Raw Meat', 'Cooked Meat', 'Rare Flower'],
 		Archaeopteryx: ['Chitin'],
 		Carrion: ['Spoiled Meat']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //Display order
+	$scope.foodlist=['Raw Fish Meat', 'Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //Display order
 
-	$scope.foodorder=['Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //In-game order
+	$scope.foodorder=['Raw Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //In-game order
 
 	$scope.troughtypes={
 		Normal: 4,
