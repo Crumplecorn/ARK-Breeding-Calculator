@@ -16,6 +16,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			waste: 0
 		},
 
+		'Cooked Fish Meat': {
+			food: 12.5,
+			stack: 30,
+			spoil: 40*60,
+			weight: 0.1,
+			waste: 0
+		},
+
 		'Raw Meat': {
 			food: 50,
 			stack: 20,
@@ -88,12 +96,13 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Omnivore: ['Raw Fish Meat', 'Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry', 'Kibble'],
 		Microraptor: ['Raw Meat', 'Cooked Meat', 'Rare Flower'],
 		Archaeopteryx: ['Chitin'],
-		Carrion: ['Spoiled Meat']
+		Carrion: ['Spoiled Meat'],
+		Pescetarian: ['Raw Fish Meat', 'Cooked Fish Meat']
 	}
 
-	$scope.foodlist=['Raw Fish Meat', 'Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //Display order
+	$scope.foodlist=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //Display order
 
-	$scope.foodorder=['Raw Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //In-game order
+	$scope.foodorder=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //In-game order
 
 	$scope.troughtypes={
 		Normal: 4,
@@ -166,6 +175,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.7,
 			weight: 400.0
+		},
+		
+		Baryonyx: {
+			birthtype: "Incubation",
+			type: "Pescetarian",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 2.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 2.5,
+			weight: 325.0
 		},
 		
 		Basilosaurus: {
