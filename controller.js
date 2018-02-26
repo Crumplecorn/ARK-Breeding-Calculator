@@ -19,7 +19,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		'Cooked Fish Meat': {
 			food: 12.5,
 			stack: 30,
-			spoil: 40*60,
+			spoil: 30*60,
 			weight: 0.1,
 			waste: 0
 		},
