@@ -97,7 +97,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Microraptor: ['Raw Meat', 'Cooked Meat', 'Rare Flower'],
 		Archaeopteryx: ['Chitin'],
 		Carrion: ['Spoiled Meat'],
-		Pescetarian: ['Raw Fish Meat', 'Cooked Fish Meat']
+		Piscivore: ['Raw Fish Meat', 'Cooked Fish Meat']
 	}
 
 	$scope.foodlist=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //Display order
@@ -179,7 +179,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		
 		Baryonyx: {
 			birthtype: "Incubation",
-			type: "Pescetarian",
+			type: "Piscivore",
 			basefoodrate: 0.001543,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20,
