@@ -231,7 +231,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		
 		Bulbdog: {
 			birthtype: "Gestation",
-			type: "Herbivore",
+			type: "Omnivore",
 			basefoodrate: 0.000868,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
