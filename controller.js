@@ -91,16 +91,16 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	}
 
 	$scope.foodlists={
-		Carnivore: ['Raw Fish Meat', 'Raw Meat', 'Cooked Meat', 'Kibble'],
+		Carnivore: ['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Kibble'],
 		Herbivore: ['Mejoberry', 'Berry', 'Kibble'],
-		Omnivore: ['Raw Fish Meat', 'Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry', 'Kibble'],
+		Omnivore: ['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Mejoberry', 'Berry', 'Kibble'],
 		Microraptor: ['Raw Meat', 'Cooked Meat', 'Rare Flower'],
 		Archaeopteryx: ['Chitin'],
 		Carrion: ['Spoiled Meat'],
 		Piscivore: ['Raw Fish Meat', 'Cooked Fish Meat']
 	}
 
-	$scope.foodlist=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Cooked Meat', 'Mejoberry', 'Berry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //Display order
+	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //Display order
 
 	$scope.foodorder=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //In-game order
 
