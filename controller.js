@@ -110,6 +110,20 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Clicker: 1
 	}
 
+	/*
+	* Where to locate stat values:
+	*
+	* Note: PrimalItemConsumable_Egg_[Creature]_Fertilized can be PrimalItemConsumable_UnderwaterEgg_[Creature] fo runderwater creatures
+	*
+	* basefoodrate: DinoCharacterStatusComponent_BP_[Creature]/BaseFoodConsumionRate
+	* babyfoodrate: DinoCharacterStatusComponent_BP_[Creature]/BabyDinoConsumingFoodRateMultiplier
+	* extrababyfoodrate: DinoCharacterStatusComponent_BP_[Creature]/ExtraBabyDinoConsumingFoodRateMultipler
+	* agespeed: [Creature]_Character_BP/BabyAgeSpeed
+	* agespeedmult: [Creature]_Character_BP/BabyAgeSpeedMultipler
+	* eggspeed: PrimalItemConsumable_Egg_[Creature]_Fertilized/EggLoseDurabilityPerSecond
+	* eggspeedmult: PrimalItemConsumable_Egg_[Creature]_Fertilized/ExtraEggLoseDurabilityPerSecondMultiplier
+	*/
+
 	$scope.creatures={
 
 		Allosaurus: {
@@ -1091,6 +1105,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 4.4,
 			weight: 140.0
+		},
+		
+		Tusoteuthis: {
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.005,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.33,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 800.0
 		},
 		
 		Vulture: {
