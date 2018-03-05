@@ -1555,7 +1555,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		food=$scope.foods[foodname];
 		foodmult=creaturedata.foodmultipliers[foodname];
 
-		creature.desiredbabybuffer=validatenumber(creature.desiredbabybuffer, 0, 300); //Needs better estimation to deal with longer times
+		creature.desiredbabybuffer=validatenumber(creature.desiredbabybuffer, 0, 600); //Needs better estimation to deal with longer times
 		//Desired Buffer Calc
 		$scope.iterations=0;
 		var estimate=(food.weight*creature.maxfoodrate*creature.desiredbabybuffer*60)/(creature.finalweight*food.food*foodmult+food.weight*creature.foodratedecay*creature.maturationtime*creature.desiredbabybuffer*60)
