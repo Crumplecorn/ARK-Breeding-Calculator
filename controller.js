@@ -730,6 +730,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 200.0
 		},
 
+		Otter: {
+			birthtype: "Gestation",
+			type: "Piscivore",
+			basefoodrate: 0.002314,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 4.4,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 40.0
+		},
+
 		Oviraptor: {
 			birthtype: "Incubation",
 			type: "Carnivore",
