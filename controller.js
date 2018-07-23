@@ -844,7 +844,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 2.5,
 			eggspeed: 0.005556,
 			eggspeedmult: 3.0,
-			weight: 40
+			weight: 150
 		}, 
 
 		Phiomia: {
