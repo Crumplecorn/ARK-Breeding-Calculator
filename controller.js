@@ -502,7 +502,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
  		// Unsure on this, because the gacha eats so many things.  This may be completely wrong.
 		Gacha: {
 			birthtype: "Gestation",
-			type: "Carnivore",
+			type: "Omnivore",
 			basefoodrate: 0.01,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20,
