@@ -122,6 +122,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	* agespeedmult: [Creature]_Character_BP/BabyAgeSpeedMultipler
 	* eggspeed: PrimalItemConsumable_Egg_[Creature]_Fertilized/EggLoseDurabilityPerSecond
 	* eggspeedmult: PrimalItemConsumable_Egg_[Creature]_Fertilized/ExtraEggLoseDurabilityPerSecondMultiplier
+	* or
+	* gestationspeed: [Creature]_Character_BP/BabyGestationSpeed
+	* gestationspeedmult: [Creature]_Character_BP/ExtraBabyGestationSpeedMultiplier
 	*/
 
 	$scope.creatures={
@@ -496,6 +499,20 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 70.0
 		},
 
+ 		// Unsure on this, becauce the gacha eats so many things.  This may be completely wrong.
+		Gacha: {
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.01,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 0.8,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 380.0
+		},
+
 		Gallimimus: {
 			birthtype: "Incubation",
 			type: "Herbivore",
@@ -507,6 +524,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 3.5,
 			weight: 230
+		},
+
+		Gasbag: {
+			birthtype: "Gestation",
+			type: "Herbivore",
+			basefoodrate: 0.002066,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 4260.0
 		},
 
 		Giganotosaurus: {
@@ -598,6 +628,20 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
 			weight: 500
+		},
+
+		// IceJumper
+		Managarmr: {
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.001852,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 426.0
 		},
 
 		Megalania: {
@@ -1016,6 +1060,20 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 100.0
 		},
 
+		// Owl
+		"Snow Owl": {
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.01,
+			babyfoodrate: 25.5, 
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 1.7,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.7,
+			weight: 690.0
+		},
+
 		Spinosaurus: {
 			birthtype: "Incubation",
 			type: "Carnivore",
@@ -1144,6 +1202,20 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.0,
 			weight: 800.0
+		},
+
+		// Spindles
+		Velonasaur: {
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 2.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 4.4,
+			weight: 461.5
 		},
 		
 		Vulture: {
