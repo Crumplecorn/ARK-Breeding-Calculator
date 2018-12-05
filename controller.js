@@ -499,7 +499,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 70.0
 		},
 
- 		// Unsure on this, becauce the gacha eats so many things.  This may be completely wrong.
+ 		// Unsure on this, because the gacha eats so many things.  This may be completely wrong.
 		Gacha: {
 			birthtype: "Gestation",
 			type: "Carnivore",
