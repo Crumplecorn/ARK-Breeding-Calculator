@@ -64,6 +64,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			waste: 0
 		},
 
+		'Vegetables': {
+			food: 40,
+			stack: 100,
+			spoil: 5*60,
+			weight: 0.1,
+			waste: 0
+		},
+
 		'Rare Flower': {
 			food: 60,
 			stack: 100,
@@ -92,7 +100,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	$scope.foodlists={
 		Carnivore: ['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Kibble'],
-		Herbivore: ['Mejoberry', 'Berry', 'Kibble'],
+		Herbivore: ['Mejoberry', 'Berry', 'Vegetables', 'Kibble'],
 		Omnivore: ['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Mejoberry', 'Berry', 'Kibble'],
 		Microraptor: ['Raw Meat', 'Cooked Meat', 'Rare Flower'],
 		Archaeopteryx: ['Chitin'],
@@ -100,9 +108,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Piscivore: ['Raw Fish Meat', 'Cooked Fish Meat']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //Display order
+	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //Display order
 
-	$scope.foodorder=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //In-game order
+	$scope.foodorder=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat'] //In-game order
 
 	$scope.troughtypes={
 		Normal: 4,
@@ -113,7 +121,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	/*
 	* Where to locate stat values:
 	*
-	* Note: PrimalItemConsumable_Egg_[Creature]_Fertilized can be PrimalItemConsumable_UnderwaterEgg_[Creature] fo runderwater creatures
+	* Note: PrimalItemConsumable_Egg_[Creature]_Fertilized can be PrimalItemConsumable_UnderwaterEgg_[Creature] for underwater creatures
 	*
 	* basefoodrate: DinoCharacterStatusComponent_BP_[Creature]/BaseFoodConsumionRate
 	* babyfoodrate: DinoCharacterStatusComponent_BP_[Creature]/BabyDinoConsumingFoodRateMultiplier
