@@ -3,7 +3,8 @@
 	
 <form>
 	<h3>Crumplecorn's ARK Breeding Calculator</h3>
-	<p class="subheading">Hover over labels for tooltips</p>
+	<p class="subheading">Hover over labels for tooltips<br>
+	Now with 303.1 stack sizes</p>
 
 	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Creature']}" ng-click="showhidetable('Creature')">Creature Details</div>
 	<div class="tableslide" ng-show="tablevisibility['Creature']">
@@ -123,7 +124,7 @@
 			<td><select ng-options="type as type for (type, multi) in troughtypes" ng-model="settings.troughtype" ng-change="troughcalc()"></select></td>
 		</tr>
 		<tr ng-repeat="(food, stacks) in troughstacks">
-			<td style="width: 50%" class="label tooltip">{{food}}<span class="tooltiptext">Stacks of {{food}} in troughs</span></td>
+			<td style="width: 50%" class="label tooltip">{{food}}<span class="tooltiptext">Stacks of {{foods[food].stack}} {{food}} in troughs</span></td>
 			<td><input ng-model="troughstacks[food]" ng-change="troughcalc()" type="number"> Stacks</td>
 		</tr>
 		<tr ng-repeat="(type, time) in troughdata.times">
