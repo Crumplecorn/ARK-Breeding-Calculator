@@ -6,7 +6,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
   		}
 	};
 
-	$scope.foods={
+	$scope.Defaultfoods={
 
 		'Raw Fish Meat': {
 			food: 25,
@@ -27,6 +27,98 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		'Raw Meat': {
 			food: 50,
 			stack: 40,
+			spoil: 10*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Cooked Meat': {
+			food: 25,
+			stack: 50,
+			spoil: 20*60,
+			weight: 0.1,
+			waste: 25
+		},
+
+		'Spoiled Meat': {
+			food: 50,
+			stack: 100,
+			spoil: 60*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Mejoberry': {
+			food: 30,
+			stack: 100,
+			spoil: 10*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Berry': {
+			food: 20,
+			stack: 100,
+			spoil: 10*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Vegetables': {
+			food: 40,
+			stack: 100,
+			spoil: 5*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Rare Flower': {
+			food: 60,
+			stack: 100,
+			spoil: 3*24*60*60,
+			weight: 0.15,
+			waste: 0
+		},
+
+		'Chitin': {
+			food: 50,
+			stack: 100,
+			spoil: 9001*9001,
+			weight: 0.01,
+			waste: 0
+		},
+
+		'Kibble': {
+			food: 60,
+			stack: 100,
+			spoil: 3*24*60*60,
+			weight: 0.1,
+			waste: 0
+		}
+
+	}
+	
+	$scope.Primfoods={
+
+		'Raw Fish Meat': {
+			food: 25,
+			stack: 20,
+			spoil: 20*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Cooked Fish Meat': {
+			food: 12.5,
+			stack: 50,
+			spoil: 30*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Raw Meat': {
+			food: 50,
+			stack: 20,
 			spoil: 10*60,
 			weight: 0.1,
 			waste: 0
@@ -1385,6 +1477,15 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			creature.name=creature.searchname;
 			$scope.switchcreature();
 		}
+	}
+	
+	$scope.changeStackSize=function() {
+		if($scope.settings.stackSize){
+			$scope.foods=$scope.Primfoods;
+		} else {
+			$scope.foods=$scope.Defaultfoods;
+		}
+		$scope.troughcalc();
 	}
 
 	$scope.selectsettings=function() {
