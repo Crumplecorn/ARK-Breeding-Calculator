@@ -190,6 +190,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	}
 
+	$scope.foods=$scope.Defaultfoods;
+
 	$scope.foodlists={
 		Carnivore: ['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Kibble'],
 		Herbivore: ['Mejoberry', 'Berry', 'Vegetables', 'Kibble'],

@@ -5,8 +5,6 @@
 	<h3>Crumplecorn's ARK Breeding Calculator</h3>
 	<p class="subheading">Hover over labels for tooltips<br>
 	Now with 303.1 stack sizes</p>
-	Prim+ Stacksizes:
-	<input ng-model="settings.stackSize" ng-change="changeStackSize()" type="checkbox">
 
 	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Creature']}" ng-click="showhidetable('Creature')">Creature Details</div>
 	<div class="tableslide" ng-show="tablevisibility['Creature']">
@@ -118,9 +116,15 @@
 	</table>
 	</div>
 
+	
+
 	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Trough']}" ng-click="showhidetable('Trough')">Trough Calculator - Food</div>
 	<div class="tableslide" ng-show="tablevisibility['Trough']">
 	<table>
+		<tr>
+			<td style="width: 50%" class="label tooltip">Prim+ Stacksizes:<span class="tooltiptext">Check this if you are on Prim+ using the old stack sizes</span></td>
+			<td><input ng-model="settings.stackSize" ng-change="changeStackSize()" type="checkbox"></td>
+		</tr>
 		<tr>
 			<td style="width: 50%" class="label tooltip">Trough Type:<span class="tooltiptext">Sets the spoil rate of the food based on the container you will use, Tek=100x, Normal=4x, Clicker=1x</span></td>
 			<td><select ng-options="type as type for (type, multi) in troughtypes" ng-model="settings.troughtype" ng-change="troughcalc()"></select></td>
