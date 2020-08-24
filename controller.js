@@ -127,7 +127,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 0.1,
 			waste: 0
 		}
-
 	}
 	
 	$scope.Primfoods={
@@ -235,7 +234,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 1,
 			waste: 0
 		},
-		
 				
 		'Ambergris': {
 			food: 500,
@@ -252,7 +250,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 0.1,
 			waste: 0
 		}
-
 	}
 
 	$scope.foods=$scope.Defaultfoods;
@@ -273,7 +270,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom'] //Display order
 
-	$scope.foodorder=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom' ] //In-game order
+	$scope.foodorder=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom'] //In-game order
 
 	$scope.troughtypes={
 		Normal: 4,
