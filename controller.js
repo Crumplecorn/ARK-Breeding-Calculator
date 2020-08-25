@@ -127,6 +127,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 0.1,
 			waste: 0
 		}
+
 	}
 	
 	$scope.Primfoods={
@@ -234,6 +235,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 1,
 			waste: 0
 		},
+		
 				
 		'Ambergris': {
 			food: 500,
@@ -250,6 +252,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 0.1,
 			waste: 0
 		}
+
 	}
 
 	$scope.foods=$scope.Defaultfoods;
@@ -270,7 +273,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom'] //Display order
 
-	$scope.foodorder=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom'] //In-game order
+	$scope.foodorder=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom' ] //In-game order
 
 	$scope.troughtypes={
 		Normal: 4,
@@ -384,7 +387,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 0.5,
+			agespeedmult: 0.8,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
 			weight: 700.0
@@ -501,7 +504,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 1.0,
+			agespeedmult: 4.4,
 			eggspeed: 0.005556,
 			eggspeedmult: 6.0,
 			weight: 25
@@ -676,7 +679,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 1.0,
+			agespeedmult: 1.125,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
 			weight: 910.0
@@ -702,7 +705,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 1.6,
+			agespeedmult: 2.0,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 0.6,
 			weight: 350.0
@@ -735,7 +738,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		},
 
  		// Unsure on this, because the gacha eats so many things.  This may be completely wrong.
-		Gacha: {
+		Gacha: { //
 			birthtype: "Gestation",
 			type: "Omnivore",
 			basefoodrate: 0.01,
@@ -859,7 +862,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 3.5,
+			agespeedmult: 1.6,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
 			weight: 250.0
@@ -885,7 +888,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 3.0,
+			agespeedmult: 4.4,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 3.0,
 			weight: 55.0
@@ -1119,7 +1122,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 0.33,
+			agespeedmult: 0.5,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
 			weight: 1300.0
@@ -1262,7 +1265,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 0.8,
+			agespeedmult: 1.9,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 0.8,
 			weight: 200.0
@@ -1275,7 +1278,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 0.5,
+			agespeedmult: 0.8,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
 			weight: 800.0
@@ -1327,7 +1330,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 0.5,
+			agespeedmult: 0.7,
 			eggspeed: 0.005556,
 			eggspeedmult: 0.3,
 			weight: 800
@@ -1587,7 +1590,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 0.33,
+			agespeedmult: 0.5,
 			eggspeed: 0.005556,
 			eggspeedmult: 1.0,
 			weight: 800.0
@@ -1626,7 +1629,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 2.0,
+			agespeedmult: 1.6,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 2.0,
 			weight: 750.0
