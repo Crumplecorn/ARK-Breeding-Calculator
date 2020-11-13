@@ -31,6 +31,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 0.1,
 			waste: 0
 		},
+		
+		'Raw Meat (Carrion)': {
+			food: 10,
+			stack: 40,
+			spoil: 10*60,
+			weight: 0.1,
+			waste: 0
+		},
 
 		'Cooked Meat': {
 			food: 25,
@@ -154,6 +162,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 0.1,
 			waste: 0
 		},
+		
+		'Raw Meat (Carrion)': {
+			food: 10,
+			stack: 40,
+			spoil: 10*60,
+			weight: 0.1,
+			waste: 0
+		},
 
 		'Cooked Meat': {
 			food: 25,
@@ -261,6 +277,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Microraptor: ['Raw Meat', 'Cooked Meat', 'Rare Flower'],
 		Archaeopteryx: ['Chitin'],
 		Carrion: ['Spoiled Meat'],
+		Carrion_: ['Spoiled Meat', 'Raw Meat (Carrion)'],
 		Piscivore: ['Raw Fish Meat', 'Cooked Fish Meat'],
 		Wyvern: ['Wyvern Milk'],
 		CrystalWyvern: ['Primal Crystal'],
@@ -268,9 +285,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		RockDrake: ['Nameless Venom']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom'] //Display order
+	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)'] //Display order
 
-	$scope.foodorder=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom'] //In-game order
+	$scope.foodorder=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)'] //In-game order
 
 	$scope.troughtypes={
 		Normal: 4,
@@ -337,6 +354,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeedmult: 1.9,
 			weight: 250
 		},
+		
+		Araneo: { // NEW
+			birthtype: "Incubation",
+			type: "Carrion",
+			basefoodrate: 0.001736,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.7,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.5,
+			weight: 100.0
+		},
 
 		Archaeopteryx: { //
 			birthtype: "Incubation",
@@ -362,6 +392,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.7,
 			weight: 400.0
+		},
+		
+		Arthropluera: { // NEW
+			birthtype: "Incubation",
+			type: "Carrion",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.8,
+			eggspeed: 0.005556,
+			eggspeedmult: 2.0,
+			weight: 100.0
 		},
 
 		Baryonyx: { //
@@ -774,14 +817,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 3000.0
 		},
 
-		Giganotosaurus: { //
+		Giganotosaurus: { // NEW
 			birthtype: "Incubation",
 			type: "Carnivore",
 			basefoodrate: 0.002314,
 			babyfoodrate: 45.0,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 0.33,
+			agespeedmult: 0.39,
 			eggspeed: 0.005556,
 			eggspeedmult: 0.1,
 			weight: 700
@@ -878,7 +921,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 375.0
 		},
 		
-		Jerboa: { //
+		Jerboa: { // NEW
 			birthtype: "Gestation",
 			type: "Herbivore",
 			basefoodrate: 0.000868,
@@ -888,7 +931,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 4.4,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 3.0,
-			weight: 55.0
+			weight: 120.0
 		},
 
 		Kairuku: { //
@@ -928,6 +971,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.8,
 			weight: 500.0
+		},
+		
+		Lymantria: { // NEW
+			birthtype: "Incubation",
+			type: "Herbivore",
+			basefoodrate: 0.001852,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.3,
+			weight: 175
 		},
 		
 		Lystrosaurus: { //
@@ -993,6 +1049,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
 			weight: 200.0
+		},
+		
+		Mantis: { // NEW
+			birthtype: "Incubation",
+			type: "Carrion_",
+			basefoodrate: 0.002314,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.7,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.8,
+			weight: 220
 		},
 		
 		Megachelon: { //
@@ -1136,6 +1205,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.9,
 			weight: 200.0
+		},
+		
+		Onyc: { // NEW
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.002893,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.3,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 2.0,
+			weight: 50.0
 		},
 
 		Otter: { //
@@ -1305,6 +1387,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 3.0,
 			weight: 120.0
+		},
+		
+		Pulmonoscorpius: { // NEW
+			birthtype: "Incubation",
+			type: "Carrion_",
+			basefoodrate: 0.001929,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 2.5,
+			weight: 200.0
 		},
 
 		Purlovia: { //
@@ -1689,7 +1784,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	if ($scope.displayconfig==undefined || $scope.displayconfig.version!="160227") {
 		$scope.displayconfig={
 			version: "160227",
-			showoldselects: 0,
+			showoldselects: 1,
 			showanimations: 1
 		}
 	}
