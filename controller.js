@@ -1,5 +1,5 @@
 var breedingController=angular.module('breedingControllers', []).controller('breedingController', ['$scope', '$interval', '$cookies', '$animate', function($scope, $interval, $cookies, $animate) {
-
+ 
 	var defaultmult = {
   		get: function(target, name) {
    			return target.hasOwnProperty(name) ? target[name] : 1;
