@@ -1817,7 +1817,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	if ($scope.displayconfig==undefined || $scope.displayconfig.version!="160227") {
 		$scope.displayconfig={
 			version: "160227",
-			showoldselects: 1,
+			showoldselects: 0,
 			showanimations: 1
 		}
 	}
