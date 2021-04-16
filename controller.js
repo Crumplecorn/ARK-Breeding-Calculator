@@ -15,6 +15,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 0.1,
 			waste: 0
 		},
+		
+		'Raw Fish Meat (Carrion)': {
+			food: 5,
+			stack: 40,
+			spoil: 20*60,
+			weight: 0.1,
+			waste: 0
+		},
 
 		'Cooked Fish Meat': {
 			food: 12.5,
@@ -133,6 +141,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			stack: 1,
 			spoil: 10*60*3,
 			weight: 0.1,
+			waste: 0
+		},
+		
+		'Blood Pack': {
+			food: 200,
+			stack: 100,
+			spoil: 10*60*3,
+			weight: 0.05,
 			waste: 0
 		}
 	}
@@ -141,7 +157,15 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		'Raw Fish Meat': {
 			food: 25,
-			stack: 20,
+			stack: 40,
+			spoil: 20*60,
+			weight: 0.1,
+			waste: 0
+		},
+		
+		'Raw Fish Meat (Carrion)': {
+			food: 5,
+			stack: 40,
 			spoil: 20*60,
 			weight: 0.1,
 			waste: 0
@@ -157,7 +181,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		'Raw Meat': {
 			food: 50,
-			stack: 20,
+			stack: 40,
 			spoil: 10*60,
 			weight: 0.1,
 			waste: 0
@@ -264,6 +288,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			stack: 1,
 			spoil: 10*60*3,
 			weight: 0.1,
+			waste: 0
+		},
+		
+		'Blood Pack': {
+			food: 200,
+			stack: 100,
+			spoil: 10*60*3,
+			weight: 0.05,
 			waste: 0
 		}
 	}
@@ -282,12 +314,13 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Wyvern: ['Wyvern Milk'],
 		CrystalWyvern: ['Primal Crystal'],
 		Magmasaur: ['Ambergris'],
-		RockDrake: ['Nameless Venom']
+		RockDrake: ['Nameless Venom'],
+		BloodStalker: ['Blood Pack', 'Raw Meat (Carrion)', 'Raw Fish Meat (Carrion)']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)'] //Display order
+	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack'] //Display order
 
-	$scope.foodorder=['Raw Fish Meat', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)'] //In-game order
+	$scope.foodorder=['Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack'] //In-game order
 
 	$scope.troughtypes={
 		Normal: 4,
@@ -448,7 +481,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		
 		Bloodstalker: { //
 			birthtype: "Incubation",
-			type: "Carnivore",
+			type: "BloodStalker",
 			basefoodrate: 0.001543,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
@@ -2069,7 +2102,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		var estimate=((creature.maxfoodrate-creature.foodratedecay*creature.maturationprogress*creature.maturationtime)-(creature.maxfoodrate-creature.foodratedecay*0.1*creature.maturationtime))*(creature.maturationtime*(0.1-creature.maturationprogress))/2;
 		estimate+=(creature.maxfoodrate-creature.foodratedecay*0.1*creature.maturationtime)*creature.maturationtime*(0.1-creature.maturationprogress);
 		estimate=estimate/food.food;
-		stacklist[foodname]=estimate/food.stack;
+		/* stacklist[foodname]=estimate/food.stack; */ //hang and crash
 		creaturelist[0]['maturation']=creature.maturationprogress;
 		creature.foodtofinishbaby="N/A";
 		var troughdata=$scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal']);
