@@ -154,10 +154,10 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	}
 	
 	$scope.Primfoods={
-
+		//Prim Plus Stacksize is only 20 for fish meat!
 		'Raw Fish Meat': {
 			food: 25,
-			stack: 40,
+			stack: 20,
 			spoil: 20*60,
 			weight: 0.1,
 			waste: 0
