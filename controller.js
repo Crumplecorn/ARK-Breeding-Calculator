@@ -300,8 +300,10 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			waste: 0
 		}
 	}
-
+	
 	$scope.foods=$scope.Defaultfoods;
+	
+	
 
 	$scope.foodlists={
 		Carnivore: ['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Kibble'],
@@ -1812,6 +1814,10 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		$scope.clearcookies=true;
 		var now=new Date();
 		$cookies.putObject('settings', $scope.settings, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});
+	}
+	
+	if($scope.settings.stackSize){
+		$scope.foods=$scope.Primfoods;
 	}
 
 	$scope.displayconfig=$cookies.getObject('displayconfig');
