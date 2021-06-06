@@ -178,10 +178,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 0.1,
 			waste: 0
 		},
-
+		
+		//Prim Plus Stacksize is only 20 for meat!
 		'Raw Meat': {
 			food: 50,
-			stack: 40,
+			stack: 20,
 			spoil: 10*60,
 			weight: 0.1,
 			waste: 0
