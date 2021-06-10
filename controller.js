@@ -157,7 +157,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		'Raw Fish Meat': {
 			food: 25,
-			stack: 40,
+			stack: 20,
 			spoil: 20*60,
 			weight: 0.1,
 			waste: 0
@@ -165,7 +165,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		
 		'Raw Fish Meat (Carrion)': {
 			food: 5,
-			stack: 40,
+			stack: 20,
 			spoil: 20*60,
 			weight: 0.1,
 			waste: 0
@@ -181,7 +181,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		'Raw Meat': {
 			food: 50,
-			stack: 40,
+			stack: 20,
 			spoil: 10*60,
 			weight: 0.1,
 			waste: 0
@@ -189,7 +189,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		
 		'Raw Meat (Carrion)': {
 			food: 10,
-			stack: 40,
+			stack: 20,
 			spoil: 10*60,
 			weight: 0.1,
 			waste: 0
