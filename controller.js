@@ -154,10 +154,10 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	}
 	
 	$scope.Primfoods={
-
+		//Prim Plus Stacksize is only 20 for fish meat!
 		'Raw Fish Meat': {
 			food: 25,
-			stack: 40,
+			stack: 20,
 			spoil: 20*60,
 			weight: 0.1,
 			waste: 0
@@ -178,10 +178,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 0.1,
 			waste: 0
 		},
-
+		
+		//Prim Plus Stacksize is only 20 for meat!
 		'Raw Meat': {
 			food: 50,
-			stack: 40,
+			stack: 20,
 			spoil: 10*60,
 			weight: 0.1,
 			waste: 0
@@ -299,8 +300,10 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			waste: 0
 		}
 	}
-
+	
 	$scope.foods=$scope.Defaultfoods;
+	
+	
 
 	$scope.foodlists={
 		Carnivore: ['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Kibble'],
@@ -1811,6 +1814,10 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		$scope.clearcookies=true;
 		var now=new Date();
 		$cookies.putObject('settings', $scope.settings, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});
+	}
+	
+	if($scope.settings.stackSize){
+		$scope.foods=$scope.Primfoods;
 	}
 
 	$scope.displayconfig=$cookies.getObject('displayconfig');
