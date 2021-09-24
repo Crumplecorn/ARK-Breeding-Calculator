@@ -120,6 +120,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			waste: 0
 		},
 		
+		'Mutagen': {
+			food: 1000,
+			stack: 1,
+			spoil: 10*60*3,
+			weight: 0.1,
+			waste: 0
+		},
+		
 		'Primal Crystal': {
 			food: 350,
 			stack: 1,
@@ -268,6 +276,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			waste: 0
 		},
 		
+		'Mutagen': {
+			food: 1000,
+			stack: 1,
+			spoil: 10*60*3,
+			weight: 0.1,
+			waste: 0
+		},
+		
 		'Primal Crystal': {
 			food: 350,
 			stack: 1,
@@ -315,15 +331,16 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Carrion_: ['Spoiled Meat', 'Raw Meat (Carrion)'],
 		Piscivore: ['Raw Fish Meat', 'Cooked Fish Meat'],
 		Wyvern: ['Wyvern Milk'],
+		Voidwyrm: ['Mutagen'],
 		CrystalWyvern: ['Primal Crystal'],
 		Magmasaur: ['Ambergris'],
 		RockDrake: ['Nameless Venom'],
 		BloodStalker: ['Blood Pack', 'Raw Meat (Carrion)', 'Raw Fish Meat (Carrion)']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack'] //Display order
+	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack'] //Display order
 
-	$scope.foodorder=['Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack'] //In-game order
+	$scope.foodorder=['Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack'] //In-game order
 
 	$scope.troughtypes={
 		Normal: 4,
@@ -391,7 +408,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 250
 		},
 		
-		Araneo: { // NEW
+		Araneo: { //
 			birthtype: "Incubation",
 			type: "Carrion",
 			basefoodrate: 0.001736,
@@ -430,7 +447,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 400.0
 		},
 		
-		Arthropluera: { // NEW
+		Arthropluera: { //
 			birthtype: "Incubation",
 			type: "Carrion",
 			basefoodrate: 0.001543,
@@ -441,6 +458,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 2.0,
 			weight: 100.0
+		},
+		
+		Astrodelphis: { // NEW
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.7,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 280
 		},
 
 		Baryonyx: { //
@@ -853,7 +883,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 3000.0
 		},
 
-		Giganotosaurus: { // NEW
+		Giganotosaurus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
 			basefoodrate: 0.002314,
@@ -957,7 +987,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 375.0
 		},
 		
-		Jerboa: { // NEW
+		Jerboa: { //
 			birthtype: "Gestation",
 			type: "Herbivore",
 			basefoodrate: 0.000868,
@@ -1009,7 +1039,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 500.0
 		},
 		
-		Lymantria: { // NEW
+		Lymantria: { //
 			birthtype: "Incubation",
 			type: "Herbivore",
 			basefoodrate: 0.001852,
@@ -1033,6 +1063,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 6.0,
 			weight: 90.0
+		},
+		
+		Maewing: { // NEW
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.010000,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.5,
+			weight: 400.0
 		},
 		
 		Magmasaur: { //Food Check - Ambergris 500 Food Value - need more Tests!?
@@ -1087,7 +1130,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 200.0
 		},
 		
-		Mantis: { // NEW
+		Mantis: { //
 			birthtype: "Incubation",
 			type: "Carrion_",
 			basefoodrate: 0.002314,
@@ -1243,7 +1286,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 200.0
 		},
 		
-		Onyc: { // NEW
+		Onyc: { //
 			birthtype: "Gestation",
 			type: "Carnivore",
 			basefoodrate: 0.002893,
@@ -1425,7 +1468,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 120.0
 		},
 		
-		Pulmonoscorpius: { // NEW
+		Pulmonoscorpius: { //
 			birthtype: "Incubation",
 			type: "Carrion_",
 			basefoodrate: 0.001929,
@@ -1554,7 +1597,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeedmult: 2.0,
 			weight: 300.0
 		},
-
+		
 		Shinehorn: { //
 			birthtype: "Gestation",
 			type: "Herbivore",
@@ -1566,6 +1609,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.9,
 			weight: 100.0
+		},
+
+		Shadowmane: { // NEW
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.001157,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.9,
+			gestationspeed: 0.000061,
+			gestationspeedmult: 1.9,
+			weight: 425.0
 		},
 
 		"Snow Owl": { //
@@ -1748,6 +1804,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 3.7,
 			weight: 50
+		},
+		
+		Voidwyrm: { //NEW Food Check - Mutagen 1000 Food Value - need more Tests!?
+			birthtype: "Incubation",
+			type: "Voidwyrm",
+			basefoodrate: 0.000185,
+			babyfoodrate: 13.0,
+			extrababyfoodrate: 3.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 400.0
 		},
 
 		"Woolly Rhino": { //
