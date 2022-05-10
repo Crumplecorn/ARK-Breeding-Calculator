@@ -17,4 +17,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
       - name: Deploy
-        run: aws s3 sync --exclude '.git/*' --exclude '.github/*' . s3://ab-ark-breeding-calculator/breeding
+        run: aws s3 sync . s3://ab-ark-breeding-calculator/breeding --exclude '.git/*' --exclude '.github/*'
