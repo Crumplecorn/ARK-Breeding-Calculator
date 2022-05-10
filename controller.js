@@ -158,6 +158,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			spoil: 10*60*3,
 			weight: 0.05,
 			waste: 0
+		},
+
+		'Sulfur': {
+			food: 50,
+			stack: 100,
+			spoil: 9001*9001,
+			weight: 0.05,
+			waste: 0
 		}
 	}
 	
