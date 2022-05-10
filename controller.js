@@ -322,7 +322,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			spoil: 9001*9001,
 			weight: 0.05,
 			waste: 0
-		},
+		}
 
 	}
 	
