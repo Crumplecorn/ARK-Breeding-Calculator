@@ -314,7 +314,16 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			spoil: 10*60*3,
 			weight: 0.05,
 			waste: 0
-		}
+		},
+
+		'Sulfur': {
+			food: 50,
+			stack: 100,
+			spoil: 9001*9001,
+			weight: 0.05,
+			waste: 0
+		},
+
 	}
 	
 	$scope.foods=$scope.Defaultfoods;
@@ -334,7 +343,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Wyvern: ['Wyvern Milk'],
 		Voidwyrm: ['Mutagen'],
 		CrystalWyvern: ['Primal Crystal'],
-		Magmasaur: ['Ambergris'],
+		Magmasaur: ['Ambergris', 'Sulfur'],
 		RockDrake: ['Nameless Venom'],
 		BloodStalker: ['Blood Pack', 'Raw Meat (Carrion)', 'Raw Fish Meat (Carrion)']
 	}
