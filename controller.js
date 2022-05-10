@@ -327,6 +327,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Omnivore: ['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Mejoberry', 'Berry', 'Kibble'],
 		Microraptor: ['Raw Meat', 'Cooked Meat', 'Rare Flower'],
 		Archaeopteryx: ['Chitin'],
+		Sinomacrops: ['Chitin'],
 		Carrion: ['Spoiled Meat'],
 		Carrion_: ['Spoiled Meat', 'Raw Meat (Carrion)'],
 		Piscivore: ['Raw Fish Meat', 'Cooked Fish Meat'],
@@ -1622,6 +1623,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000061,
 			gestationspeedmult: 1.9,
 			weight: 425.0
+		},
+
+		Sinomacrops: {
+			birthtype: "Incubation",
+			type: "Sinomacrops",
+			basefoodrate: 0.001302,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 6.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.9,
+			weight: 30.0
 		},
 
 		"Snow Owl": { //
