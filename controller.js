@@ -397,7 +397,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 1.0,
 			eggspeed: 0.005556,
 			eggspeedmult: 1.0,
-			weight: 13.0
+			weight: 475.0
 		},
 
 		Allosaurus: { //
@@ -741,7 +741,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 1,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 0.8,
-			// weight: 300
+			weight: 350
 		},
 		
 		Diplocaulus: { //
