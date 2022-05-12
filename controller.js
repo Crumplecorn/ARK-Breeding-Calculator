@@ -387,19 +387,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	$scope.creatures={
 
-		Amargasaurus: { //
-			birthtype: "Incubation",
-			type: "Herbivore",
-			basefoodrate: 0.00625,
-			babyfoodrate: 25.5,
-			extrababyfoodrate: 20,
-			agespeed: 0.000003,
-			agespeedmult: 1.0,
-			eggspeed: 0.005556,
-			eggspeedmult: 1.0,
-			weight: 475.0
-		},
-
 		Allosaurus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
@@ -411,6 +398,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 3.0,
 			weight: 380.0
+		},
+
+		Amargasaurus: { //
+			birthtype: "Incubation",
+			type: "Herbivore",
+			basefoodrate: 0.00625,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 475.0
 		},
 
 		Anglerfish: { //
