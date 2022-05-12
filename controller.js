@@ -1678,7 +1678,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 6.0,
 			eggspeed: 0.005556,
 			eggspeedmult: 1.9,
-			weight: 30.0
+			weight: 80.0
 		},
 
 		"Snow Owl": { //
