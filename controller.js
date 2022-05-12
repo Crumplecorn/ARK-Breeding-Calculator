@@ -1668,7 +1668,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 425.0
 		},
 
-		Sinomacrops: {
+		Sinomacrops: { //
 			birthtype: "Incubation",
 			type: "Sinomacrops",
 			basefoodrate: 0.001302,
