@@ -71,7 +71,9 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label tooltip">Food Rate (E):<span class="tooltiptext">Food point the creature will currently eat every minute</span></td>
-			<td>{{creature.nextminfood}}pt / minute</td>
+			<td>{{creature.nextminfood}} pt / 
+				<select ng-options="unit as unit for (unit, multi) in foodrate_time_units" ng-model="settings.foodrate_time_units" ng-change="totalfoodcalc()"></select>
+			</td>
 		</tr>
 	</table>
 	</div>

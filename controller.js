@@ -366,6 +366,12 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Clicker: 1
 	}
 
+	$scope.foodrate_time_units={
+		Minute: 1,
+		Hour: 60,
+		Day: 60*24
+	}
+
 	/*
 	* Where to locate stat values:
 	*
@@ -1926,16 +1932,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	$scope.clearcookies=false; //Some of these data structures don't really allow version numbering
 
+	$scope.settings_version = "171112";
+
 	$scope.settings=$cookies.getObject('settings');
-	if ($scope.settings==undefined || $scope.settings.version!="171108") {
+	if ($scope.settings==undefined || $scope.settings.version!=$scope.settings_version) {
 		$scope.settings={
-			version: "171108",
+			version: $scope.settings_version,
 			consumptionspeed: 1,
 			maturationspeed: 1,
 			hatchspeed: 1,
 			baseminfoodrate: 0.000155,
 			lossfactor: 0,
-			troughtype: "Normal"
+			troughtype: "Normal",
+			foodrate_time_units: "Minute"
 		}
 		$scope.clearcookies=true;
 		var now=new Date();
@@ -2175,7 +2184,10 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		creature.babyfooditems=creature.babyfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
 		creature.tojuvfooditems=creature.tojuvfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
 		creature.toadultfooditems=creature.toadultfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
-		creature.nextminfood=Math.ceil( $scope.getfoodforperiod(creature.maturationtimecomplete, creature.maturationtimecomplete+60, $scope.creature) );
+
+		foodrate_time_multiplier = $scope.foodrate_time_units[$scope.settings.foodrate_time_units];
+
+		creature.nextminfood= Math.ceil( $scope.getfoodforperiod(creature.maturationtimecomplete, creature.maturationtimecomplete+60, $scope.creature) * foodrate_time_multiplier * 100 ) / 100;
 		creature.foodforday={};
 		creature.fooditemsforday={};
 		day=1;
