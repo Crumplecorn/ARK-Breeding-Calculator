@@ -2175,6 +2175,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		creature.babyfooditems=creature.babyfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
 		creature.tojuvfooditems=creature.tojuvfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
 		creature.toadultfooditems=creature.toadultfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
+		creature.nextminfood=Math.ceil( $scope.getfoodforperiod(creature.maturationtimecomplete, creature.maturationtimecomplete+60, $scope.creature) );
 		creature.foodforday={};
 		creature.fooditemsforday={};
 		day=1;
