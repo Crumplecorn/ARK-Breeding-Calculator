@@ -2191,7 +2191,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		// add food needed for 1 minute / hour / day
 		creature.nextfoodpertimeunit = Math.ceil( creature.nextminfood / ($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]) );
-		// testab
 
 		creature.foodforday={};
 		creature.fooditemsforday={};
