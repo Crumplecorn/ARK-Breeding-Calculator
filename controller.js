@@ -349,7 +349,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Carrion_: ['Spoiled Meat', 'Raw Meat (Carrion)'],
 		Piscivore: ['Raw Fish Meat', 'Cooked Fish Meat'],
 		Wyvern: ['Wyvern Milk'],
-		Voidwyrm: ['Mutagen'],
+		// Voidwyrm: ['Mutagen'],
 		CrystalWyvern: ['Primal Crystal'],
 		Magmasaur: ['Ambergris', 'Sulfur'],
 		RockDrake: ['Nameless Venom'],
@@ -1871,7 +1871,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		
 		Voidwyrm: { //NEW Food Check - Mutagen 1000 Food Value - need more Tests!?
 			birthtype: "Incubation",
-			type: "Voidwyrm",
+			type: "Carnivore",
 			basefoodrate: 0.000185,
 			babyfoodrate: 13.0,
 			extrababyfoodrate: 3.0,
