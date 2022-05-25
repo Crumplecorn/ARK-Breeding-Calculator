@@ -69,6 +69,10 @@
 			<td style="width: 50%" class="label tooltip">Food to Adult (E):<span class="tooltiptext">{{foodunit}} the creature will actually eat (i.e. no spoilage) between now and reaching adult</span></td>
 			<td>{{creature.toadultfooditems | number:0}}</td>
 		</tr>
+		<tr>
+			<td style="width: 50%" class="label tooltip">Food Rate (E):<span class="tooltiptext">Food point the creature will currently eat every minute</span></td>
+			<td>{{creature.nextminfood}}pt / minute</td>
+		</tr>
 	</table>
 	</div>
 
