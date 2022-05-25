@@ -70,10 +70,14 @@
 			<td>{{creature.toadultfooditems | number:0}}</td>
 		</tr>
 		<tr>
-			<td style="width: 50%" class="label tooltip">Food Rate (E):<span class="tooltiptext">Food point the creature will currently eat every minute</span></td>
+			<td style="width: 50%" class="label tooltip">Food Rate (E):<span class="tooltiptext">Food point the creature will currently eat every {{settings.foodrate_time_units}}</span></td>
 			<td>{{creature.nextminfood}} pt / 
 				<select ng-options="unit as unit for (unit, multi) in foodrate_time_units" ng-model="settings.foodrate_time_units" ng-change="totalfoodcalc()"></select>
 			</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label tooltip">Food per period (E):<span class="tooltiptext">{{foodunit}} the creature will actually eat (i.e. no spoilage) during the next {{settings.foodrate_time_units}}</span></td>
+			<td>{{creature.nextfoodpertimeunit}} per {{settings.foodrate_time_units}}</td>
 		</tr>
 	</table>
 	</div>
