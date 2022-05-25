@@ -18,3 +18,26 @@ jobs:
           aws-region: eu-west-1
       - name: Deploy
         run: aws s3 sync . s3://ab-ark-breeding-calculator/breeding --exclude '.git/*' --exclude '.github/*'
+
+      
+      - name: get updated files
+        run: |
+          # allow grep to fail
+          set +e
+          FILES=$(git log --stat="1000" -1 | grep '|' | awk '{print "/"$1}' | grep -e '\.html$')
+          set -e
+          [ -z "$FILES" ] && touch .updated_files && exit 0
+          for file in $FILES; do
+            echo $file
+            # add bare directory to list of updated paths when we see index.html
+            [[ "$file" == *"/index.html" ]] && echo $file | sed -e 's/\/index.html$/\//'
+          done | sort | uniq | tr '\n' ' ' > .updated_files
+
+      - name: invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          PATHS_FROM: .updated_files
+          AWS_REGION: 'us-east-1'
+          DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
