@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    name: Deploy to S3
     steps:
       - uses: actions/checkout@v2
       - name: Configure AWS credentials
@@ -21,6 +22,7 @@ jobs:
 
   purge:
     runs-on: ubuntu-latest
+    name: Invalidate modified files in CloudFront Distribution
     needs:
       - deploy
     steps:
