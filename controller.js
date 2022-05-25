@@ -2185,9 +2185,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		creature.tojuvfooditems=creature.tojuvfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
 		creature.toadultfooditems=creature.toadultfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
 
+		// add food consumption rate per minute / hour / day
 		foodrate_time_multiplier = $scope.foodrate_time_units[$scope.settings.foodrate_time_units];
 		creature.nextminfood= Math.ceil( $scope.getfoodforperiod(creature.maturationtimecomplete, creature.maturationtimecomplete+60, $scope.creature) * foodrate_time_multiplier * 100 ) / 100;
 
+		// add food needed for 1 minute / hour / day
 		creature.nextfoodpertimeunit = Math.ceil( creature.nextminfood / ($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]) );
 
 		creature.foodforday={};

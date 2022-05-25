@@ -19,6 +19,10 @@ jobs:
       - name: Deploy
         run: aws s3 sync . s3://ab-ark-breeding-calculator/breeding --exclude '.git/*' --exclude '.github/*'
 
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       
       - name: get updated files
         run: |
