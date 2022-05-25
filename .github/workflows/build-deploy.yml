@@ -35,7 +35,7 @@ jobs:
         run: |
           # allow grep to fail
           set +e
-          FILES=$(git log --stat="1000" -1 | grep '|' | awk '{print "/"$1}' | grep -E '\.(html|js|css)$')
+          FILES=$(git log --stat="1000" -1 | grep '|' | awk '{print "/"$1}{print "/breeding/"$1}' | grep -E '\.(html|js|css)$')
           set -e
           [ -z "$FILES" ] && touch .updated_files && exit 0
           for file in $FILES; do
