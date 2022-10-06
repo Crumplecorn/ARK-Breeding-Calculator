@@ -387,6 +387,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	* or
 	* gestationspeed: [Creature]_Character_BP/BabyGestationSpeed
 	* gestationspeedmult: [Creature]_Character_BP/ExtraBabyGestationSpeedMultiplier
+	* weight: DinoCharacterStatusComponent_BP_[Creature]/MaxStatusValues
 	* // = DevKit checked
 	*/
 	
@@ -409,7 +410,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Amargasaurus: { //
 			birthtype: "Incubation",
 			type: "Herbivore",
-			basefoodrate: 0.00625,
+			basefoodrate: 0.003156,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20,
 			agespeed: 0.000003,
@@ -417,6 +418,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.0,
 			weight: 475.0
+		},
+
+		Andrewsarchus: { //
+			birthtype: "Gestation",
+			type: "Omnivore", // or Carnivore
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.6,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.6,
+			weight: 500.0
 		},
 
 		Anglerfish: { //
@@ -698,6 +712,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 140.0
 		},
 
+		Desmodus: { //
+			birthtype: "Gestation",
+			type: "BloodStalker",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.3,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1,
+			weight: 350.0
+		},
+
 		Dilophosaurus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
@@ -891,6 +918,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 0.8,
 			weight: 55.0
+		},
+
+		Fjordhawk: { //
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.0,
+			weight: 65.0
 		},
 
  		// Unsure on this, because the gacha eats so many things.  This may be completely wrong.
