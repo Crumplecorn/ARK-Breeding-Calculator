@@ -422,7 +422,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		Andrewsarchus: { //
 			birthtype: "Gestation",
-			type: "Omnivore", // or Carnivore
+			type: "Omnivore",
 			basefoodrate: 0.003156,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
@@ -922,7 +922,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		Fjordhawk: { //
 			birthtype: "Incubation",
-			type: "Carnivore",
+			type: "Omnivore",
 			basefoodrate: 0.001543,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
