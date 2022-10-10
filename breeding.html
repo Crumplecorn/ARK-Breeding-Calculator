@@ -4,7 +4,8 @@
 <form>
 	<h3>Crumplecorn's ARK Breeding Calculator</h3>
 	<p class="subheading">Hover over labels for tooltips<br>
-	Updated to v678.20 <a href="https://a-calc.de">by a-calc.de</a></p>
+	Updated to v678.20 <a href="https://a-calc.de">by a-calc.de</a><br>
+	Updated to v349.1</p>
 
 	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Creature']}" ng-click="showhidetable('Creature')">Creature Details</div>
 	<div class="tableslide" ng-show="tablevisibility['Creature']">
@@ -69,6 +70,16 @@
 			<td style="width: 50%" class="label tooltip">Food to Adult (E):<span class="tooltiptext">{{foodunit}} the creature will actually eat (i.e. no spoilage) between now and reaching adult</span></td>
 			<td>{{creature.toadultfooditems | number:0}}</td>
 		</tr>
+		<tr>
+			<td style="width: 50%" class="label tooltip">Food Rate (E):<span class="tooltiptext">Food point the creature will currently eat every {{settings.foodrate_time_units}}</span></td>
+			<td>{{creature.nextminfood}} pt / 
+				<select ng-options="unit as unit for (unit, multi) in foodrate_time_units" ng-model="settings.foodrate_time_units" ng-change="totalfoodcalc()"></select>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 50%" class="label tooltip">Food per period (E):<span class="tooltiptext">{{foodunit}} the creature will actually eat (i.e. no spoilage) during the next {{settings.foodrate_time_units}}</span></td>
+			<td>{{creature.nextfoodpertimeunit}} per {{settings.foodrate_time_units}}</td>
+		</tr>
 	</table>
 	</div>
 
@@ -116,8 +127,6 @@
 	</table>
 	</div>
 
-	
-
 	<div class="tableheader slide" ng-class="{'dimmed': !tablevisibility['Trough']}" ng-click="showhidetable('Trough')">Trough Calculator - Food</div>
 	<div class="tableslide" ng-show="tablevisibility['Trough']">
 	<table>
@@ -163,15 +172,15 @@
 			<td><input type="button" ng-click="troughremovecreature(index)" value="Remove"></td>
 		</tr>
 	</table>
-</div>
+	</div>
 
-<p class="footer">
-<input id="animationscb" class="hidden" type="checkbox" ng-model="displayconfig.showanimations" ng-true-value="0" ng-false-value="1" ng-change="showhideanimations()"><label for="animationscb">Disable Animations</label>
-<input id="oldselectscb" class="hidden" type="checkbox" ng-model="displayconfig.showoldselects" ng-true-value="1" ng-false-value="0" ng-change="changedisplayconfig()"><label for="oldselectscb">Simple Selectors</label><br>
-<a href="http://crumplecorn.com/content/breeding-calculator">Feedback / Background / Changelog</a><br>
-<a href="http://twitch.tv/crumplecorn">Stream</a> <a href="https://www.twitchalerts.com/donate/crumplecorn">Donate</a>
-</p>
-
+	<p class="footer">
+	<input id="animationscb" class="hidden" type="checkbox" ng-model="displayconfig.showanimations" ng-true-value="0" ng-false-value="1" ng-change="showhideanimations()"><label for="animationscb">Disable Animations</label>
+	<input id="oldselectscb" class="hidden" type="checkbox" ng-model="displayconfig.showoldselects" ng-true-value="1" ng-false-value="0" ng-change="changedisplayconfig()"><label for="oldselectscb">Simple Selectors</label><br>
+	<a href="http://crumplecorn.com/content/breeding-calculator">Feedback / Background / Changelog</a><br>
+	<a href="http://twitch.tv/crumplecorn">Stream</a> <a href="https://www.twitchalerts.com/donate/crumplecorn">Donate</a>
+	</p>
 </form>
+
 </div>
 </div>

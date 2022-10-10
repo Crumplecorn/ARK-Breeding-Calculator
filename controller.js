@@ -158,6 +158,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			spoil: 10*60*3,
 			weight: 0.05,
 			waste: 0
+		},
+
+		'Sulfur': {
+			food: 50,
+			stack: 100,
+			spoil: 9001*9001,
+			weight: 0.05,
+			waste: 0
 		}
 	}
 	
@@ -314,7 +322,16 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			spoil: 10*60*3,
 			weight: 0.05,
 			waste: 0
+		},
+
+		'Sulfur': {
+			food: 50,
+			stack: 100,
+			spoil: 9001*9001,
+			weight: 0.05,
+			waste: 0
 		}
+
 	}
 	
 	$scope.foods=$scope.Defaultfoods;
@@ -327,25 +344,32 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Omnivore: ['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Mejoberry', 'Berry', 'Kibble'],
 		Microraptor: ['Raw Meat', 'Cooked Meat', 'Rare Flower'],
 		Archaeopteryx: ['Chitin'],
+		Sinomacrops: ['Chitin'],
 		Carrion: ['Spoiled Meat'],
 		Carrion_: ['Spoiled Meat', 'Raw Meat (Carrion)'],
 		Piscivore: ['Raw Fish Meat', 'Cooked Fish Meat'],
 		Wyvern: ['Wyvern Milk'],
-		Voidwyrm: ['Mutagen'],
+		// Voidwyrm: ['Mutagen'],
 		CrystalWyvern: ['Primal Crystal'],
-		Magmasaur: ['Ambergris'],
+		Magmasaur: ['Ambergris', 'Sulfur'],
 		RockDrake: ['Nameless Venom'],
 		BloodStalker: ['Blood Pack', 'Raw Meat (Carrion)', 'Raw Fish Meat (Carrion)']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack'] //Display order
+	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack', 'Sulfur'] //Display order
 
-	$scope.foodorder=['Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack'] //In-game order
+	$scope.foodorder=['Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack', 'Sulfur'] //In-game order
 
 	$scope.troughtypes={
 		Normal: 4,
 		Tek: 100,
 		Clicker: 1
+	}
+
+	$scope.foodrate_time_units={
+		Minute: 1,
+		Hour: 60,
+		Day: 60*24
 	}
 
 	/*
@@ -363,6 +387,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	* or
 	* gestationspeed: [Creature]_Character_BP/BabyGestationSpeed
 	* gestationspeedmult: [Creature]_Character_BP/ExtraBabyGestationSpeedMultiplier
+	* weight: DinoCharacterStatusComponent_BP_[Creature]/MaxStatusValues
 	* // = DevKit checked
 	*/
 	
@@ -380,6 +405,32 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 3.0,
 			weight: 380.0
+		},
+
+		Amargasaurus: { //
+			birthtype: "Incubation",
+			type: "Herbivore",
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 475.0
+		},
+
+		Andrewsarchus: { //
+			birthtype: "Gestation",
+			type: "Omnivore",
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.6,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.6,
+			weight: 500.0
 		},
 
 		Anglerfish: { //
@@ -661,6 +712,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 140.0
 		},
 
+		Desmodus: { //
+			birthtype: "Gestation",
+			type: "BloodStalker",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.3,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1,
+			weight: 350.0
+		},
+
 		Dilophosaurus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
@@ -698,6 +762,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 3.7,
 			weight: 50
+		},
+
+		Dinopithecus: { //
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 0.8,
+			weight: 350
 		},
 		
 		Diplocaulus: { //
@@ -841,6 +918,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 0.8,
 			weight: 55.0
+		},
+
+		Fjordhawk: { //
+			birthtype: "Incubation",
+			type: "Omnivore",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.0,
+			weight: 65.0
 		},
 
  		// Unsure on this, because the gacha eats so many things.  This may be completely wrong.
@@ -1624,6 +1714,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 425.0
 		},
 
+		Sinomacrops: { //
+			birthtype: "Incubation",
+			type: "Sinomacrops",
+			basefoodrate: 0.001302,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 6.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.9,
+			weight: 80.0
+		},
+
 		"Snow Owl": { //
 			birthtype: "Incubation",
 			type: "Carnivore",
@@ -1808,7 +1911,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		
 		Voidwyrm: { //NEW Food Check - Mutagen 1000 Food Value - need more Tests!?
 			birthtype: "Incubation",
-			type: "Voidwyrm",
+			type: "Carnivore",
 			basefoodrate: 0.000185,
 			babyfoodrate: 13.0,
 			extrababyfoodrate: 3.0,
@@ -1837,7 +1940,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			type: "Wyvern",
 			basefoodrate: 0.000185,
 			babyfoodrate: 13.0,
-			extrababyfoodrate: 3.0,
+			extrababyfoodrate: 30.0,
 			agespeed: 0.000003,
 			agespeedmult: 1.0,
 			eggspeed: 0.005556,
@@ -1869,16 +1972,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	$scope.clearcookies=false; //Some of these data structures don't really allow version numbering
 
+	$scope.settings_version = "171112";
+
 	$scope.settings=$cookies.getObject('settings');
-	if ($scope.settings==undefined || $scope.settings.version!="171108") {
+	if ($scope.settings==undefined || $scope.settings.version!=$scope.settings_version) {
 		$scope.settings={
-			version: "171108",
+			version: $scope.settings_version,
 			consumptionspeed: 1,
 			maturationspeed: 1,
 			hatchspeed: 1,
 			baseminfoodrate: 0.000155,
 			lossfactor: 0,
-			troughtype: "Normal"
+			troughtype: "Normal",
+			foodrate_time_units: "Minute"
 		}
 		$scope.clearcookies=true;
 		var now=new Date();
@@ -2118,6 +2224,14 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		creature.babyfooditems=creature.babyfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
 		creature.tojuvfooditems=creature.tojuvfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
 		creature.toadultfooditems=creature.toadultfood/($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]);
+
+		// add food consumption rate per minute / hour / day
+		foodrate_time_multiplier = $scope.foodrate_time_units[$scope.settings.foodrate_time_units];
+		creature.nextminfood = Math.ceil( $scope.getfoodforperiod(creature.maturationtimecomplete, creature.maturationtimecomplete+60, $scope.creature) * foodrate_time_multiplier * 100 ) / 100;
+
+		// add food needed for 1 minute / hour / day
+		creature.nextfoodpertimeunit = Math.ceil( ( creature.nextminfood / ($scope.foods[$scope.foodunit].food*creaturedata.foodmultipliers[$scope.foodunit]) ) * 100 ) / 100;
+
 		creature.foodforday={};
 		creature.fooditemsforday={};
 		day=1;
