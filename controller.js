@@ -1940,7 +1940,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			type: "Wyvern",
 			basefoodrate: 0.000185,
 			babyfoodrate: 13.0,
-			extrababyfoodrate: 30.0,
+			extrababyfoodrate: 3.0,
 			agespeed: 0.000003,
 			agespeedmult: 1.0,
 			eggspeed: 0.005556,
