@@ -332,7 +332,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		CrystalWyvern: ['Primal Crystal'],
 		Magmasaur: ['Ambergris'],
 		RockDrake: ['Nameless Venom'],
-		BloodStalker: ['Blood Pack', 'Raw Meat (Carrion)', 'Raw Fish Meat (Carrion)']
+		BloodStalker: ['Blood Pack', 'Raw Meat (Carrion)', 'Raw Fish Meat (Carrion)'],
+		Desmodus: ['Raw Meat', 'Blood Pack']
 	}
 
 	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack'] //Display order
@@ -377,6 +378,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 3.0,
 			weight: 380.0
+		},
+		
+		Andrewsarchus: { //
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.003156,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.6,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.6,
+			weight: 500
 		},
 
 		Anglerfish: { //
@@ -645,6 +659,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			}
 		},
 		
+		Desmodus: { //
+			birthtype: "Gestation",
+			type: "Desmodus",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.3,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 350
+		},
+		
 		Deinonychus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
@@ -838,6 +865,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 0.8,
 			weight: 55.0
+		},
+		
+		Fjordhawk: { //
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 3.0,
+			weight: 65.0
 		},
 
  		// Unsure on this, because the gacha eats so many things.  This may be completely wrong.
