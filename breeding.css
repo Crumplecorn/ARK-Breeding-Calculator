@@ -167,17 +167,17 @@
 		    left: 100%;
 		}
 
-	.tooltip .tooltiptext {
-	    opacity: 0;
-	    transition: opacity 1s;
-	    background: rgba(40, 100, 100, 1);
-	}
+		.tooltip .tooltiptext {
+		    opacity: 0;
+		    transition: opacity 1s;
+		    background: rgba(40, 100, 100, 1);
+		}
 
-	.tooltip:hover .tooltiptext {
-	    opacity: 1;
-	}
+		.tooltip:hover .tooltiptext {
+		    opacity: 1;
+		}
 
-	.tooltip .tooltiptext:hover {
-		opacity: 0;
-		visibility: hidden;
-	}
+		.tooltip .tooltiptext:hover {
+			opacity: 0;
+			visibility: hidden;
+		}
