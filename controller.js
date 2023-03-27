@@ -993,7 +993,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 45.0,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 0.39,
+			agespeedmult: 0.3795,
 			eggspeed: 0.005556,
 			eggspeedmult: 0.1,
 			weight: 700
