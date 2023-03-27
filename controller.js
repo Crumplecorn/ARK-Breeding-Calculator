@@ -615,6 +615,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 270.0
 		},
 
+		Carcharodontosaurus: { //
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.002314,
+			babyfoodrate: 35.0,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.3795,
+			eggspeed: 0.005556,
+			eggspeedmult: 1,
+			weight: 650
+		},
+
 		Carnotaurus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
