@@ -1644,7 +1644,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 1.2,
-			gestationspeed: 0.000035,
+			// gestationspeed: 0.000035,
+			gestationspeed: 0.000029,
 			gestationspeedmult: 0.8,
 			weight: 415.0
 		},
