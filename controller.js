@@ -1999,7 +1999,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	$scope.clearcookies=false; //Some of these data structures don't really allow version numbering
 
-	$scope.settings_version = "171112";
+	$scope.settings_version = "171114";
 
 	$scope.settings=$cookies.getObject('settings');
 	if ($scope.settings==undefined || $scope.settings.version!=$scope.settings_version) {
@@ -2011,7 +2011,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			baseminfoodrate: 0.000155,
 			lossfactor: 0,
 			troughtype: "Normal",
-			foodrate_time_units: "Minute"
+			foodrate_time_units: "Minute",
+			gen2hatcheffect: false,
+			gen2growtheffect: false
 		}
 		$scope.clearcookies=true;
 		var now=new Date();
@@ -2137,6 +2139,12 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		if (isNaN(settings.hatchspeed) || settings.hatchspeed<=0) {
 			return;
 		}
+		if (settings.gen2hatcheffect==undefined) {
+			settings.gen2hatcheffect = false
+		}
+		if (settings.gen2growtheffect==undefined) {
+			settings.gen2growtheffect = false
+		}
 		var now=new Date();
 		$cookies.putObject('settings', settings, {expires: new Date(now.getFullYear(), now.getMonth()+6, now.getDate()), path: '/breeding'});
 		$scope.statscalc();
@@ -2184,15 +2192,24 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	$scope.statscalc=function() {
 		creature.maturationtime=1/creaturedata.agespeed/creaturedata.agespeedmult/$scope.settings.maturationspeed;
+		if ($scope.settings.gen2growtheffect === true) {
+			creature.maturationtime=1/creaturedata.agespeed/creaturedata.agespeedmult/$scope.settings.maturationspeed/2;
+		}
 		creature.babytime=creature.maturationtime/10;
 
 		if (creaturedata.birthtype=="Incubation") {
 			creature.birthtime=100/creaturedata.eggspeed/creaturedata.eggspeedmult/$scope.settings.hatchspeed;
+			if ($scope.settings.gen2hatcheffect === true) {
+				creature.birthtime=100/creaturedata.eggspeed/creaturedata.eggspeedmult/$scope.settings.hatchspeed/1.5;
+			}
 			creature.birthlabel="Incubation";
 		}
 
 		if (creaturedata.birthtype=="Gestation") {
 			creature.birthtime=1/creaturedata.gestationspeed/creaturedata.gestationspeedmult/$scope.settings.hatchspeed;
+			if ($scope.settings.gen2hatcheffect === true) {
+				creature.birthtime=1/creaturedata.gestationspeed/creaturedata.gestationspeedmult/$scope.settings.hatchspeed/1.5;
+			}
 			creature.birthlabel="Gestation";
 		}
 
@@ -2524,6 +2541,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 				newcreature.name=name;
 				newcreature.maturation=creaturelist[i].maturation;
 				newcreature.maturationtime=1/$scope.creatures[name].agespeed/$scope.creatures[name].agespeedmult/$scope.settings.maturationspeed;
+				if ($scope.settings.gen2hatcheffect === true) {
+					newcreature.maturationtime=1/$scope.creatures[name].agespeed/$scope.creatures[name].agespeedmult/$scope.settings.maturationspeed/1.5;
+				}
 				newcreature.maturationtimecomplete=newcreature.maturationtime*newcreature.maturation;
 				newcreature.maxfoodrate=$scope.creatures[name].basefoodrate*$scope.creatures[name].babyfoodrate*$scope.creatures[name].extrababyfoodrate*$scope.settings.consumptionspeed;
 				newcreature.minfoodrate=$scope.settings.baseminfoodrate*$scope.creatures[name].babyfoodrate*$scope.creatures[name].extrababyfoodrate*$scope.settings.consumptionspeed;
