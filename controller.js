@@ -1021,8 +1021,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeed: 0.000003,
 			agespeedmult: 2.0,
 			eggspeed: 0.005556,
-			eggspeedmult: 2.0,
-			weight: 500
+			eggspeedmult: 3.0,
+			weight: 380
 		},
 		
 		Glowtail: { //
