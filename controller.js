@@ -657,7 +657,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Ceratosaurus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
-			basefoodrate: -0.002314,
+			basefoodrate: 0.002314,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
@@ -923,7 +923,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Fasolasuchus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
-			basefoodrate: -0.001543,
+			basefoodrate: 0.001543,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
@@ -2017,7 +2017,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Xiphactinus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
-			basefoodrate: -0.001578,
+			basefoodrate: 0.001578,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
