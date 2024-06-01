@@ -920,7 +920,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 350.0
 		},
 
-		Fasolasuchus{ //
+		Fasolasuchus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
 			basefoodrate: -0.001543,
@@ -2014,7 +2014,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 400.0
 		},
 
-		Xiphactinus{ //
+		Xiphactinus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
 			basefoodrate: -0.001578,
