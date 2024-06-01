@@ -654,6 +654,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 300
 		},
 
+		Ceratosaurus: { //
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: -0.002314,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.7,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 550.0
+		},
+
 		Chalicotherium: { //
 			birthtype: "Gestation",
 			type: "Herbivore",
@@ -907,6 +920,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 350.0
 		},
 
+		Fasolasuchus{ //
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: -0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 450.0
+		},
+
 		Featherlight: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
@@ -919,7 +945,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeedmult: 3.0,
 			weight: 70.0
 		},
-		
+
 		Ferox: { //
 			birthtype: "Gestation",
 			type: "Carnivore",
@@ -1986,6 +2012,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.0,
 			weight: 400.0
+		},
+
+		Xiphactinus{ //
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: -0.001578,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 300.0
 		},
 
 		Yutyrannus: { //
