@@ -17,7 +17,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		},
 		
 		'Raw Fish Meat (Carrion)': {
-			food: 5,
+			food: 7.5,
 			stack: 40,
 			spoil: 20*60,
 			weight: 0.1,
@@ -41,7 +41,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		},
 		
 		'Raw Meat (Carrion)': {
-			food: 10,
+			food: 15,
 			stack: 40,
 			spoil: 10*60,
 			weight: 0.1,
@@ -345,8 +345,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Microraptor: ['Raw Meat', 'Cooked Meat', 'Rare Flower'],
 		Archaeopteryx: ['Chitin'],
 		Sinomacrops: ['Chitin'],
-		Carrion: ['Spoiled Meat'],
-		Carrion_: ['Spoiled Meat', 'Raw Meat (Carrion)'],
+		Vulture: ['Spoiled Meat'],
+		Carrion: ['Spoiled Meat', 'Raw Meat (Carrion)', 'Raw Fish Meat (Carrion)'],
 		Piscivore: ['Raw Fish Meat', 'Cooked Fish Meat'],
 		Wyvern: ['Wyvern Milk'],
 		// Voidwyrm: ['Mutagen'],
@@ -1116,7 +1116,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 55.0
 		},
 		
-		 Ichthyosaurus: { //
+		Ichthyosaurus: { //
 			birthtype: "Gestation",
 			type: "Carnivore",
 			basefoodrate: 0.001929,
@@ -1168,7 +1168,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 70
 		},
 		
-		 Kaprosuchus: { //
+		Kaprosuchus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
 			basefoodrate: 0.001543,
@@ -1181,9 +1181,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 140.0
 		},
 
-		 Karkinos: { //
+		Karkinos: { //
 			birthtype: "Incubation",
-			type: "Omnivore",
+			type: "Carrion", // Not 'Omnivore' like the dossier says.
 			basefoodrate: 0.003156,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
@@ -1300,7 +1300,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		
 		Mantis: { //
 			birthtype: "Incubation",
-			type: "Carrion_",
+			type: "Carrion",
 			basefoodrate: 0.002314,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
@@ -1638,7 +1638,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		
 		Pulmonoscorpius: { //
 			birthtype: "Incubation",
-			type: "Carrion_",
+			type: "Carrion",
 			basefoodrate: 0.001929,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
@@ -2003,7 +2003,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		Vulture: { //
 			birthtype: "Incubation",
-			type: "Carrion",
+			type: "Vulture",
 			basefoodrate: 0.001302,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
