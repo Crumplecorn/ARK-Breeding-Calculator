@@ -485,6 +485,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 30.0
 		},
 
+		Archelon: { // ?
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.007716,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 1000.0
+		},
+
 		Argentavis: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
@@ -1608,6 +1621,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.9,
 			weight: 400.0
+		},
+
+		Pyromane: { // NEW
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.001157,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.9,
+			gestationspeed: 0.000061,
+			gestationspeedmult: 1.9,
+			weight: 425.0
 		},
 
 		Quetzalcoatlus: { //
