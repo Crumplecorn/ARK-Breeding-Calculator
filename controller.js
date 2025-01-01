@@ -1113,7 +1113,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 2.0,
 			eggspeed: 0.005556,
 			eggspeedmult: 3.0,
-			weight: 380
+			weight: 320
 		},
 		
 		Glowtail: { //
@@ -1711,7 +1711,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 1.9,
 			gestationspeed: 0.000061,
 			gestationspeedmult: 1.9,
-			weight: 425.0
+			weight: 300.0
 		},
 
 		Quetzalcoatlus: { //
