@@ -511,7 +511,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 400.0
 		},
 		
-		Armadoggo: { // NEW
+		Armadoggo: { //
 			birthtype: "Gestation",
 			type: "Carnivore",
 			basefoodrate: 0.001543,
