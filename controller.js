@@ -2114,6 +2114,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
 			weight: 450.0
+		}
 
 	}
 
