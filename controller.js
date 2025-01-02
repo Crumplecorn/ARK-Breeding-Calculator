@@ -485,7 +485,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 30.0
 		},
 
-		Archelon: { // ?
+		Archelon: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
 			basefoodrate: 0.007716,
