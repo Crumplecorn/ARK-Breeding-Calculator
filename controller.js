@@ -2090,7 +2090,30 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.0,
 			weight: 500.0
-		}
+		},
+		Dreadnoughtus: { //
+			birthtype: "Incubation",
+			type: "Herbivore",
+			basefoodrate: 0.01,
+			babyfoodrate: 50.0,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.5,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 3000.0
+		},
+		Dreadmare: { //
+			birthtype: "Gestation",
+			type: "Carrion",
+			basefoodrate: 0.001929,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 0.8,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 450.0
 
 	}
 
