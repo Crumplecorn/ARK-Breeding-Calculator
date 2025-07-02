@@ -602,6 +602,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 160.0
 		},
 		
+		Bison: { //
+			birthtype: "Gestation",
+			type: "Herbivore",
+			basefoodrate: 0.003556,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.2,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 2.2,
+			weight: 650
+		},
+		
 		Bloodstalker: { //
 			birthtype: "Incubation",
 			type: "BloodStalker",
@@ -706,6 +719,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
       weight: 350.0
 		},
 
+		Cat: { //
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.0008,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 3.0,
+			weight: 60
+		},
+
 		Chalicotherium: { //
 			birthtype: "Gestation",
 			type: "Herbivore",
@@ -801,6 +827,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 2.0,
 			weight: 600.0
+		},
+
+		Deinotherium: { //
+			birthtype: "Gestation",
+			type: "Herbivore",
+			basefoodrate: 0.002314,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 0.5,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1,
+			weight: 800.0
 		},
 
 		Desmodus: { //
@@ -944,6 +983,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.6,
 			weight: 250.0
+		},
+
+		Drakeling: { //
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.001302,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.7,
+			eggspeed: 0.005556,
+			eggspeedmult: 4.0,
+			weight: 65.0
 		},
 
 		Dreadmare: { //
@@ -1311,7 +1363,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 90.0
 		},
 		
-		Maewing: { // NEW
+		Maewing: { // Maeguana Uses Maewing values
 			birthtype: "Incubation",
 			type: "Carnivore",
 			basefoodrate: 0.010000,
@@ -2103,6 +2155,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 4.4,
 			weight: 325.0
+		},
+
+		Veilwyn: { //
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.0,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 200
 		},
 
 		Vulture: { //
