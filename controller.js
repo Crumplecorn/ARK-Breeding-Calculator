@@ -1000,7 +1000,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		Dreadmare: { //
 			birthtype: "Gestation",
-			type: "Carnivore",
+			type: "Carrion",
 			basefoodrate: 0.001929,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
