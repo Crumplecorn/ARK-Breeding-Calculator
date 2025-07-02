@@ -166,6 +166,30 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			spoil: 9001*9001,
 			weight: 0.05,
 			waste: 0
+		},
+
+		'Bio Toxin': {
+			food: 50,
+			stack: 100,
+			spoil: 45*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Berry (Archelon)': {
+			food: 15,
+			stack: 100,
+			spoil: 10*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Vegetables (Archelon)': {
+			food: 60,
+			stack: 100,
+			spoil: 5*60,
+			weight: 0.1,
+			waste: 0
 		}
 	}
 	
@@ -330,6 +354,30 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			spoil: 9001*9001,
 			weight: 0.05,
 			waste: 0
+		},
+
+		'Bio Toxin': {
+			food: 50,
+			stack: 100,
+			spoil: 45*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Berry (Archelon)': {
+			food: 15,
+			stack: 100,
+			spoil: 10*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Vegetables (Archelon)': {
+			food: 60,
+			stack: 100,
+			spoil: 5*60,
+			weight: 0.1,
+			waste: 0
 		}
 
 	}
@@ -353,12 +401,13 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		CrystalWyvern: ['Primal Crystal'],
 		Magmasaur: ['Ambergris', 'Sulfur'],
 		RockDrake: ['Nameless Venom'],
-		BloodStalker: ['Blood Pack', 'Raw Meat (Carrion)', 'Raw Fish Meat (Carrion)']
+		BloodStalker: ['Blood Pack', 'Raw Meat (Carrion)', 'Raw Fish Meat (Carrion)'],
+		Archelon: ['Vegetables (Archelon)','Bio Toxin','Berry (Archelon)']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack', 'Sulfur'] //Display order
+	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack', 'Sulfur','Vegetables (Archelon)','Bio Toxin','Berry (Archelon)'] //Display order
 
-	$scope.foodorder=['Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack', 'Sulfur'] //In-game order
+	$scope.foodorder=['Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack', 'Sulfur','Vegetables (Archelon)','Bio Toxin','Berry (Archelon)'] //In-game order
 
 	$scope.troughtypes={
 		Normal: 4,
@@ -487,7 +536,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		Archelon: { //
 			birthtype: "Incubation",
-			type: "Carnivore",
+			type: "Archelon",
 			basefoodrate: 0.007716,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
