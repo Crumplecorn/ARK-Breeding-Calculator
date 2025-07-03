@@ -166,6 +166,30 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			spoil: 9001*9001,
 			weight: 0.05,
 			waste: 0
+		},
+
+		'Bio Toxin': {
+			food: 50,
+			stack: 100,
+			spoil: 45*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Berry (Archelon)': {
+			food: 15,
+			stack: 100,
+			spoil: 10*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Vegetables (Archelon)': {
+			food: 60,
+			stack: 100,
+			spoil: 5*60,
+			weight: 0.1,
+			waste: 0
 		}
 	}
 	
@@ -330,6 +354,30 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			spoil: 9001*9001,
 			weight: 0.05,
 			waste: 0
+		},
+
+		'Bio Toxin': {
+			food: 50,
+			stack: 100,
+			spoil: 45*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Berry (Archelon)': {
+			food: 15,
+			stack: 100,
+			spoil: 10*60,
+			weight: 0.1,
+			waste: 0
+		},
+
+		'Vegetables (Archelon)': {
+			food: 60,
+			stack: 100,
+			spoil: 5*60,
+			weight: 0.1,
+			waste: 0
 		}
 
 	}
@@ -353,12 +401,13 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		CrystalWyvern: ['Primal Crystal'],
 		Magmasaur: ['Ambergris', 'Sulfur'],
 		RockDrake: ['Nameless Venom'],
-		BloodStalker: ['Blood Pack', 'Raw Meat (Carrion)', 'Raw Fish Meat (Carrion)']
+		BloodStalker: ['Blood Pack', 'Raw Meat (Carrion)', 'Raw Fish Meat (Carrion)'],
+		Archelon: ['Vegetables (Archelon)','Bio Toxin','Berry (Archelon)']
 	}
 
-	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack', 'Sulfur'] //Display order
+	$scope.foodlist=['Raw Meat', 'Cooked Meat', 'Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Mejoberry', 'Berry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack', 'Sulfur','Vegetables (Archelon)','Bio Toxin','Berry (Archelon)'] //Display order
 
-	$scope.foodorder=['Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack', 'Sulfur'] //In-game order
+	$scope.foodorder=['Raw Fish Meat', 'Raw Fish Meat (Carrion)', 'Cooked Fish Meat', 'Raw Meat', 'Berry', 'Cooked Meat', 'Mejoberry', 'Vegetables', 'Kibble', 'Rare Flower', 'Chitin', 'Spoiled Meat', 'Wyvern Milk', 'Mutagen', 'Primal Crystal', 'Ambergris', 'Nameless Venom', 'Raw Meat (Carrion)', 'Blood Pack', 'Sulfur','Vegetables (Archelon)','Bio Toxin','Berry (Archelon)'] //In-game order
 
 	$scope.troughtypes={
 		Normal: 4,
@@ -487,7 +536,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 		Archelon: { //
 			birthtype: "Incubation",
-			type: "Carnivore",
+			type: "Archelon",
 			basefoodrate: 0.007716,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
@@ -602,6 +651,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 160.0
 		},
 		
+		Bison: { //
+			birthtype: "Gestation",
+			type: "Herbivore",
+			basefoodrate: 0.003556,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.2,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 2.2,
+			weight: 650
+		},
+		
 		Bloodstalker: { //
 			birthtype: "Incubation",
 			type: "BloodStalker",
@@ -706,6 +768,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
       weight: 350.0
 		},
 
+		Cat: { //
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.0008,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 3.0,
+			weight: 60
+		},
+
 		Chalicotherium: { //
 			birthtype: "Gestation",
 			type: "Herbivore",
@@ -801,6 +876,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 2.0,
 			weight: 600.0
+		},
+
+		Deinotherium: { //
+			birthtype: "Gestation",
+			type: "Herbivore",
+			basefoodrate: 0.002314,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 0.5,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1,
+			weight: 800.0
 		},
 
 		Desmodus: { //
@@ -946,9 +1034,22 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 250.0
 		},
 
+		Drakeling: { //
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.001302,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 3.7,
+			eggspeed: 0.005556,
+			eggspeedmult: 4.0,
+			weight: 65.0
+		},
+
 		Dreadmare: { //
 			birthtype: "Gestation",
-			type: "Carnivore",
+			type: "Carrion",
 			basefoodrate: 0.001929,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
@@ -1311,7 +1412,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 90.0
 		},
 		
-		Maewing: { // NEW
+		Maewing: { // Maeguana Uses Maewing values
 			birthtype: "Incubation",
 			type: "Carnivore",
 			basefoodrate: 0.010000,
@@ -2103,6 +2204,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 4.4,
 			weight: 325.0
+		},
+
+		Veilwyn: { //
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 2.0,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 200
 		},
 
 		Vulture: { //
