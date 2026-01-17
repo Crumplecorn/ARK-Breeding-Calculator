@@ -599,6 +599,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 280
 		},
 
+		Aureliax: { //
+			birthtype: "Incubation",
+			type: "Carnivore",
+			basefoodrate: 0.01,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
+			weight: 1100
+		},
+
 		Baryonyx: { //
 			birthtype: "Incubation",
 			type: "Piscivore",
