@@ -443,45 +443,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 
 	$scope.creatures={
 
-		Ossidon: { //
-			birthtype: "Gestation",
-			type: "Carnivore",
-			basefoodrate: 0.002314,
-			babyfoodrate: 25.5,
-			extrababyfoodrate: 20.0,
-			agespeed: 0.000003,
-			agespeedmult: 1.0,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 1.0,
-			weight: 500
-		},
-
-		Solwyn: { //
-			birthtype: "Gestation",
-			type: "Carnivore",
-			basefoodrate: 0.001543,
-			babyfoodrate: 25.5,
-			extrababyfoodrate: 20.0,
-			agespeed: 0.000003,
-			agespeedmult: 1.9,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 1.9,
-			weight: 375
-		},
-
-		Malwyn: { //
-			birthtype: "Gestation",
-			type: "Carnivore",
-			basefoodrate: 0.001543,
-			babyfoodrate: 25.5,
-			extrababyfoodrate: 20.0,
-			agespeed: 0.000003,
-			agespeedmult: 1.9,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 1.9,
-			weight: 425
-		},
-
 		Allosaurus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
@@ -1463,7 +1424,20 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeedmult: 3.5,
 			weight: 400.0
 		},
-		
+
+		Malwyn: { //
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.9,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.9,
+			weight: 425
+		},
+
 		Magmasaur: { //Food Check - Ambergris 500 Food Value - need more Tests!?
 			birthtype: "Incubation",
 			type: "Magmasaur",
@@ -1683,6 +1657,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			gestationspeed: 0.000035,
 			gestationspeedmult: 2.0,
 			weight: 50.0
+		},
+
+		Ossidon: { //
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.002314,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 500
 		},
 
 		Otter: { //
@@ -2087,6 +2074,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.7,
 			weight: 375.0
+		},
+
+		Solwyn: { //
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.001543,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.9,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.9,
+			weight: 375
 		},
 
 		Spinosaurus: { //
