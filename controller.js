@@ -1057,7 +1057,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 3.7,
 			eggspeed: 0.005556,
 			eggspeedmult: 4.0,
-			weight: 65.0
+			weight: 65.0,
+			foodmultipliers: {
+				"Raw Meat": 0.5,
+				"Cooked Meat": 2.0
+			},
 		},
 
 		Dreadmare: { //
@@ -1890,7 +1894,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 1.9,
 			gestationspeed: 0.000061,
 			gestationspeedmult: 1.9,
-			weight: 300.0
+			weight: 300.0,
+			foodmultipliers: {
+				"Raw Meat": 0.5,
+				"Cooked Meat": 2.0
+			}
 		},
 
 		Quetzalcoatlus: { //
