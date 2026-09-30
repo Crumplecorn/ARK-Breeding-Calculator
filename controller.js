@@ -453,13 +453,13 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 1,
 			eggspeed: 0.005556,
 			eggspeedmult: 1,
-			weight: 650
+			weight: 600
 		},
 		
 		Allosaurus: { //
 			birthtype: "Incubation",
 			type: "Carnivore",
-			basefoodrate: 0.001852,
+			basefoodrate: 0.002052,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20,
 			agespeed: 0.000003,
@@ -472,7 +472,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		Amargasaurus: { //
 			birthtype: "Incubation",
 			type: "Herbivore",
-			basefoodrate: 0.003156,
+			basefoodrate: 0.00625,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20,
 			agespeed: 0.000003,
@@ -531,7 +531,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 3.7,
 			eggspeed: 0.005556,
 			eggspeedmult: 3.5,
-			weight: 100.0
+			weight: 150.0
 		},
 
 		Archaeopteryx: { //
@@ -599,6 +599,19 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 100.0
 		},
 		
+		Astrocetus: { //
+			birthtype: "Gestation",
+			type: "Carnivore",
+			basefoodrate: 0.002314,
+			babyfoodrate: 25.5,
+			extrababyfoodrate: 20.0,
+			agespeed: 0.000003,
+			agespeedmult: 1.0,
+			gestationspeed: 0.000035,
+			gestationspeedmult: 1.0,
+			weight: 2000.0
+		},
+
 		Astrodelphis: { // NEW
 			birthtype: "Gestation",
 			type: "Carnivore",
@@ -846,9 +859,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 25
 		},
 
-		Cosmo: { //
+		Cosmo: { //Carnivore, not Sinomacrops: Chitin is Resource-type and Cosmo lacks the TamedDinoForceConsiderFoodTypes whitelist Sino/Archa have, so troughs and nursing never feed it Chitin
 			birthtype: "Incubation",
-			type: "Sinomacrops",
+			type: "Carnivore",
 			basefoodrate: 0.000868,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
@@ -913,7 +926,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeed: 0.000003,
 			agespeedmult: 2.5,
 			eggspeed: 0.005556,
-			eggspeedmult: 1.0,
+			eggspeedmult: 2.5, //ASA incubation 2h (ASE was 5h)
 			weight: 140.0
 		},
 
@@ -1017,7 +1030,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeed: 0.000003,
 			agespeedmult: 2.5,
 			eggspeed: 0.005556,
-			eggspeedmult: 4.1,
+			eggspeedmult: 1.0,
 			weight: 150.0
 		},
 
@@ -1156,15 +1169,15 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		},
 		
 		Electrophorus: { //
-			birthtype: "Gestation",
+			birthtype: "Incubation",
 			type: "Carnivore",
 			basefoodrate: 0.002929,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 2.0,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 1.0,
+			eggspeed: 0.005556,
+			eggspeedmult: 1.0,
 			weight: 150.0
 		},
 
@@ -1177,7 +1190,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeed: 0.000003,
 			agespeedmult: 2.0,
 			gestationspeed: 0.000035,
-			gestationspeedmult: 0.6,
+			gestationspeedmult: 1.0,
 			weight: 350.0
 		},
 
@@ -1244,7 +1257,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			agespeedmult: 0.8,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 1.0,
-			weight: 380.0
+			weight: 550.0
 		},
 
 		Gallimimus: { //
@@ -1327,7 +1340,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		
 		Gloon: { //
 			birthtype: "Incubation",
-			type: "Herbivore",
+			type: "Omnivore",
 			basefoodrate: 0.000868,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
@@ -1352,15 +1365,15 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		},
 		
 		Helicoprion: { //
-			birthtype: "Gestation",
+			birthtype: "Incubation",
 			type: "Carnivore",
 			basefoodrate: 0.001852,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 0.9,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 1,
+			eggspeed: 0.005556,
+			eggspeedmult: 1,
 			weight: 500
 		},
 		
@@ -1469,15 +1482,15 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		},
 
 		Karkinos: { //
-			birthtype: "Incubation",
+			birthtype: "Gestation",
 			type: "Carrion", // Not 'Omnivore' like the dossier says.
 			basefoodrate: 0.003156,
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 0.8,
-			eggspeed: 0.005556,
-			eggspeedmult: 1.0,
+			gestationspeed: 0.000028,
+			gestationspeedmult: 1.0,
 			weight: 800.0
 		},
 
@@ -1657,9 +1670,9 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 1.0,
+			agespeedmult: 1.3,
 			gestationspeed: 0.000035,
-			gestationspeedmult: 1.0,
+			gestationspeedmult: 1.3,
 			weight: 250.0
 		},
 
@@ -2188,19 +2201,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 100.0
 		},
 
-		Shastasaurus: { //
-			birthtype: "Gestation",
-			type: "Carnivore",
-			basefoodrate: 0.005,
-			babyfoodrate: 25.5,
-			extrababyfoodrate: 20.0,
-			agespeed: 0.000003,
-			agespeedmult: 0.5,
-			gestationspeed: 0.000035,
-			gestationspeedmult: 1.0,
-			weight: 3000.0
-		},
-
 		Sinomacrops: { //
 			birthtype: "Incubation",
 			type: "Sinomacrops",
@@ -2208,7 +2208,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 6.0,
+			agespeedmult: 2.5,
 			eggspeed: 0.005556,
 			eggspeedmult: 1.9,
 			weight: 80.0
@@ -2361,7 +2361,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			birthtype: "Incubation",
 			type: "Carnivore",
 			basefoodrate: 0.001543,
-			babyfoodrate: 25.5,
+			babyfoodrate: 20.0,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 4.4,
@@ -2455,7 +2455,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			babyfoodrate: 25.5,
 			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
-			agespeedmult: 1.6,
+			agespeedmult: 2.0,
 			gestationspeed: 0.000035,
 			gestationspeedmult: 2.0,
 			weight: 750.0
@@ -2465,8 +2465,8 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			birthtype: "Incubation",
 			type: "Wyvern",
 			basefoodrate: 0.000185,
-			babyfoodrate: 13.0,
-			extrababyfoodrate: 30.0,
+			babyfoodrate: 22.5,
+			extrababyfoodrate: 20.0,
 			agespeed: 0.000003,
 			agespeedmult: 1.0,
 			eggspeed: 0.005556,
@@ -2511,19 +2511,6 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			eggspeed: 0.005556,
 			eggspeedmult: 1.0,
 			weight: 500.0
-		},
-		
-		Dreadnoughtus: { //
-			birthtype: "Incubation",
-			type: "Herbivore",
-			basefoodrate: 0.01,
-			babyfoodrate: 50.0,
-			extrababyfoodrate: 20.0,
-			agespeed: 0.000003,
-			agespeedmult: 0.5,
-			eggspeed: 0.000035,
-			eggspeedmult: 1.0,
-			weight: 3000.0
 		}
 
 	}
