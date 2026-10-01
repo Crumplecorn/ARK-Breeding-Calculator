@@ -2961,7 +2961,16 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		$scope.iterations=0;
 		var estimate=(food.weight*creature.maxfoodrate*creature.desiredbabybuffer*60)/(creature.finalweight*food.food*foodmult+food.weight*creature.foodratedecay*creature.maturationtime*creature.desiredbabybuffer*60)
 		stacklist[foodname]=0;
+		creature.desiredbabybuffernever=false;
 		while ($scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time']<creature.desiredbabybuffer*60) {
+			if (estimate>1 && stacklist[foodname]>=1) {
+				//Past 100% the creature no longer eats, so the food lasts until it has all spoiled, and a full stack is already in:
+				//more of it will not last any longer. The buffer cannot be reached, and this search would never end
+				creature.desiredbabybuffernever=true;
+				creature.timeuntildesiredbabybuffer=0;
+				creature.timeuntildesiredbabybuffermaturation=1;
+				return;
+			}
 			estimate+=0.01;
 			stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
 			creaturelist[0]['maturation']=estimate;

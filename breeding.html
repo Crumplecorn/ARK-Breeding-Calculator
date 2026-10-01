@@ -120,7 +120,7 @@
 		</tr>
 		<tr>
 			<td style="width: 50%" class="label tooltip">Time Until Buffer:<span class="tooltiptext">How long until the baby's inventory is big enough to provide your desired buffer, and the maturation at which this occurs</span></td>
-			<td>{{creature.timeuntildesiredbabybuffer | secondsToDateTime}} ({{creature.timeuntildesiredbabybuffermaturation | percentage}}%)</td>
+			<td>{{creature.desiredbabybuffernever ? 'Never, '+foodunit+' spoils sooner' : (creature.timeuntildesiredbabybuffer | secondsToDateTime)+' ('+(creature.timeuntildesiredbabybuffermaturation | percentage)+'%)'}}</td>
 		</tr>
 	</table>
 	</div>
