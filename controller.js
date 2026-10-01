@@ -1897,7 +1897,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 850.0
 		},
 
-		Parasaurolophus: { //
+		Parasaur: { //
 			birthtype: "Incubation",
 			type: "Herbivore",
 			basefoodrate: 0.001929,
@@ -2571,7 +2571,15 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		}
 	}
 
+	//Old name: new name. Lets a creature or trough list saved before a rename still load
+	var renamedcreatures={
+		Parasaurolophus: "Parasaur"
+	};
+
 	$scope.creature=$cookies.getObject('creature');
+	if ($scope.creature!=undefined && renamedcreatures.hasOwnProperty($scope.creature.name)) {
+		$scope.creature.name=renamedcreatures[$scope.creature.name];
+	}
 	if ($scope.creature==undefined || !($scope.creature.name in $scope.creatures)) {
 		$scope.creature={
 			name: "Argentavis",
@@ -2582,6 +2590,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.creaturelist=$cookies.getObject("creaturelist");
 	if ($scope.creaturelist==undefined || $scope.clearcookies==true) {
 		$scope.creaturelist=[];
+	}
+	for (i=0;i<$scope.creaturelist.length;i++) {
+		if (renamedcreatures.hasOwnProperty($scope.creaturelist[i].name)) {
+			$scope.creaturelist[i].name=renamedcreatures[$scope.creaturelist[i].name];
+		}
 	}
 
 	$scope.troughstacks=$cookies.getObject("troughstacks");
