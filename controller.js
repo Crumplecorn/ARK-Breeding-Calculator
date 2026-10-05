@@ -1897,7 +1897,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 			weight: 850.0
 		},
 
-		Parasaurolophus: { //
+		Parasaur: { //
 			birthtype: "Incubation",
 			type: "Herbivore",
 			basefoodrate: 0.001929,
@@ -2571,7 +2571,15 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		}
 	}
 
+	//Old name: new name. Lets a creature or trough list saved before a rename still load
+	var renamedcreatures={
+		Parasaurolophus: "Parasaur"
+	};
+
 	$scope.creature=$cookies.getObject('creature');
+	if ($scope.creature!=undefined && renamedcreatures.hasOwnProperty($scope.creature.name)) {
+		$scope.creature.name=renamedcreatures[$scope.creature.name];
+	}
 	if ($scope.creature==undefined || !($scope.creature.name in $scope.creatures)) {
 		$scope.creature={
 			name: "Argentavis",
@@ -2582,6 +2590,11 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 	$scope.creaturelist=$cookies.getObject("creaturelist");
 	if ($scope.creaturelist==undefined || $scope.clearcookies==true) {
 		$scope.creaturelist=[];
+	}
+	for (i=0;i<$scope.creaturelist.length;i++) {
+		if (renamedcreatures.hasOwnProperty($scope.creaturelist[i].name)) {
+			$scope.creaturelist[i].name=renamedcreatures[$scope.creaturelist[i].name];
+		}
 	}
 
 	$scope.troughstacks=$cookies.getObject("troughstacks");
@@ -2948,7 +2961,16 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 		$scope.iterations=0;
 		var estimate=(food.weight*creature.maxfoodrate*creature.desiredbabybuffer*60)/(creature.finalweight*food.food*foodmult+food.weight*creature.foodratedecay*creature.maturationtime*creature.desiredbabybuffer*60)
 		stacklist[foodname]=0;
+		creature.desiredbabybuffernever=false;
 		while ($scope.troughsim(creaturelist, stacklist, $scope.troughtypes['Normal'])['time']<creature.desiredbabybuffer*60) {
+			if (estimate>1 && stacklist[foodname]>=1) {
+				//Past 100% the creature no longer eats, so the food lasts until it has all spoiled, and a full stack is already in:
+				//more of it will not last any longer. The buffer cannot be reached, and this search would never end
+				creature.desiredbabybuffernever=true;
+				creature.timeuntildesiredbabybuffer=0;
+				creature.timeuntildesiredbabybuffermaturation=1;
+				return;
+			}
 			estimate+=0.01;
 			stacklist[foodname]=creature.finalweight*estimate/food.weight/food.stack;
 			creaturelist[0]['maturation']=estimate;
@@ -3044,19 +3066,35 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 				stacks.push({
 					"type": foodname, //Name of this food
 					"stacksize": $scope.foods[foodname].stack, //Size of this stack
-					"stackspoil": $scope.foods[foodname].spoil*troughmultiplier, //Actual spoil timer that decrements for this stack (variable)
 					"foodspoil": $scope.foods[foodname].spoil*troughmultiplier, //Spoil time for this food in general (constant)
 					"food": $scope.foods[foodname].food, //Food provided
 					"waste": $scope.foods[foodname].waste}); //Waste (eg cooked meat wastes 25 because cooking turns 50 food into 25)
 			}
-			if (stacks.length>0 && partialstack>0) {
-				stacks[j-1]['stacksize']=Math.floor(stacks[j-1]['stacksize']*partialstack);
-				if (stacks[j-1]['stacksize']==0) {
+			if (j>0 && partialstack>0) {
+				//The partial stack is the last one pushed. Not stacks[j-1]: j counts this food's stacks, stacks holds every food's
+				var laststack=stacks[stacks.length-1];
+				laststack['stacksize']=Math.floor(laststack['stacksize']*partialstack);
+				if (laststack['stacksize']==0) {
 					totalstacks[foodname]--;
 					totalstacks['all']--;
 				}
 			}
 		};
+
+		//Stacks of one food sit together, in the order they were added above. Note each food's range
+		var stackfoods=[]; //Foods that have stacks, in stack order
+		var stackstart={}; //First stack of each food that may still hold something
+		var stackend={}; //One past the last stack of each food
+		var spoiltimers={}; //Spoil timer of each food (variable). One per food, not per stack: a food's stacks all start together, so they always spoil together
+		var s, f, stackfood;
+		for (s=0; s<stacks.length; s++) {
+			if (stackstart[stacks[s]['type']]===undefined) {
+				stackfoods.push(stacks[s]['type']);
+				stackstart[stacks[s]['type']]=s;
+				spoiltimers[stacks[s]['type']]=stacks[s]['foodspoil'];
+			}
+			stackend[stacks[s]['type']]=s+1;
+		}
 
 		//Make creatures for calcualtion
 		for (i=0;i<creaturelist.length;i++) {
@@ -3076,6 +3114,7 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 				newcreature.foodrate=newcreature.maxfoodrate-newcreature.foodratedecay*newcreature.maturation*newcreature.maturationtime;
 				newcreature.hunger=0;
 				newcreature.foods=$scope.foodlists[$scope.creatures[name].type];
+				newcreature.stackfoods=stackfoods.filter(function(food) { return newcreature.foods.indexOf(food)>-1; });
 				newcreature.foodmultipliers=$scope.creatures[name].foodmultipliers;
 				newcreature.wastemultipliers=$scope.creatures[name].wastemultipliers;
 				troughcreatures.push(newcreature);
@@ -3107,39 +3146,55 @@ var breedingController=angular.module('breedingControllers', []).controller('bre
 					continue; //Creature cannot possibly eat below this
 				}
 
-				for (currentstack=0;currentstack<stacks.length;currentstack++) {
-					if (stacks[currentstack]['stacksize']>0 && troughcreatures[i].foods.indexOf(stacks[currentstack]['type'])>-1) {
-						foodmult=troughcreatures[i].foodmultipliers[stacks[currentstack]['type']];
-						wastemult=troughcreatures[i].wastemultipliers[stacks[currentstack]['type']];
-						if (stacks[currentstack]['food']*foodmult<troughcreatures[i].hunger) {
-							times[$scope.creatures[troughcreatures[i].name].type]=time;
-							stacks[currentstack]['stacksize']--;
-							eatenfood++;
-							eatenpoints+=stacks[currentstack]['food']*foodmult;
-							wastedpoints+=stacks[currentstack]['waste']*wastemult;
-							troughcreatures[i].hunger-=stacks[currentstack]['food']*foodmult;
-							if (stacks[currentstack]['stacksize']==0) {
-								totalstacks['all']--;
-								totalstacks[stacks[currentstack]['type']]--;
-							}
+				//Find the first stack that is not empty and holds something this creature eats.
+				//Stacks only ever shrink, so each food's start can skip past its empty stacks for good
+				currentstack=stacks.length;
+				for (f=0;f<troughcreatures[i].stackfoods.length;f++) {
+					stackfood=troughcreatures[i].stackfoods[f];
+					while (stackstart[stackfood]<stackend[stackfood] && stacks[stackstart[stackfood]]['stacksize']<=0) {
+						stackstart[stackfood]++;
+					}
+					if (stackstart[stackfood]<stackend[stackfood] && stackstart[stackfood]<currentstack) {
+						currentstack=stackstart[stackfood];
+					}
+				}
+				if (currentstack<stacks.length) {
+					foodmult=troughcreatures[i].foodmultipliers[stacks[currentstack]['type']];
+					wastemult=troughcreatures[i].wastemultipliers[stacks[currentstack]['type']];
+					if (stacks[currentstack]['food']*foodmult<troughcreatures[i].hunger) {
+						times[$scope.creatures[troughcreatures[i].name].type]=time;
+						stacks[currentstack]['stacksize']--;
+						eatenfood++;
+						eatenpoints+=stacks[currentstack]['food']*foodmult;
+						wastedpoints+=stacks[currentstack]['waste']*wastemult;
+						troughcreatures[i].hunger-=stacks[currentstack]['food']*foodmult;
+						if (stacks[currentstack]['stacksize']==0) {
+							totalstacks['all']--;
+							totalstacks[stacks[currentstack]['type']]--;
 						}
-						break;
 					}
 				}
 			}
 
 			//Spoil timers / spoiling
-			for (i=0;i<stacks.length;i++) {
-				stacks[i]['stackspoil']--; //Reduce spoil timer by one
-				if (stacks[i]['stackspoil']<=0 && stacks[i]['stacksize']>0) { //Spoil timer passed, spoil a food
-					stacks[i]['stacksize']--;
-					stacks[i]['stackspoil']=stacks[i]['foodspoil'];
-					spoiledfood++;
-					spoiledpoints+=stacks[i]['food'];
-					wastedpoints+=stacks[i]['waste'];
-					if (stacks[i]['stacksize']==0) {
-						totalstacks['all']--;
-						totalstacks[stacks[i]['type']]--;
+			for (f=0;f<stackfoods.length;f++) {
+				stackfood=stackfoods[f];
+				spoiltimers[stackfood]--; //Reduce spoil timer by one
+				if (spoiltimers[stackfood]>0) {
+					continue;
+				}
+				//Spoil timer passed, spoil one food from every stack of this type
+				spoiltimers[stackfood]=stacks[stackend[stackfood]-1]['foodspoil'];
+				for (i=stackstart[stackfood];i<stackend[stackfood];i++) {
+					if (stacks[i]['stacksize']>0) {
+						stacks[i]['stacksize']--;
+						spoiledfood++;
+						spoiledpoints+=stacks[i]['food'];
+						wastedpoints+=stacks[i]['waste'];
+						if (stacks[i]['stacksize']==0) {
+							totalstacks['all']--;
+							totalstacks[stacks[i]['type']]--;
+						}
 					}
 				}
 			}
